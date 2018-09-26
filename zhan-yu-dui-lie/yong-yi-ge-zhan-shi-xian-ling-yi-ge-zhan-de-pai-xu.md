@@ -1,4 +1,4 @@
-### 用一个栈实现另一个栈的排序
+# 用一个栈实现另一个栈的排序
 
 > 实现栈的排序，从顶到底依次减少。可以使用一个辅助栈，但是不允许使用其它数据结构
 
@@ -31,6 +31,4 @@ def sort_stack(stack):
     while len(help_stack) > 0:
         stack.append(help_stack.pop(-1))
 ```
-
-
 

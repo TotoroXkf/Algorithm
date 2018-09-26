@@ -1,4 +1,4 @@
-### 如何仅用递归函数和栈操作逆序一个栈
+# 如何仅用递归函数和栈操作逆序一个栈
 
 > 只使用递归和栈操作逆转一个栈
 
@@ -39,5 +39,4 @@ def get_and_remove_last(stack):
         stack.append(value)
         return return_value
 ```
-
 

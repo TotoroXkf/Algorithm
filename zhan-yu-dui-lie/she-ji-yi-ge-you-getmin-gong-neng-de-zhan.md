@@ -1,6 +1,6 @@
-### 设计一个有getMin功能的栈
+# 设计一个有getMin功能的栈
 
-> 设计一个有push，pop，和getMin的栈，且时间复杂度都是O(1)
+> 设计一个有push，pop，和getMin的栈，且时间复杂度都是O\(1\)
 
 **思路**
 
@@ -47,7 +47,5 @@ class MyStack:
         :rtype:int
         """
         return self.min_stack[-1]
-
 ```
-
 
