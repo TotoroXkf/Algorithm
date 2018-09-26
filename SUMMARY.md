@@ -1,4 +1,6 @@
 # Table of contents
 
-* [Initial page](README.md)
+* [Algorithm](README.md)
+
+## 栈与队列
 
