@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="0487c678-1413-4d8b-ae4c-d31b1bcf45a8" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/StringProblem/正则表达式匹配.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/StringProblem/正则表达式匹配.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/LinkedListProblem/打印两个有序链表中的公共部分.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/LinkedListProblem/打印两个有序链表中的公共部分.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/solution.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/solution.kt" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -30,7 +30,7 @@
         <counts>
           <entry key="json" value="1" />
           <entry key="kt" value="5" />
-          <entry key="md" value="32" />
+          <entry key="md" value="35" />
           <entry key="txt" value="3" />
         </counts>
       </usages-collector>
@@ -38,33 +38,45 @@
         <counts>
           <entry key="JSON" value="1" />
           <entry key="Kotlin" value="5" />
-          <entry key="Markdown" value="30" />
+          <entry key="Markdown" value="33" />
           <entry key="PLAIN_TEXT" value="5" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="kt" value="1345" />
-          <entry key="md" value="438" />
-          <entry key="txt" value="251" />
+          <entry key="kt" value="1606" />
+          <entry key="md" value="441" />
+          <entry key="txt" value="279" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Kotlin" value="1345" />
-          <entry key="Markdown" value="330" />
-          <entry key="PLAIN_TEXT" value="359" />
+          <entry key="Kotlin" value="1606" />
+          <entry key="Markdown" value="333" />
+          <entry key="PLAIN_TEXT" value="387" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/solution.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="448">
-              <caret line="86" selection-start-line="86" selection-end-line="86" />
+            <state relative-caret-position="154">
+              <caret line="24" selection-start-line="24" selection-end-line="38" selection-end-column="1" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/LinkedListProblem/打印两个有序链表中的公共部分.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="550">
+                <caret line="25" column="3" lean-forward="true" selection-start-line="25" selection-start-column="3" selection-end-line="25" selection-end-column="3" />
+              </first_editor>
+              <second_editor />
             </state>
           </provider>
         </entry>
@@ -73,8 +85,8 @@
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="FIRST">
-              <first_editor relative-caret-position="528">
-                <caret line="69" column="4" selection-start-line="69" selection-start-column="4" selection-end-line="69" selection-end-column="4" />
+              <first_editor relative-caret-position="506">
+                <caret line="77" column="4" selection-start-line="77" selection-start-column="4" selection-end-line="77" selection-end-column="4" />
               </first_editor>
               <second_editor />
             </state>
@@ -83,7 +95,11 @@
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/input.txt">
-          <provider selected="true" editor-type-id="text-editor" />
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-294">
+              <caret line="399" selection-start-line="399" selection-end-line="399" />
+            </state>
+          </provider>
         </entry>
       </file>
     </leaf>
@@ -135,11 +151,12 @@
         <option value="$PROJECT_DIR$/src/Node.kt" />
         <option value="$PROJECT_DIR$/src/LinkedListProblem/合并两个有序链表.md" />
         <option value="$PROJECT_DIR$/README.md" />
-        <option value="$PROJECT_DIR$/src/input.txt" />
         <option value="$PROJECT_DIR$/src/StringProblem/ 正则表达式匹配.md" />
         <option value="$PROJECT_DIR$/src/StringProblem/KMP算法.md" />
         <option value="$PROJECT_DIR$/src/StringProblem/正则表达式匹配.md" />
+        <option value="$PROJECT_DIR$/src/input.txt" />
         <option value="$PROJECT_DIR$/src/solution.kt" />
+        <option value="$PROJECT_DIR$/src/LinkedListProblem/打印两个有序链表中的公共部分.md" />
       </list>
     </option>
   </component>
@@ -170,6 +187,12 @@
               <item name="Algorithm" type="b2602c69:ProjectViewProjectNode" />
               <item name="Algorithm" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="LinkedListProblem" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Algorithm" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Algorithm" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="StringProblem" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
@@ -181,7 +204,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1538046167929" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1538046542802" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
@@ -395,7 +418,14 @@
       <option name="project" value="LOCAL" />
       <updated>1538045737112</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="coding">
+      <created>1538046209948</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1538046209948</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -678,7 +708,11 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/input.txt">
-      <provider selected="true" editor-type-id="text-editor" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-294">
+          <caret line="399" selection-start-line="399" selection-end-line="399" />
+        </state>
+      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider editor-type-id="text-editor">
@@ -688,8 +722,26 @@
       </provider>
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="FIRST">
-          <first_editor relative-caret-position="528">
-            <caret line="69" column="4" selection-start-line="69" selection-start-column="4" selection-end-line="69" selection-end-column="4" />
+          <first_editor relative-caret-position="506">
+            <caret line="77" column="4" selection-start-line="77" selection-start-column="4" selection-end-line="77" selection-end-column="4" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/OtherProblem/判断矩阵是否相交.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor />
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/OtherProblem/打家劫舍1.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="396">
+            <caret line="18" lean-forward="true" selection-start-line="18" selection-end-line="18" />
           </first_editor>
           <second_editor />
         </state>
@@ -697,8 +749,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/solution.kt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="448">
-          <caret line="86" selection-start-line="86" selection-end-line="86" />
+        <state relative-caret-position="154">
+          <caret line="24" selection-start-line="24" selection-end-line="38" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/LinkedListProblem/打印两个有序链表中的公共部分.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="550">
+            <caret line="25" column="3" lean-forward="true" selection-start-line="25" selection-start-column="3" selection-end-line="25" selection-end-column="3" />
+          </first_editor>
+          <second_editor />
         </state>
       </provider>
     </entry>

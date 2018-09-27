@@ -4,6 +4,40 @@ import java.io.FileReader
 import java.io.FileWriter
 
 
+//def print_common_area(head1, head2):
+//"""
+//    :type head1:ListNode
+//    :type head2:ListNode
+//    """
+//    first = head1
+//    second = head2
+//
+//    while first is not None and second is not None:
+//        if first.value < second.value:
+//            first = first.next
+//            elif first.value > second.value:
+//            second = second.next
+//        else:
+//            print(first.value)
+//            first = first.next
+//            second = second.next
+
+fun printCommonArea(head1: ListNode?, head2: ListNode?) {
+    var first = head1
+    var second = head2
+    while (first != null && second != null) {
+        when {
+            first.value < second.value -> first = first.next
+            first.value > second.value -> second = second.next
+            else -> {
+                println(first.value)
+                first = first.next
+                second = second.next
+            }
+        }
+    }
+}
+
 fun main(args: Array<String>) {
     splitFile("OtherProblem")
     createReadeMe()
