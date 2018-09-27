@@ -1,7 +1,6 @@
 # Table of contents
 
 * [Algorithm](README.md)
-* [test](哈哈.md)
 
 ## 栈与队列
 
