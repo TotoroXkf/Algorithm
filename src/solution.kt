@@ -62,10 +62,13 @@ fun addLink() {
                 println("hashMap里面没有加新的问文件夹")
             }
             for ((number, file) in directory.listFiles().withIndex()) {
-                val url = baseUrl + packageName + "/" + file.name.substring(0, file.name.length)
-                val line = "$number. [${file.name.substring(0, file.name.length - 3)}]($url)\n".replace(" ", "")
-
-                filWriter.write(line)
+                if (file.isFile) {
+                    val url = baseUrl + packageName + "/" + file.name.substring(0, file.name.length)
+                    var line = "[${file.name.substring(0, file.name.length - 3)}]($url)\n"
+                    line = line.replace(" ", "")
+                    line = "$number. $line"
+                    filWriter.write(line)
+                }
             }
             filWriter.write("\n")
         }
