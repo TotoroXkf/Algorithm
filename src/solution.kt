@@ -2,11 +2,11 @@ import java.io.BufferedReader
 import java.io.File
 import java.io.FileReader
 import java.io.FileWriter
-import java.util.Stack
 
 
 fun main(args: Array<String>) {
-    addLink()
+    //splitFile()
+    createReadeMe()
 }
 
 fun splitFile() {
@@ -29,7 +29,7 @@ fun splitFile() {
     bufferedReader.close()
 }
 
-fun addLink() {
+fun createReadeMe() {
     val filWriter = FileWriter("F:\\KotlinCode\\Algorithm\\README.md")
     filWriter.write("# Algorithm\n" +
             "\n" +
@@ -52,6 +52,7 @@ fun addLink() {
     val basePath = "F:\\KotlinCode\\Algorithm\\src"
     val baseUrl = "https://github.com/TotoroXkf/Algorithm/blob/master/src/"
     val src = File(basePath)
+    var sum = 0
     for (directory in src.listFiles()) {
         if (directory.name.endsWith("Problem")) {
             val packageName = directory.name
@@ -73,9 +74,13 @@ fun addLink() {
                     filWriter.write(line)
                 }
             }
+            sum += number - 1
             filWriter.write("\n")
         }
     }
+    filWriter.write("\n")
+    filWriter.write("已经完成了 $sum 道题目")
 
     filWriter.close()
 }
+

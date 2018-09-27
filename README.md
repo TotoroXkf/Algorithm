@@ -7,6 +7,19 @@
 Enjoy it！！！
 
 ### 数组
+1. [乘积最大子序列](https://github.com/TotoroXkf/Algorithm/blob/master/src/ArrayProblem/乘积最大子序列.md)
+2. [删除赚钱问题](https://github.com/TotoroXkf/Algorithm/blob/master/src/ArrayProblem/删除赚钱问题.md)
+3. [在行列都排好序的数组中找数](https://github.com/TotoroXkf/Algorithm/blob/master/src/ArrayProblem/在行列都排好序的数组中找数.md)
+4. [将数组搬移成为相同值所需要的最小步数](https://github.com/TotoroXkf/Algorithm/blob/master/src/ArrayProblem/将数组搬移成为相同值所需要的最小步数.md)
+5. [找到数组中出现次数大于一半的数](https://github.com/TotoroXkf/Algorithm/blob/master/src/ArrayProblem/找到数组中出现次数大于一半的数.md)
+6. [找到数组中第一个缺少的数字](https://github.com/TotoroXkf/Algorithm/blob/master/src/ArrayProblem/找到数组中第一个缺少的数字.md)
+7. [找到数组中累加小于等于目标值的最长子数组](https://github.com/TotoroXkf/Algorithm/blob/master/src/ArrayProblem/找到数组中累加小于等于目标值的最长子数组.md)
+8. [找到无序数组中最小的k个数](https://github.com/TotoroXkf/Algorithm/blob/master/src/ArrayProblem/找到无序数组中最小的k个数.md)
+9. [数组中累加和等于目标值的最长序列](https://github.com/TotoroXkf/Algorithm/blob/master/src/ArrayProblem/数组中累加和等于目标值的最长序列.md)
+10. [数组的小和](https://github.com/TotoroXkf/Algorithm/blob/master/src/ArrayProblem/数组的小和.md)
+11. [最大连续子区间和](https://github.com/TotoroXkf/Algorithm/blob/master/src/ArrayProblem/最大连续子区间和.md)
+12. [最长的可整合子数组的长度](https://github.com/TotoroXkf/Algorithm/blob/master/src/ArrayProblem/最长的可整合子数组的长度.md)
+13. [需要排序的最短子数组长度](https://github.com/TotoroXkf/Algorithm/blob/master/src/ArrayProblem/需要排序的最短子数组长度.md)
 
 ### 二叉树
 1. [找出二叉树每层的最大值](https://github.com/TotoroXkf/Algorithm/blob/master/src/BinaryTreeProblem/找出二叉树每层的最大值.md)
@@ -55,3 +68,5 @@ Enjoy it！！！
 
 ### 字符串问题
 
+
+已经完成了 48 道题目
