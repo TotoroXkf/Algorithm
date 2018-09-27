@@ -4,45 +4,6 @@
     <list default="true" id="0487c678-1413-4d8b-ae4c-d31b1bcf45a8" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Algorithm/DynamicProgram/N皇后问题.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Algorithm/DynamicProgram/images/1533894553304.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Algorithm/DynamicProgram/images/1533894568835.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Algorithm/DynamicProgram/images/1533894591711.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Algorithm/DynamicProgram/images/1536571892291.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Algorithm/DynamicProgram/字符串的是否由两个字符串交错组成.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Algorithm/DynamicProgram/拿牌的博弈问题.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Algorithm/DynamicProgram/换钱的方法数.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Algorithm/DynamicProgram/换钱的最少货币数.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Algorithm/DynamicProgram/数字字符串转换为字母组合的种数.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Algorithm/DynamicProgram/数组中的最长连续序列.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Algorithm/DynamicProgram/斐波那契数列的最优解.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Algorithm/DynamicProgram/最长上升子序列.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Algorithm/DynamicProgram/最长公共子串.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Algorithm/DynamicProgram/最长公共子序列.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Algorithm/DynamicProgram/消除游戏.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Algorithm/DynamicProgram/矩阵的最短路径和.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Algorithm/DynamicProgram/编辑距离.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Algorithm/DynamicProgram/跳跃游戏.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Algorithm/SolutionKt.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Algorithm/SolutionKt.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DynamicProgram/N皇后问题.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/DynamicProblem/N皇后问题.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DynamicProgram/images/1533894553304.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/DynamicProblem/images/1533894553304.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DynamicProgram/images/1533894568835.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/DynamicProblem/images/1533894568835.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DynamicProgram/images/1533894591711.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/DynamicProblem/images/1533894591711.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DynamicProgram/images/1536571892291.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/DynamicProblem/images/1536571892291.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DynamicProgram/字符串的是否由两个字符串交错组成.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/DynamicProblem/字符串的是否由两个字符串交错组成.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DynamicProgram/拿牌的博弈问题.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/DynamicProblem/拿牌的博弈问题.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DynamicProgram/换钱的方法数.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/DynamicProblem/换钱的方法数.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DynamicProgram/换钱的最少货币数.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/DynamicProblem/换钱的最少货币数.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DynamicProgram/数字字符串转换为字母组合的种数.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/DynamicProblem/数字字符串转换为字母组合的种数.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DynamicProgram/数组中的最长连续序列.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/DynamicProblem/数组中的最长连续序列.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DynamicProgram/斐波那契数列的最优解.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/DynamicProblem/斐波那契数列的最优解.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DynamicProgram/最长上升子序列.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/DynamicProblem/最长上升子序列.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DynamicProgram/最长公共子串.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/DynamicProblem/最长公共子串.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DynamicProgram/最长公共子序列.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/DynamicProblem/最长公共子序列.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DynamicProgram/消除游戏.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/DynamicProblem/消除游戏.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DynamicProgram/矩阵的最短路径和.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/DynamicProblem/矩阵的最短路径和.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DynamicProgram/编辑距离.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/DynamicProblem/编辑距离.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DynamicProgram/跳跃游戏.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/DynamicProblem/跳跃游戏.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/solution.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/solution.kt" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -83,14 +44,14 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="kt" value="1108" />
+          <entry key="kt" value="1138" />
           <entry key="md" value="365" />
           <entry key="txt" value="6" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Kotlin" value="1108" />
+          <entry key="Kotlin" value="1138" />
           <entry key="Markdown" value="257" />
           <entry key="PLAIN_TEXT" value="114" />
         </counts>
@@ -102,8 +63,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/solution.kt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="580">
-              <caret line="69" column="9" lean-forward="true" selection-start-line="69" selection-start-column="9" selection-end-line="69" selection-end-column="9" />
+            <state relative-caret-position="382">
+              <caret line="66" selection-start-line="66" selection-end-line="66" />
             </state>
           </provider>
         </entry>
@@ -112,8 +73,8 @@
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
             <state split_layout="FIRST">
-              <first_editor relative-caret-position="176">
-                <caret line="8" column="6" lean-forward="true" selection-start-line="8" selection-start-column="6" selection-end-line="8" selection-end-column="6" />
+              <first_editor relative-caret-position="214">
+                <caret line="11" column="90" lean-forward="true" selection-start-line="11" selection-start-column="90" selection-end-line="11" selection-end-column="90" />
               </first_editor>
               <second_editor />
             </state>
@@ -215,7 +176,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1538039703790" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1538039909508" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
@@ -379,7 +340,14 @@
       <option name="project" value="LOCAL" />
       <updated>1538037815255</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="coding">
+      <created>1538039771325</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1538039771325</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -624,8 +592,8 @@
       </provider>
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="FIRST">
-          <first_editor relative-caret-position="176">
-            <caret line="8" column="6" lean-forward="true" selection-start-line="8" selection-start-column="6" selection-end-line="8" selection-end-column="6" />
+          <first_editor relative-caret-position="214">
+            <caret line="11" column="90" lean-forward="true" selection-start-line="11" selection-start-column="90" selection-end-line="11" selection-end-column="90" />
           </first_editor>
           <second_editor />
         </state>
@@ -633,8 +601,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/solution.kt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="580">
-          <caret line="69" column="9" lean-forward="true" selection-start-line="69" selection-start-column="9" selection-end-line="69" selection-end-column="9" />
+        <state relative-caret-position="382">
+          <caret line="66" selection-start-line="66" selection-end-line="66" />
         </state>
       </provider>
     </entry>

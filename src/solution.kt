@@ -63,7 +63,8 @@ fun addLink() {
             }
             for ((number, file) in directory.listFiles().withIndex()) {
                 val url = baseUrl + packageName + "/" + file.name.substring(0, file.name.length)
-                val line = "$number. [${file.name.substring(0, file.name.length - 3)}]($url)\n"
+                val line = "$number. [${file.name.substring(0, file.name.length - 3)}]($url)\n".replace(" ", "")
+
                 filWriter.write(line)
             }
             filWriter.write("\n")
