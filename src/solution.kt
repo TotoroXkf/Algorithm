@@ -61,12 +61,15 @@ fun addLink() {
             } else {
                 println("hashMap里面没有加新的问文件夹")
             }
-            for ((number, file) in directory.listFiles().withIndex()) {
+            var number = 1
+            for (file in directory.listFiles()) {
                 if (file.isFile) {
                     val url = baseUrl + packageName + "/" + file.name.substring(0, file.name.length)
                     var line = "[${file.name.substring(0, file.name.length - 3)}]($url)\n"
                     line = line.replace(" ", "")
                     line = "$number. $line"
+                    number++
+
                     filWriter.write(line)
                 }
             }
@@ -76,22 +79,3 @@ fun addLink() {
 
     filWriter.close()
 }
-
-//fun addLink() {
-//    val filWriter = FileWriter("F:\\KotlinCode\\Algorithm\\README.md", true)
-//    val baseUrl = "https://github.com/TotoroXkf/Algorithm/blob/master/src/"
-//    val packageName = "BinaryTreeProblem"
-//    val directory = File("src/$packageName")
-//    if (directory.isDirectory) {
-//        val fileList = directory.listFiles()
-//        var number = 1
-//        for (file in fileList) {
-//            val url = baseUrl + packageName + "/" + file.name.substring(0, file.name.length)
-//            val line = "$number. [${file.name.substring(0, file.name.length - 3)}]($url)\n"
-//            number++
-//
-//            filWriter.write(line)
-//        }
-//    }
-//    filWriter.close()
-//}
