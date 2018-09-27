@@ -1,4 +1,5 @@
-### 删除链表中间节点
+# 删除链表中间节点
+
 > 如题
 
 **思路**
@@ -38,3 +39,4 @@ def delete_mid_node(head):
     slow.next = fast.next
     return head
 ```
+

@@ -1,4 +1,5 @@
-### 打印两个有序链表中的公共部分
+# 打印两个有序链表中的公共部分
+
 > 如题
 
 **思路**
@@ -26,3 +27,4 @@ def print_common_area(head1, head2):
             first = first.next
             second = second.next
 ```
+

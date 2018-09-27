@@ -1,4 +1,5 @@
-### 删除链表倒数第k个节点
+# 删除链表倒数第k个节点
+
 > 如题
 
 **思路**
@@ -36,3 +37,4 @@ def delete_last_kth_node(k, head):
     pre.next = back.next
     return head
 ```
+

@@ -1,4 +1,5 @@
-### 合并两个有序链表
+# 合并两个有序链表
+
 > 如题
 
 **思路**
@@ -22,3 +23,4 @@ fun mergeTwoLists(l1: ListNode?, l2: ListNode?): ListNode? {
     }
 }
 ```
+
