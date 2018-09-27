@@ -1,0 +1,494 @@
+### 设计一个有getMin功能的栈
+
+> 设计一个有push，pop，和getMin的栈，且时间复杂度都是O(1)
+
+**思路**
+
+需要一个额外的栈来辅助实现
+
+一个date栈，一个min栈
+
+当调用push方法把当前值压入date栈，然后比较min栈的栈顶和压入的元素，得到目前的最小值，然后压入栈中
+
+当pop的时候同时弹出两个栈的栈顶值。
+
+这样就可以维护min栈成为最小值栈
+
+getMin就是返回栈顶就可以
+
+**代码**
+
+```python
+class MyStack:
+    def __init__(self):
+        self.date_stack = []
+        self.min_stack = []
+
+    def pop(self):
+        """
+        :rtype:int
+        """
+        old_value = self.date_stack.pop(-1)
+        self.min_stack.pop(-1)
+        return old_value
+
+    def push(self, value):
+        """
+        :type value:int
+        """
+        self.date_stack.append(value)
+        if len(self.min_stack) == 0:
+            self.min_stack.append(value)
+        else:
+            self.min_stack.append(min(value, self.min_stack[-1]))
+
+    def get_min_value(self):
+        """
+        :rtype:int
+        """
+        return self.min_stack[-1]
+
+```
+
+
+### 如何仅用递归函数和栈操作逆序一个栈
+
+> 只使用递归和栈操作逆转一个栈
+
+**思路**
+
+递归讲究的是每一次的操作都是原来的子操作
+
+如果要反转一个栈，那么栈底就会到栈顶，倒数第二回到正数第二
+
+所以，先取出并且移除栈底，然后反转剩下的栈，再将取出的栈底压入即可形成递归
+
+**代码**
+
+```python
+def reverse_stack(stack):
+    """
+    :type stack:list
+    :rtype:list
+    """
+    if len(stack) == 0:
+        return
+    value = get_and_remove_last(stack)
+    reverse_stack(stack)
+    stack.append(value)
+    return stack
+
+
+def get_and_remove_last(stack):
+    """
+    :type stack:list
+    :rtype: int
+    """
+    if len(stack) == 1:
+        return stack.pop(0)
+    else:
+        value = stack.pop(-1)
+        return_value = get_and_remove_last(stack)
+        stack.append(value)
+        return return_value
+```
+
+
+### 用一个栈实现另一个栈的排序
+
+> 实现栈的排序，从顶到底依次减少。可以使用一个辅助栈，但是不允许使用其它数据结构
+
+**思路**
+
+维护一个help栈，help栈保持从底到顶升序
+
+从stack栈pop一个元素，然后比较help栈顶和弹出元素。如果弹出元素小或者相等那就正好合适，直接压入help栈
+
+反之，将help栈的数据push进入stack，直到能找到合适的位置，压入这个元素
+
+最后将help栈的全部元素反压会stack即可完成排序
+
+**代码**
+
+```python
+def sort_stack(stack):
+    """
+    :type stack:list
+    """
+    help_stack = []
+    while len(stack) > 0:
+        value = stack.pop(-1)
+        if len(help_stack) == 0:
+            help_stack.append(value)
+        else:
+            while len(help_stack) > 0 and value > help_stack[-1]:
+                stack.append(help_stack.pop(-1))
+            help_stack.append(value)
+    while len(help_stack) > 0:
+        stack.append(help_stack.pop(-1))
+```
+
+
+
+### 用栈来求解汉诺塔问题
+> 经典汉诺塔问题
+
+**思路**
+
+就是按照游戏规则一步一步走就可以
+
+首先，左右两个栈，表示左右两边的情况。中间一定是空的
+
+然后从left栈pop一个元素，向右移动，移动到最右边，判断能不能直接放上去
+不能的话需要把right栈的顶元素移动到left栈，过程样
+
+所以设计两个函数，移动最左边的到最右边，和移动最右边的到最左边
+
+然后在调度函数中不断调用右移动函数即可
+
+**代码**
+
+```python
+count = 0
+
+
+def slove_hanno_tower(n):
+    """
+    :type n: int
+    :rtype : int
+    """
+    left_stack = [value for value in range(n, 0, -1)]
+    right_stack = []
+
+    while len(left_stack) > 0:
+        move_to_right(left_stack, right_stack)
+
+    return count
+
+
+def move_to_right(left_stack, right_stack):
+    """
+    :type left_stack:list
+    :type right_stack:list
+    """
+    global count
+    value = left_stack.pop(-1)
+
+    print(str(value) + " move to mid")
+    count = count + 1
+
+    if len(right_stack) == 0 or value < right_stack[-1]:
+        right_stack.append(value)
+    else:
+        while len(right_stack) > 0 and value > right_stack[-1]:
+            move_to_left(left_stack, right_stack)
+        right_stack.append(value)
+
+    print(str(value) + " move to right")
+    count = count + 1
+
+
+def move_to_left(left_stack, right_stack):
+    """
+    :type left_stack:list
+    :type right_stack:list
+    """
+    global count
+    value = right_stack.pop(-1)
+
+    print(str(value) + " move to mid")
+    count = count + 1
+
+    if len(left_stack) == 0 or value < left_stack[-1]:
+        left_stack.append(value)
+    else:
+        while len(left_stack) > 0 and value > left_stack[-1]:
+            move_to_right(left_stack, right_stack)
+        left_stack.append(value)
+
+    print(str(value) + " move to left")
+    count = count + 1
+
+```
+
+
+### 生成窗口最大值数组
+
+> 给定一个数组和窗口大小，窗口不断向右移动，求出所有窗口内的最大值
+[4  3  5]  4  3  3  6  7 ----->当前窗口最大值为5
+最终结果为[5,5,5,4,6,7]
+
+**思路**
+
+维护一个下一个有效比较的队列，通过这个队列来得到每一步的最大值
+
+比如例子中的4,3,5,4,3,3,6,7这个数组
+
+刚开始遇到4，将4的下标入队，队列为{0}
+然后遇到3,用3和队头比较（因为队头代表了当前窗口的最大值），3比4小，说明当前窗口的最大值依旧是4，也就是队列头。但是这个数随着窗口的滑动可能会过期，所以，即使这个3比4小，但是它完全可能时之后的窗口内最大值，入队，队列为{0,1}
+
+紧接着遇到5，5大于4，说明最大值将会变动为5，所以将4出队，继续比较，3还是比5小，再出队，然后5的下标入队，队列为{2}
+
+此时可以专门计数一下，从0-2的窗口的最大值已经得到，就是队头，也就是5
+
+再然后的过程都一样，遇到4，和5比较，依旧是5最大，然后把4入队，作为之后的有效比较对象。队列变为{2,3}。
+
+注意，从这里开始每一次循环都应该记录一个结果，表示窗口内最大值，就是队头
+
+记录结果 5
+
+同理，变为{2,3,4}  记录结果 5
+
+继续，遇到3，此时跨度超过window_size，将5出队，4成为当前区域最大值，和3比较。3小，将3的小标入队。队列变为{3,4,5} ,记录结果 下标为3的元素，4
+
+继续，遇到6，全部出队，6入队，记录6
+
+同理，记录7
+
+最终结果[5,5,5,4,6,7]
+
+时间复杂度 O(n)
+
+**代码**
+
+```python
+def get_window_max_values(nums, k):
+    """
+    :type nums:list
+    :type k:int
+    :rtype:list
+    """
+    if k > len(nums):
+        return None
+    result = []
+    max_queue = []
+    index = 0
+    length = 0
+
+    while index < len(nums):
+        if len(max_queue) == 0:
+            max_queue.append(index)
+        else:
+            if index - max_queue[0] == k:
+                max_queue.pop(0)
+            while max_queue and nums[max_queue[-1]] < nums[index]:
+                max_queue.pop(-1)
+            max_queue.append(index)
+        length += 1
+        if length >= k:
+            result.append(nums[max_queue[0]])
+        index += 1
+    return result
+```
+
+
+
+### 求最大子矩阵面积的大小
+> 给出一个只有0和1的举证
+1 0 1 0
+1 1 1 0
+1 1 1 1
+连续1的最大面积为6
+
+**思路**
+
+从矩阵的最底下一行向上面看的话，等于一些高度的条状，然后求最大能围成的面积
+就举出的例子来看的话，相当于是[3,2,3,1]的4条长度的条状，问能围成的面积
+所以这个问题是一维数组能围成的面积
+
+首先考虑比较简单的情况。如果全部都是升序的是个什么情况？比如1,3,4,7,11
+那么，可能情况就是1*5||3*4||4*3||7*2||11*1，其中有一个最大值
+
+然后考虑在升序当中出现乱序的情况，比如2,3,1
+这时的最大值可以这样想。抛开1不管，只看2和3是有序的，是可以必出2和3组成的最大值。然后1加入，1比2和3都小
+那么就会多出一种情况就是带着1跨过整个数组，1*3的情况
+比较上面的的值可以求出最大值
+
+再然后考虑更复杂的情况，1后面假设还有值2,3,1,2,3
+先看1左边的2和3，得出各种情况。
+然后遇到1，但是这时不应该处理1，因为1后面还有数字，不知道是带着1向后还是1就在这里处理
+所以不处理。但是这时的2和3已经处理过了。所以完全可以大胆的把2和3都看作1！
+因为2和3想要向后扩展必须跨过1，那就只能视作为1.而不跨过1的情况已经处理过了。所以大胆看作1
+变成1,1,1,2,3 这时再次得到升序的数组，求解即可
+
+再来看更加特殊的情况 1,3,4,2,6,5。这基本可以当做一般情况了
+首先1,3,4有序，遇到2，这时，2大于1，也就是说没有办法让2没过1，所以即使1,3,4,有序，但是也只能处理3和4
+然后变成1,2,2,2,6,5。6和5还不是有序的。但是流程和之前的是一样的。1,2,2,2,6是有序的，遇到5......
+
+综上所述。这个题的关键就是要不断地创建一个升序的数组。在构建的途中处理不是升序的部分，求得最优解
+这里提供一个完整的分析，配合下面的代码分析清楚这个题
+比如4,2,0,3,2,5这个例子
+首先遇到4，没问题，把4的下标(必须是下标)进栈。然后遇到2，和栈顶比较，比4小，入栈会成为无序，所以把4出栈
+然后这时的i在1位置，出栈的元素代表的位置是0。此时栈为空，长就是4，宽就是4*i
+想想看，栈空了，表示遇到的元素小于栈里面所有的元素。比如2,6,9,1这种。遇到1，6和9都出栈了，2的处理就因该是2*3
+所以此时，就是4去乘上i所在的位置表示area
+然后理论上这个数组因该就变成2,2,0,3,2,5了。但是在写法上不用这样。直接把2所在的下标，也就是1入栈就好了
+这也是间接的表示1下标之前的数字都是2
+随后遇到0把2的下标1出栈,然后栈空，area是2*i(i此时是2);
+再遇到3，入栈，遇到2，把3弹出，这时栈不为空，还有个0的下标在里面。此时area应该是i-2(栈顶元素，也就是0的下标)-1
+这里注意，一定是减去栈顶的下标。为什么之后说
+然后2入栈，遇到5，入栈。遍历结束。这时要在处理一次栈。也就是在数组末尾假装还有一个0.这样按照上面的分析就能把栈里面的元素都给处理了
+现在遇到自己加入的0，此时的栈为2(0的下标),4(后面那个2的下标),5(5的下标)。
+5出栈，5*(6-4-1) = 5*1 = 5
+4出栈，2*(6-2-1) = 2*3 = 6   (这个例子中的最大值)
+2出栈，0*6 = 0;
+结束
+
+现在说说为什么是减去栈顶元素
+按照上面的分析，最后一次数组应该已经成为0,0,0,2,2,5
+在弹出5的时候，5只有自己一个值，那么就算是不这么算也是可以的。比如用i减去弹出的栈顶元素也可以算出宽度来
+但是弹出4的时候就不是了。3位置也是个2，也因该一并考虑进去的，此时如果还是用i减去弹出的栈顶元素，那么就算了2*2，漏掉了3位置的2，
+
+**代码**
+
+```java
+fun maximalRectangle(matrix: Array<CharArray>): Int {
+    if (matrix.isEmpty() || matrix[0].isEmpty()) {
+        return 0
+    }
+    val height = IntArray(matrix[0].size)
+    var max = 0
+    for (i in matrix.indices) {
+        for (j in 0 until matrix[0].size) {
+            if (matrix[i][j] == '1') {
+                height[j] += 1
+            } else {
+                height[j] = 0
+            }
+        }
+        max = Math.max(max, largestRectangleArea(height))
+    }
+    return max
+}
+
+private fun largestRectangleArea(heights: IntArray): Int {
+    var maxArea = 0
+    val stack = Stack<Int>()
+    for (i in 0 until heights.size + 1) {
+        var height = 0
+        if (i < heights.size) {
+            height = heights[i]
+        }
+        while (!stack.isEmpty() && heights[stack.peek()] > height) {
+            val position = stack.pop()
+            val area: Int
+            if (stack.isEmpty()) {
+                area = heights[position] * i
+            } else {
+                area = (i - stack.peek() - 1) * heights[position]
+            }
+            if (area > maxArea) {
+                maxArea = area
+            }
+        }
+        stack.push(i)
+    }
+    return maxArea
+}
+```
+
+
+### 最大值减去最小值小于等于num的子数组数量
+
+> 给定一个数组，求出所有的子数组中，最大值减去最小值小于等于target的情况数量的总和
+
+
+**思路**
+
+和**生成窗口最大值数组**的思路差不多
+
+维护一个max_queue队列和min_queue，分别放置当前区间的最大最小值，和之后的有效值
+
+比如[3,2,5,8,4,7,6,9]
+target = 4
+
+其中max_queue队列应该总是保持降序，因为遇到大的值就会向前替换。min_queue反过来
+
+遇到3
+max_queue = {0}
+min_queue = {1}
+并且队头代表了当前的最大最小值，相减，判断是不是小于target
+
+如果小于，说明当前区间的所有子数组都符合，向后移动
+
+现在就是符合的，向后移动，遇到5，更新队列
+max = {2}
+min = {1,2}
+队头相减依然成立，向后移动。就是实际情况来看，前3个数的所有子区间的确也都是符合的
+
+在向后遇到8，更新队列
+max = {3}
+min = {1,2,3}
+队头相减，不再成立了
+
+这个时候就是要缩短区间了。首先此时的区间是从0-3这一段区间
+
+一点一点看。从0开始，3这个位置的元素和前面的3个元素无法兼容，那么0只能和最远到2的元素结合，也就是(0,1),(0,1,2),都是成立的，max和min队列保证了这一点。结果+2即可
+
+观察可以发现，就是+上( j-1-i )
+
+然后0的所有情况就都算进去了
+
+然后，缩短区间，变为1-3
+
+同时更新max和min，会发现，如果丢弃了0位置的元素，那么和两个的队头相比，都不相等，说明丢弃的只是中间元素而已，不用更新
+
+反之，如果和队头元素有一样的，就要更新max 和 min
+此时不用更新，那么情况和刚才完全一样
+
+然后区间是1-3，队列未更新，所以，从1 到2的都成立，也就是(1,2)。
+在移动，2-3，此时1位置的元素丢弃，min队列需要更新，所以，再判断是不是相减符合情况。
+
+结果符合，继续j向后，跟新队列
+
+一直到j跑完整个数组，此时i停在中间某个位置，此时很容易想到，从i到数组末尾的所有子数组都成立，所以要不断向前移动i，并且结果+上( j-1-i )
+
+最终返回结果即可
+
+**代码**
+
+```python
+def get_num(array, target):
+    """
+    :type target:int
+    :type array:list
+    :rtype :int
+    """
+    max_queue = []
+    min_queue = []
+    i = 0
+    j = 0
+    result = 0
+    while j < len(array):
+        update_queue(array, j, max_queue, min_queue)
+
+        while array[max_queue[0]] - array[min_queue[0]] > target:
+            result += (j - 1 - i)
+            if max_queue[0] == i:
+                max_queue.pop(0)
+            if min_queue[0] == i:
+                min_queue.pop(0)
+            i = i + 1
+        j += 1
+
+    while i < j:
+        result += (j - 1 - i)
+        i = i + 1
+    return result
+
+
+def update_queue(array, index, max_queue, min_queue):
+    """
+    :type array:list
+    :type index:int
+    :type max_queue:list
+    :type min_queue:list
+    """
+    while max_queue and array[index] >= array[max_queue[-1]]:
+        max_queue.pop(-1)
+    max_queue.append(index)
+
+    while min_queue and array[index] <= array[min_queue[-1]]:
+        min_queue.pop(-1)
+    min_queue.append(index)
+```
