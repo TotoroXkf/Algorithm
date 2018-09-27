@@ -5,20 +5,8 @@ import java.io.FileWriter
 import java.util.Stack
 
 
-fun mergeTwoLists(l1: ListNode?, l2: ListNode?): ListNode? {
-    if (l1 == null) return l2
-    if (l2 == null) return l1
-    return if (l1.value < l2.value) {
-        l1.next = mergeTwoLists(l1.next, l2)
-        l1
-    } else {
-        l2.next = mergeTwoLists(l1, l2.next)
-        l2
-    }
-}
-
-
 fun main(args: Array<String>) {
+    addLink()
 }
 
 fun splitFile() {
@@ -44,7 +32,7 @@ fun splitFile() {
 fun addLink() {
     val filWriter = FileWriter("F:\\KotlinCode\\Algorithm\\README.md", true)
     val baseUrl = "https://github.com/TotoroXkf/Algorithm/blob/master/src/"
-    val packageName = "StackAndQueueProblem"
+    val packageName = "BinaryTreeProblem"
     val directory = File("src/$packageName")
     if (directory.isDirectory) {
         val fileList = directory.listFiles()
