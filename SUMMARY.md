@@ -1,6 +1,7 @@
 # Table of contents
 
 * [Algorithm](README.md)
+* [test](test.md)
 
 ## 栈与队列
 
@@ -24,4 +25,3 @@
 * [环形单链表的约瑟夫问题](lian-biao/huan-xing-dan-lian-biao-de-yue-se-fu-wen-ti.md)
 * [链表排序](lian-biao/lian-biao-pai-xu.md)
 * [合并两个有序链表](lian-biao/he-bing-liang-ge-you-xu-lian-biao.md)
-
