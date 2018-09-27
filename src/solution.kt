@@ -5,16 +5,16 @@ import java.io.FileWriter
 
 
 fun main(args: Array<String>) {
-    //splitFile()
+    splitFile("StringProblem")
     createReadeMe()
 }
 
-fun splitFile() {
+fun splitFile(to: String) {
     val fileName = "src/input.txt"
     val bufferedReader = BufferedReader(FileReader(fileName))
     var line = bufferedReader.readLine()
     while (line != null && line.contains("###")) {
-        val outputName = "src/" + line.substring(4) + ".md"
+        val outputName = "src/$to/" + line.substring(4) + ".md"
         val fileWriter = FileWriter(outputName)
         fileWriter.write(line + "\n")
         line = bufferedReader.readLine()

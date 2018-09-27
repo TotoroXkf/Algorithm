@@ -67,6 +67,9 @@ Enjoy it！！！
 7. [设计一个有getMin功能的栈](https://github.com/TotoroXkf/Algorithm/blob/master/src/StackAndQueueProblem/设计一个有getMin功能的栈.md)
 
 ### 字符串问题
+1. [正则表达式匹配](https://github.com/TotoroXkf/Algorithm/blob/master/src/StringProblem/正则表达式匹配.md)
+2. [KMP算法](https://github.com/TotoroXkf/Algorithm/blob/master/src/StringProblem/KMP算法.md)
+3. [最长无重复子字符串](https://github.com/TotoroXkf/Algorithm/blob/master/src/StringProblem/最长无重复子字符串.md)
 
 
-已经完成了 48 道题目
+已经完成了 51 道题目

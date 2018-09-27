@@ -1,782 +1,348 @@
-### 找到无序数组中最小的k个数
+###  正则表达式匹配
+>给定一个字符串 (s) 和一个字符模式 (p)。实现支持 '.' 和 '*' 的正则表达式匹配。
+'.' 匹配任意单个字符。
+'*' 匹配零个或多个前面的元素。
+匹配应该覆盖整个字符串 (s) ，而不是部分字符串。
+示例 1:
 
-> 如题
+>输入:
+s = "aa"
+p = "a"
+输出: false
+解释: "a" 无法匹配 "aa" 整个字符串。
+示例 2:
+
+>输入:
+s = "aa"
+p = "a*"
+输出: true
+解释: '*' 代表可匹配零个或多个前面的元素, 即可以匹配 'a' 。因此, 重复 'a' 一次, 字符串可变为 "aa"。
+示例 3:
+
+>输入:
+s = "ab"
+p = ".*"
+输出: true
+解释: ".*" 表示可匹配零个或多个('*')任意字符('.')。
+示例 4:
+
+>输入:
+s = "aab"
+p = "c*a*b"
+输出: true
+解释: 'c' 可以不被重复, 'a' 可以被重复一次。因此可以匹配字符串 "aab"。
+示例 5:
+
+>输入:
+s = "mississippi"
+p = "mis*is*p*."
+输出: false
+
 
 **思路**
 
-利用快排的思路，选取基准，一次划分为2个区间。然后看区间的范围是和k的关系
+两个字符串匹配的各种问题都容易想到使用DP求解
+先来分析这个问题的情况
+首先，.和一般的字符没有什么不一样的地方
 
-左半区间是小于右半区间的，所以如果左半区间范围等于k,左半区间就是解
-反之可以向下递归
+难点就是这个*的问题
 
-**代码**
+还是按照二维dp的解法列出表格
+dp[i][j]表示s的i长度和p的j长度是否匹配。
+是boolean类型的。这个boolean十分的精髓
+看个例子
+s = aaaa
+p = a*b*
+首先能确定就是行和列
+从列来看，“”只能匹配“”
+从行来看，“”只能匹配*（*可以表示0个字符），而且还要看看dp[i][j-2]是什么。如果dp[i][j-2]是true的表示这里*代表没有字符，前面匹配则这里匹配，前面不匹配则这里不匹配
+| .....      | "" |a|*|b|*|
+| -------- | --------|-------|-------|----------|---------|
+| “” | t  |f|t|f|t| 
+| a    |f    | 
+| a   |  f  | 
+| a   |   f |
+| a   |   f |  
 
-```python
-import random
+然后就是中间的内容
+先考虑简单的情况，不遇到*
 
-
-def select_kth_min_number(array, k, left=-1, right=-1):
-    """
-    :type array:list
-    :type k:int
-    :type left:int
-    :type right:int
-    :rtype: list
-    """
-
-    if left == -1 and right == -1:
-        left = 0
-        right = len(array) - 1
-
-    if left <= right:
-        index = random.randint(left, right)
-        key_value = array[index]
-        copy_array = array[:]
-        i = left
-        j = right
-        while i < j:
-            while i < j and copy_array[i] < key_value:
-                i = i + 1
-            copy_array[index] = copy_array[i]
-            while j > i and copy_array[j] >= key_value:
-                j = j - 1
-            copy_array[i] = copy_array[j]
-            index = j
-        copy_array[index] = key_value
-        numbers = index - left + 1
-        if numbers == k:
-            res = copy_array[left:index + 1]
-        elif numbers < k:
-            res = copy_array[left:index + 1]
-            res.extend(select_kth_min_number(copy_array, k - numbers, left=index + 1, right=right))
-        else:
-            res = select_kth_min_number(copy_array, k, left=left, right=index - 1)
-        return res
-    else:
-        return []
-```
-
-### 需要排序的最短子数组长度
-> 给出一个数组，找到一个无序子数组，通过排序这个数组能使得数组有序。返回它的长度。
-
-**思路**
-首先要正确理解题目的意思
-比如
-
+遇到.和遇到一般字符是一样的
+这个好说。匹配的话，dp[i][j] = dp[i-1][j-1]
+当前匹配就看之前的匹不匹配。前面的匹配现在的就匹配，前面的不匹配，当前的就不匹配
 `
-[1, 2, 5, 3, 4, 6, 7, 100, 102, 103, 104, 105, 104, 108, 109]
+s[i] == p[j]
 `
 
-这个数组需要排序的地方为
-
 `
-[1, 2, || 5, 3, 4, 6, 7 ||, 100, 102, 103, 104,|| 105, 104 ||, 108, 109]
+dp[i][j] = dp[i-1][j-1] 
 `
 
-按照题目的意思，我们可以认为从5到倒数第二个元素104全部都是需要排序的元素（不知道为什么是这样）
-
 `
-[1, 2, || 5, 3, 4, 6, 7, 100, 102, 103, 104,105, 104 ||, 108, 109]
+s[i] != p[j]  \&\& s[i] !="*"
 `
-
-所以说，从右边遍历，同时维护一个最小值，所有大于最小值的都是无序元素。设置一个标志变量指在无序元素上。在这个数组中就指在了5上。因为5是从右向左最后一个无序元素。从5向左都是有序的了
-
-同理，从左向右，维护最大值。最后标志变量在104上，表示从104向后都是有序的
-
-从5向左都是有序的，从104向后都是有序，那么从5到104都是要排序的
-
-再近一步
-两个标志变量之间的元素就是需要排序的元素了
-
-
-
-
-**代码**
-
-```kotlin
-fun getMinLength(arr: IntArray?): Int {
-    if (arr == null || arr.size < 2) {
-        return 0
-    }
-    var min = arr[arr.size - 1]
-    var noMinIndex = -1
-    for (i in arr.size - 2 downTo -1 + 1) {
-        if (arr[i] > min) {
-            noMinIndex = i
-        } else {
-            min = Math.min(min, arr[i])
-        }
-    }
-    if (noMinIndex == -1) {
-        return 0
-    }
-    var max = arr[0]
-    var noMaxIndex = -1
-    for (i in 1 until arr.size) {
-        if (arr[i] < max) {
-            noMaxIndex = i
-        } else {
-            max = Math.max(max, arr[i])
-        }
-    }
-    return noMaxIndex - noMinIndex + 1
-}
-```
-
-### 找到数组中出现次数大于一半的数
-
-> 如题
-
-**思路**
-
-如果出现次数大于一半，那就说明所有其它数出现的次数都没有它多
-
-也就是说，如果把数组中每两个不一样的都删除，那么剩下来的就是那个出现次数大于一半的
-
-设置times计数，表示出现的次数。然后遍历数组，遇到数字，如果和cond相同就times+1，反之，不相同就减1。如果times被减到0，那就说明这一部分都删除完毕了。
-
-当遍历完毕核对cond是否出现了一半次数即可
-
-**代码**
-
-```python
-def print_half_major(array):
-    """
-    :type array:list
-    """
-    if len(array) == 0:
-        return None
-    times = 0
-    cond = array[0]
-    for value in array:
-        if times == 0:
-            cond = value
-            times = 1
-        elif cond != value:
-            times -= 1
-        else:
-            times += 1
-    times = 0
-    for value in array:
-        if value == cond:
-            times += 1
-    if times > int(len(array) / 2):
-        print(cond)
-    else:
-        print("None")
-```
-### 在行列都排好序的数组中找数
-> 如题
-
-**思路**
-
-从右上角开始找
-因为行和列有序，向下表示增大，向左表示减少
-所以遇到数字，判断大小，然后决定走向就可以
-
-**代码**
-
-```python
-def search_in_matrix(matrix, target):
-    """
-    :type matrix:list[list[int]]
-    :type target:int
-    :rtype: bool
-    """
-    if matrix:
-        row = 0
-        col = len(matrix[0]) - 1
-        while row < len(matrix) and col < len(matrix[0]):
-            value = matrix[row][col]
-            if value == target:
-                return True
-            elif value < target:
-                row = row + 1
-            else:
-                col = col + 1
-
-    return False
-```
-
-### 删除赚钱问题
-> 给定一个数组，每一次可以删除一个元素num[i]，并且赚取到num[i]的数量。但是同时所有的num[i]+1和num[i]-1都不能再被选择。问能得到最多的钱是多少?
-
-**思路**
-
-动态规划问题
-
-先排序，然后遍历数组
-
-如果要选取当前数字，那么就以为着放弃前面一位数字（如果是连着的话）。所以
-
-` dp[k] = dp[k-1]+now `
-
-反之，放弃当前数字，就意味着当前值等于前一个的值
-
-` dp[k] = dp[k-1]`
-
-现在要选大的，所以
-
 `
-dp[k]=max\{dp[k-2]+now,dp[k-1]\}
+dp[i][j] = false
 `
 
-如果当前数字和之前的完全不项连，那么直接
+如果当前遇到的是*的话
+- 当前*代表0个字符 那么就看看dp[i][j-2]的值。如果为true，说明代表0个字符是可以匹配的，那么还需要能匹配s[i-1]。就是说当前这个字符已经能匹配了，还要能匹配不算这个字符的前面的字符串。就是dp[i-1][j]
+- 当前*代表1个或多个字符串。这需要看看*前面的字符。s[i]==p[j-1]的话，说明扩展之前的字符可以匹配当前值。同上，还要能匹配不算这个字符的前面的字符串。就是dp[i-1][j]
+
+所以说
 
 `
-dp[k] = dp[k-1]+now
+dp[i][j-2]=true
 `
 
-dp数组的最后元素就是解
+`
+dp[i][j] = dp[i-1][j]
+`
 
-**代码**
+`
+s[i] = p[j-1]
+`
 
-```python
-def delete_and_earn(array):
-    """
-    :type array:list
-    :rtype :int
-    """
-    if array:
-        array.sort()
-        i = -1
-        j = 0
-        k = -1
-        dp = []
-        while j < len(array):
-            count = array[j]
-            while j + 1 < len(array) and array[j] == array[j + 1]:
-                j += 1
-                count += array[j]
-            if len(dp) == 0:
-                dp.append(count)
-            else:
-                if array[i] + 1 == array[j]:
-                    if k == 0:
-                        dp.append(max(dp[k], count))
-                    else:
-                        dp.append(max(dp[k - 1] + count, dp[k]))
-                else:
-                    dp.append(dp[k] + count)
-            k += 1
-            i = j
-            j += 1
-        return dp[-1]
-    return 0
-```
+`
+dp[i][j] = dp[i-1][j]
+`
 
-### 将数组搬移成为相同值所需要的最小步数
+按照这个规则填充表格
+| .....      | "" |a|*|b|*|
+| -------- | --------|--------|-------|--------|-------|
+|"" | t  |f|t|f|t|
+| a | f | t|t|f|t|
+| a | f | f|t|f|t|
+| a | f |f|t|f|t|
+| a | f | f |t|f|t|
 
-> 如题。
-比如
-给出一个数组,比如[1,2,3]，变成相同元素可以成为[2,2,2]，所需最小步数为2
-
-**思路**
-
-找到中位数，把所有数字变成中位数就是解
-
-找到中位数就是找到第 L/2 个小的数字
-
-**代码**
-
-```python
-def min_moves2(nums):
-    """
-    :type nums: List[int]
-    :rtype: int
-    """
-    key = select_kth_min_number(nums, (len(nums) + 1) // 2, 0, len(nums) - 1)
-    res = 0
-    for value in nums:
-        if value != key:
-            res += abs(key - value)
-    return res
-
-
-def select_kth_min_number(array, k, left, right):
-    """
-    :type array:list
-    :type k:int
-    :type left:int
-    :type right:int
-    :rtype: int
-    """
-    if left <= right:
-        index = random.randint(left, right)
-        key_value = array[index]
-        i = left
-        j = right
-        while i < j:
-            while i < j and array[i] < key_value:
-                i = i + 1
-            array[index] = array[i]
-            while j > i and array[j] >= key_value:
-                j = j - 1
-            array[i] = array[j]
-            index = j
-        array[index] = key_value
-        numbers = index - left + 1
-        if numbers == k:
-            return array[index]
-        elif numbers < k:
-            return select_kth_min_number(array, k - numbers, index + 1, right)
-        else:
-            return select_kth_min_number(array, k, left, index - 1)
-```
-
-### 乘积最大子序列
-> 需找最大的连续子序列的乘积和
-
-**思路**
-
-举个例子
-[2,-5,-2,-4,3]
-那么，从左边开始遍历。第一个元素可以直接跳过
-遇到-5
-怎么处理这个-5呢？
-这样考虑
-- 带上2和-5，后面可能再次遇到一个负数，结合成为正数，这个值会比较大
-- 不带2，从-5开始从新走。后面可能没有负数了。从-5向后的可能比较大
-
-两种情况都是可能的，所以必须同时记下两种情况的值，然后动态比较出最大来
-
-所以，当前保存两个值，**-5和-10**
-在往后，遇到-2
-同样的道理
-- 带上之前的所有值
-- 不带前面两个值，从-2开始从新走。可能会遇到比-5更好的值，结合成为更大的数字
-
-所以现在更新成为 **20和-2**
-
-继续这样
-遇到-4
-- 带上前面所有的变为-80
-- 不带前面值，但是情况稍稍有点变化
-	- 如果全部不都不带，那么假设后面遇到一个更好的负数和-4结合，那么前面的就应该全部都要才对。
-	- 如果遇不到好的，应该和-2结合向后走才是最合适的
-所以当前保存 **8和-80**
-
-再往后就是**-240和24**
-
-中间不断比较max就可以求得最大值
-
-写成算法就是这样的
-- 维护max和min
-- 分别代表不要前面的部分和要前面的全部
-- 所以每次比较nums[i]，max*nums[i]，min*nums[i]三个值，保存最大的，和最小的
-- 这样，max和min就分别可能代表上面的情况（有的时候max表示全部的乘起来，也可能反之，取决于负数的个数。min表示剩下的情况）
-- 比较出来最大值返回即可
-
+最后一个元素就是答案
 
 **代码**
 
 ```kotlin
-fun maxProduct(nums: IntArray): Int {
-    if (nums.size == 1) return nums[0]
-    var max = nums[0]
-    var min = nums[0]
-    var result = nums[0]
-    for (i in 1 until nums.size) {
-        val maxPre = max
-        max = Math.max(Math.max(maxPre * nums[i], nums[i]), min * nums[i])
-        min = Math.min(Math.min(min * nums[i], nums[i]), maxPre * nums[i])
-        result = Math.max(result, max)
-    }
-    return result
-}
-```
+fun isMatch(s: String, p: String): Boolean {
+    val m = s.length
+    val n = p.length
+    val dp = Array(m + 1) { BooleanArray(n + 1) }
+    dp[0][0] = true
+    for (i in 1..m)
+        dp[i][0] = false
+    for (j in 1..n)
+        dp[0][j] = j > 1 && '*' == p[j - 1] && dp[0][j - 2]
+    for (i in 1..m) {
+        for (j in 1..n) {
+            if (p[j - 1] == '*') {
+                dp[i][j] = dp[i][j - 2] || (s[i - 1] == p[j - 2] || p[j - 2] == '.') && dp[i - 1][j]
+            } else {
+                dp[i][j] = (p[j - 1] == '.' || s[i - 1] == p[j - 1]) && dp[i - 1][j - 1]
 
-### 最长的可整合子数组的长度
-> 可整合数组就是一个数组在排序之后如果相邻的元素都只差1，就是可整合的
-> [5,3,4,6,2]--->[2,3,4,5,6]整个就是可整合的，返回5
-> [5,5,3,2,6,4,3]--->[5|||2,3,4,5,6|||3]返回5
-
-**思路**
-
-说白了就是找到每一个子数组
-然后判断
-- 有重复值直接放弃当前情况
-- 无重复值判断最大值减去最小值是不是等于长度，等于就说明是可整合的
-
-**代码**
-
-```kotlin
-fun getLIL(array: IntArray): Int {
-    val set = HashSet<Int>()
-    var res = 0
-    for (i in 0 until array.size - 1) {
-        set.clear()
-        var max = Int.MIN_VALUE
-        var min = Int.MAX_VALUE
-        for (j in i until array.size) {
-            if (set.contains(array[j])) {
-                break
-            }
-            max = Math.max(max, array[j])
-            min = Math.min(min, array[j])
-            set.add(array[j])
-            if (max - min == j - i) {
-                res = Math.max(res, j - i + 1)
             }
         }
     }
-    return res
+    return dp[m][n]
 }
+
 ```
 
-### 数组中累加和等于目标值的最长序列
-> 给定数组和target，求出相加等于目标值的最长的子数组的长度。数组包含正数，负数，0
+### KMP算法
+>给定一个 haystack 字符串和一个 needle 字符串，在 haystack 字符串中找出 needle 字符串出现的第一个位置 (从0开始)。如果不存在，则返回  -1。
 
 **思路**
 
-很经典的问题
-还是先抽象问题
-有数组
+
+经典字符串匹配算法KMP
+首先假设有一个needle字符串
 
 `
-[a,b,c,d,e,f,g]
-`
-
-假设c，d加起来等于target，就是最后解，长度为2
-那么，如何得知c+d的值呢？
-可以这样
-
-`
-a+b+c+d - (a+b) = c + d =target
-`
-
-所以说可以记录每一个位置的和，记录下来所在的位置。可以使用map来保存
-然后用当前的sum值，减去target，看看有没有保存这个值，有的话就可以得到长度了。
-
-`
-sum = a+b+c+d
+abcdefghi
 `
 
 `
-sum - target = c + d
+abc = fgh
 `
 
-所以步骤就是
-- 每走到一个位置，记下来从最开始到当前位置的值
-- sum - target，看看map存在不存在这个值
-- 存在的话，取出对应的value，当前位置减去value得到长度
-- 保存当前的值和位置到map
+当i字符不匹配的时候直接比较 haystack的当前字符和d字符就可以了.因为i字符不匹配，说明abcdefgh都是匹配的.同时abc = fgh.所以i之前的3个字符直接就是等于haystack当前位置的前3个字符的.所以直接比较haystack的当前字符和d字符就可以了
 
-这里有个小细节
-假设
+现在问题就是，如何知道一个字符串的最长前缀和后缀呢？
+
+就像abc和fgh这样的
+
+这时可以构建一个数组记录每一个位置的最长前缀和后缀的匹配情况
+
+和这个数组叫next
+
+**next[i]表示当i个字符不匹配时，从0到i-1的最长前缀和后缀**
+
+next[0]不存在，就是-1了
+
+next[1]就是0
+
+当1位置的字符不匹配，前面只有一个字符，所以next[1] = 0
+
+|  a   |  a  |   c   |  a  |  a  |  a  |  c  |  a  |  i  |
+| -------- | --------| ------ |-------|-------|--------|----------|----------|---------|
+|  -1  |  0  |     |
+
+然后从1位置开始遍历
+next[1] = 0
+
+所以之前有0个匹配的前缀后缀
+
+那么只能让a和0位置比较了
+相等，说明从0到1有1个前缀相同
+
+那么next[2] = 1
+再往后，next[2] = 1
+说明之前有1个前缀匹配
+
+看这个情况
 
 `
-a+b+c+d = a+b+c+d+e+f
+ax....ay
 `
 
-那么a这个值应该存在a+b+c+d所在的位置3还是a+b+c+d+e+f的位置5？
-明显存在3更加合适
-如果后面有值需要减去这个值的话，减去3会比减去5得到更长的长度
-所以map保存的位置都应该是第一次出现的位置
+之前有1个匹配，那么就从1位置，也就是第二个字符开始比较匹配即可
 
-另外，可以保存（0，-1），让代码统一起来，而不用额外做很多判断
+也就是用ax比较ay
+
+看看能不能比较出来两个长度
+所以此时比较needle[i]和needle[next[i]]
+c!=a
+
+继续这个过程比较needle[i]和needle[next[i]]，直到匹配到0位置（为什么之后在说）
+执行这个过程就可以
+|  a   |  a  |   c   |  a  |  a  |  a  |  c  |  a  |  i  |
+| -------- | --------| ------ |-------|-------|--------|----------|----------|---------|
+|  -1  |  0  |  1  |  0  |  1  |  2  |  2  |  3  |  4  |
+现在来说为什么会是重复那个过程得到解
+
+aac太短，看aacaaa这个子串
+现在到到了aacaaa的位置
+|  a   |  a  |   c   |  a  |  a  |  a  |  c  |  a  |  i  |
+| -------- | --------| ------ |-------|-------|--------|----------|----------|---------|
+|  -1  |  0  |  1  |  0  |  1  |  2  |    |    |    |
+
+next 此时 = 2
+
+说明之前是有2个匹配的前后缀
+那么让当前字符a和第3个比较
+
+a!=c
+
+此时c对应的next的值是1
+这个是关键，说明c之前还有1个匹配前后缀
+
+抽象一下
+假设字符串
+
+`
+abcde
+`
+
+`
+ab = de
+`
+
+`
+a=d,b=e
+`
+
+之前的又有1个匹配前后缀
+
+`
+a =b
+`
+
+所以
+
+`
+a = e
+`
+
+那么e后面的一个字符完全可以和b在比较，可能构建出来ab = ex的情况
+这就是为什么还要重复那个过程的原因，直到0
+
+总结下来，构建next数组
+- next[0]不存在，就是-1
+- next[1]是0
+- 重复比较，j=next[i],needle[i]和needle[next[j]]。得到next[i]
+
+有了数组之后，匹配字符串，不匹配的时候移动到next指定的位置，反复比较，就可以了
 
 **代码**
 
 ```kotlin
-fun getMaxLength(array: IntArray, target: Int): Int {
-    val hashMap = HashMap<Int, Int>()
-    hashMap[0] = -1
-    var maxLen = 0
-    var sum = 0
-    for ((index, value) in array.withIndex()) {
-        sum += value
-        val key = sum - target
-        if (hashMap.containsKey(key)) {
-            val start = hashMap[key]
-            maxLen = max(index - start!!, maxLen)
-        }
-        if (!hashMap.containsKey(sum)) {
-            hashMap[sum] = index
-        }
-    }
-    return maxLen
-}
-```
-
-
-### 找到数组中累加小于等于目标值的最长子数组
-> 如题
-
-**思路**
-
-和上面的题相似的思路
-有数组
-
-`
-[a,b,c,d,e,f,g]
-`
-
-假设遍历到f
-其中存在，以f结尾的子数组的某个子数组是加起来小于等于target的
-如何得到这个子数组呢？
-假设要得到def
-
-`
-sum = a+b+c+d+e+f
-`
-
-`
-d+e+f = sum - a-b-c
-`
-
-所以可以没遍历到一个位置，就记录到这个位置的sum值
-但是我如何知道def是符合条件的呢？？
-和上面的题一样，需要额外的辅助数组
-这个辅助数组记录的是当前位置的累加出现的最大值。并且额外加入一个0作为第一个元素
-意思就是到这个位置的累加最大值
-之所以要这样作，是为了满足下面的推导
-假设
-
-`
-d+e+f \leq target
-`
-
-`
-d+e+f = sum - x
-`
-
-`
-sum - x \leq target
-`
-
-`
-x \geq sum-target
-`
-
-也就是说，当迭代到一个位置，加出来了sum，用它减去target，只要能找到从这个位置向前的，第一个累加值大于sum-target的值的位置下标，就可以得到想要的长度
-所以辅助数组保存的是到当前位置的最大的累加值
-比如
-
-`
-[1,2,-1,5,-2]
-`
-
-第一个元素额外添加，为0
-累加sum为
-
-`
-[0,1,3,2,7,5]
-`
-
-变为
-
-`
-[0,1,3,3,7,7]
-`
-
-这样变换的意义在于假设减去一个值小于target，减去更大的值也小于target，而且有可能向前延伸
-比如不变换时候的2，假设减去2可以小于等于target，那么减去前面的3还是可以小于等于target，这是一定的。而从3的位置又变长了一个长度
-这就是辅助数组存在的意义
-由于辅助数组是递增的，所以可以快速定位到sum-target的位置。使用二分查找。
-只要找到第一个大于等于sum-target的值即可
-
-**代码**
-
-```kotlin
-fun getMaxLength(array: IntArray, target: Int): Int {
-    val helpArray = IntArray(array.size + 1)
-    var sum = 0
-    helpArray[0] = 0
-    for (index in 1 until array.size) {
-        sum += array[index]
-        helpArray[index] = max(helpArray[index - 1], sum)
-    }
-    sum = 0
-    var result = 0
-    for (index in array.indices) {
-        sum += array[index]
-        val position = getLessIndex(helpArray, sum - target, index + 1)
-        if (position != Int.MIN_VALUE) {
-            result = max(result, index - position + 1)
-        }
-    }
-    return result
-}
-
-fun getLessIndex(array: IntArray, target: Int, end: Int): Int {
-    if (target <= 0) {
+fun strStr(haystack: String, needle: String): Int {
+    if (haystack.isEmpty() && needle.isEmpty())
         return 0
-    }
-    if (target > array[end]) {
-        return Int.MIN_VALUE
-    }
-    var left = 0
-    var right = end
-    var mid: Int
-    var result = Int.MIN_VALUE
-    while (left <= right) {
-        mid = (left + right) / 2
-        if (array[mid] >= target) {
-            result = mid
-            right = mid - 1
+    else if (haystack.isEmpty())
+        return -1
+    else if (needle.isEmpty()) return 0
+    val next = getNext(needle)
+    var i = 0
+    var j = 0
+    while (i < haystack.length && j < needle.length) {
+        if (j == -1 || haystack[i] == needle[j]) {
+            i++
+            j++
         } else {
-            left = mid + 1
+            j = next[j]
         }
     }
-    return result
-}
-```
-
-### 找到数组中第一个缺少的数字
-> 给定一个数组，长度，元素都是从0到n。但是中间缺少了一个值，找到这个值
-> [0,1,2,3,4,6,7,8,9] 返回5
-
-**思路**
-
-先加出来当前数组的总和
-再计算出本来应该的数组的总和
-相减得到一个差值
-这个差值表示了缺少值和多出来这个值的差值
-多出的这个值一定是size
-所以用size减去这个差值就是缺少的值。
-
-**代码**
-
-```kotlin
-fun getMissNum(array: IntArray): Int {
-    var sum = 0
-    for (i in array.indices) {
-        sum += array[i]
-        sum -= i
-    }
-    return array.size - sum
-}
-```
-
-
-### 数组的小和
->数组小和的定义如下：
->例如，数组s=[1，3，5，2，4，6]，在s[0]的左边小于或等于s[0]的数的和为0，在s[1]的左边小于或等于s[1]的数的和为1，在s[2]的左边小于或等于s[2]的数的和为1+3=4，在s[3]的左边小于或等于s[3]的数的和为1，在s[4]的左边小于或等于s[4]的数的和为1+3+2=6，在s[5]的左边小于或等于s[5]的数的和为1+3+5+2+4=15，所以s的小和为0+1+4+1+6+15=27。
->给定一个数组s，实现函数返回s的小和。
-
-**思路**
-
-比较难想到办法的一个题
-最优解是归并思路的办法（也不知道是怎么想到的。。。。）
-
-`
-[a,b,c,d,e,f]
-`
-
-我们假设a，b，c有序，d，e，f有序
-但是整体无序
-然后按照归并排序的做法
-比较a和d
-如果
-
-`
-d \geq a
-`
-
-必然有
-
-`
-f\geq e \geq d  \geq a
-`
-
-所以，对于元素d，e，f来说，在计算小和的时候也是要加a的
-所以此时直接加上
-
-`
-sum+=a*len(d.....f)
-`
- 
-那如果反过来，a>d，说明d的小和不加a，后面的不知道，往后走的时候自然直到
-所以，a>d，不处理结果，继续归并即可
-不论是左半数组遍历结束还是右半数组遍历结束，说明整体的小和都加完了，剩下的直接放入数组即可
-如此归并下去，每一次合并都是在榨出当前这个区间的小和，最后整体的也会榨出来
-这个题使用归并的精妙之处在于左半数组和右半数组保持了相对的位置
-可能abc的位置在归并的时候发生了变化，但是到这一步，a和d的相对位置并没有发生改变， a还是在d的前面，a，b，c的位置无关紧要了
-而abc的位置在归并abc的时候又保持了相对位置，重复了这个过程
-真的精彩！
-
-
-
-**代码**
-
-```kotlin
-fun getSmallSum(array: IntArray): Int {
-    if (array.isEmpty()) {
-        return 0
-    }
-    return getSmallSum(array, 0, array.size - 1)
+    return if (j == needle.length) {
+        i - needle.length
+    } else -1
 }
 
-fun getSmallSum(array: IntArray, left: Int, right: Int): Int {
-    if (left == right) {
-        return 0
-    }
-    val mid = (left + right) / 2
-    val leftResult = getSmallSum(array, left, mid)
-    val rightResult = getSmallSum(array, mid + 1, right)
-    val result = merge(array, left, mid, right)
-    return result + leftResult + rightResult
-}
-
-fun merge(array: IntArray, left: Int, mid: Int, right: Int): Int {
-    if (left == right) {
-        return 0
-    }
-    val temp = IntArray(right - left + 1)
-    var i = left
-    var j = mid + 1
-    var index = 0
-    var sum = 0
-    while (i <= mid || j <= right) {
-        if (i > mid || (j <= right && array[i] > array[j])) {
-            temp[index++] = array[j++]
+private fun getNext(needle: String): IntArray {
+    val next = IntArray(needle.length)
+    var j = -1
+    var i = 0
+    next[i] = -1
+    while (i < needle.length - 1) {
+        if (j == -1 || needle[i] == needle[j]) {
+            j++
+            i++
+            next[i] = j
         } else {
-            if (i <= mid && j <= right) {
-                sum += ((right - j + 1) * array[i])
-            }
-            temp[index++] = array[i++]
+            j = next[j]
         }
     }
-    index = left
-    for (value in temp) {
-        array[index++] = value
-    }
-    return sum
+    return next
 }
 ```
 
-### 最大连续子区间和
-> 给定一个数组arr，返回子数组的最大累加和。
-> 例如，arr=[1，-2，3，5，-2，6，-1]，所有的子数组中，[3，5，-2，6]可以累加出最大的和12，所以返回12。
+### 最长无重复子字符串
+> 输入: "abcabcbb"
+输出: 3 
+解释: 无重复字符的最长子串是 "abc"，其长度为 3。
 
 **思路**
 
-遍历数组，要尽可能大的找到连续的和。所以就要判断能不能接受当前的值
-遇到正数直接接受，比较max
-遇到负数看看加了之后会不会变成负的。会的话就不要他。因为带上他等于之前的整体是个负数
-不会变成负的就要它
-另外注意会变负的也要比较a[i]和max。因为可能全部都是负数，这个时候需要负数的最大值
+维护一个窗口，窗口内的都是没有重复字符串的子串
+利用hashmap保存字符出现的位置
+
+不断向后扩展窗口，当遇到了一个字符，hashmap包含了它说明重复，只需要取出对应字符出现的位置，然后让窗口左边界移动到这个位置，就可以过滤掉重复字符和重复字符之前的所有字符
+随后向右继续扩展窗口即可
 
 **代码**
 
 ```kotlin
-fun maxSubArray(a: IntArray): Int {
-    var max = Integer.MIN_VALUE
-    var value = 0
-    for (i in a.indices) {
-        if (value + a[i] <= 0) {
-            value = 0
-            if (a[i] > max) {
-                max = a[i]
-            }
-        } else {
-            value += a[i]
-            if (value > max) {
-                max = value
-            }
+fun lengthOfLongestSubstring(s: String): Int {
+    val n = s.length
+    var ans = 0
+    val map = HashMap<Char, Int>()
+    var j = 0
+    var i = 0
+    while (j < n) {
+        if (map.containsKey(s[j])) {
+            i = Math.max(map[s[j]]!!, i)
         }
+        ans = Math.max(ans, j - i + 1)
+        map[s[j]] = j + 1
+        j++
     }
-    return max
+    return ans
 }
 ```
