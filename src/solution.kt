@@ -5,7 +5,7 @@ import java.io.FileWriter
 
 
 fun main(args: Array<String>) {
-    splitFile("StringProblem")
+    splitFile("OtherProblem")
     createReadeMe()
 }
 

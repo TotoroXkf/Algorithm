@@ -56,6 +56,14 @@ Enjoy it！！！
 10. [链表排序](https://github.com/TotoroXkf/Algorithm/blob/master/src/LinkedListProblem/链表排序.md)
 
 ### 其它问题
+1. [判断矩阵是否相交](https://github.com/TotoroXkf/Algorithm/blob/master/src/OtherProblem/判断矩阵是否相交.md)
+2. [加油站问题](https://github.com/TotoroXkf/Algorithm/blob/master/src/OtherProblem/加油站问题.md)
+3. [实现除法](https://github.com/TotoroXkf/Algorithm/blob/master/src/OtherProblem/实现除法.md)
+4. [打家劫舍1](https://github.com/TotoroXkf/Algorithm/blob/master/src/OtherProblem/打家劫舍1.md)
+5. [打家劫舍2](https://github.com/TotoroXkf/Algorithm/blob/master/src/OtherProblem/打家劫舍2.md)
+6. [整数拆分](https://github.com/TotoroXkf/Algorithm/blob/master/src/OtherProblem/整数拆分.md)
+7. [给出图的每条边，找出最矮树的根节点](https://github.com/TotoroXkf/Algorithm/blob/master/src/OtherProblem/给出图的每条边，找出最矮树的根节点.md)
+8. [计算n的阶乘的尾数有多少个0](https://github.com/TotoroXkf/Algorithm/blob/master/src/OtherProblem/计算n的阶乘的尾数有多少个0.md)
 
 ### 栈和队列
 1. [如何仅用递归函数和栈操作逆序一个栈](https://github.com/TotoroXkf/Algorithm/blob/master/src/StackAndQueueProblem/如何仅用递归函数和栈操作逆序一个栈.md)
@@ -67,9 +75,9 @@ Enjoy it！！！
 7. [设计一个有getMin功能的栈](https://github.com/TotoroXkf/Algorithm/blob/master/src/StackAndQueueProblem/设计一个有getMin功能的栈.md)
 
 ### 字符串问题
-1. [正则表达式匹配](https://github.com/TotoroXkf/Algorithm/blob/master/src/StringProblem/正则表达式匹配.md)
-2. [KMP算法](https://github.com/TotoroXkf/Algorithm/blob/master/src/StringProblem/KMP算法.md)
-3. [最长无重复子字符串](https://github.com/TotoroXkf/Algorithm/blob/master/src/StringProblem/最长无重复子字符串.md)
+1. [KMP算法](https://github.com/TotoroXkf/Algorithm/blob/master/src/StringProblem/KMP算法.md)
+2. [最长无重复子字符串](https://github.com/TotoroXkf/Algorithm/blob/master/src/StringProblem/最长无重复子字符串.md)
+3. [正则表达式匹配](https://github.com/TotoroXkf/Algorithm/blob/master/src/StringProblem/正则表达式匹配.md)
 
 
-已经完成了 51 道题目
+已经完成了 59 道题目

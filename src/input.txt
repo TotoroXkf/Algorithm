@@ -1,348 +1,434 @@
-###  正则表达式匹配
->给定一个字符串 (s) 和一个字符模式 (p)。实现支持 '.' 和 '*' 的正则表达式匹配。
-'.' 匹配任意单个字符。
-'*' 匹配零个或多个前面的元素。
-匹配应该覆盖整个字符串 (s) ，而不是部分字符串。
-示例 1:
+### 判断矩阵是否相交
 
->输入:
-s = "aa"
-p = "a"
-输出: false
-解释: "a" 无法匹配 "aa" 整个字符串。
-示例 2:
+>给出两个矩阵的左下角坐标和右上角坐标，判断是否相交
 
->输入:
-s = "aa"
-p = "a*"
-输出: true
-解释: '*' 代表可匹配零个或多个前面的元素, 即可以匹配 'a' 。因此, 重复 'a' 一次, 字符串可变为 "aa"。
-示例 3:
+**思路**
 
->输入:
-s = "ab"
-p = ".*"
-输出: true
-解释: ".*" 表示可匹配零个或多个('*')任意字符('.')。
-示例 4:
+两个矩形想要相交，一定存在以下情况（以第一个矩形作为参考系）
+- 第二个矩形的右上角一定在第一个矩形的左下角的右边
+- 第二个矩形的左下角一定在第一个矩形的右上角的左边
 
->输入:
-s = "aab"
-p = "c*a*b"
-输出: true
-解释: 'c' 可以不被重复, 'a' 可以被重复一次。因此可以匹配字符串 "aab"。
-示例 5:
+写成代码判断即可
 
->输入:
-s = "mississippi"
-p = "mis*is*p*."
-输出: false
+**代码**
+
+```python
+def is_rectangle_overlap(self, rec1, rec2):
+    """
+    :type rec1: List[int]
+    :type rec2: List[int]
+    :rtype: bool
+    """
+    bl_x1, bl_y1, tr_x1, tr_y1 = rec1
+    bl_x2, bl_y2, tr_x2, tr_y2 = rec2
+
+    return ((bl_x1 < tr_x2) and (bl_x2 < tr_x1)) and ((bl_y1 < tr_y2) and (bl_y2 < tr_y1))
+```
+
+### 给出图的每条边，找出最矮树的根节点
+> 给出一个二维数组，每一个一维数组含有两个元素，表示从[0]到[1]，然后这个一维数组就表示了无向图中的边，将任意一个节点看作root，都可以得到一颗n叉树。求生成最矮树的root节点
+
+**思路**
+
+如果要树最矮，表示从根节点到叶子节点的路径比较短，那么，放到无向图中来看的话，就意味着越在图的中心部分越有利。所以做法就是不断删除外圈元素，剩下的就是中心。
+
+利用字典保存点和联通的点。这个是双向的，保存（1，0），也要保存（0，1）
+然后循环双向删除只有一个连通的节点。只有一个连通说明它们是图的最外圈。然后记录新的只有一个连通节点的节点。继续循环
+
+一直删到只剩下一个或者两个节点（图的中心一定是1个或者两个节点，不可能再多），剩下的就是答案。
+
+**代码**
+
+```python
+def find_min_height_trees(n, edges):
+    """
+    :type n: int
+    :type edges: List[List[int]]
+    :rtype: List[int]
+    """
+    if edges:
+        graph = {}
+        for i in range(0, n):
+            graph[i] = []
+        for value in edges:
+            graph[value[0]].append(value[1])
+            graph[value[1]].append(value[0])
+        leaves = []
+        new_leaves = []
+        for key, value in graph.items():
+            if len(value) == 1:
+                leaves.append(key)
+        while n > 2:
+            n -= len(leaves)
+            for leaf in leaves:
+                leaf_value = graph.get(leaf)[0]
+                leaf_set = graph.get(leaf_value)
+                leaf_set.remove(leaf)
+                if len(leaf_set) == 1:
+                    new_leaves.append(leaf_value)
+            leaves.clear()
+            leaves.extend(new_leaves)
+            new_leaves.clear()
+        return leaves
+    return [0]
+```
+
+### 计算n的阶乘的尾数有多少个0
+> 如题
+
+**思路**
+
+首先要明确一点就是只有出现5才有可能凑出来0
+比如101的阶乘
+那么从1到101
+
+`
+1,2,3,4,5,6,7,8.....101
+`
+
+中间5的个数就是101除以5那么多
+101/5=20
+
+`
+5,10,15,20,25.....100
+`
+
+咱然后就是要注意在这些5的倍数里面有的数是5*5迭代起来的
+比如25可以写成5*5，这就增加了5的个数
+所以说，在选出的20个数字里面还要再选能整除5的。原理和从101里面选能整除5的一样，用20/5=4
+
+`
+25,50,75,100
+`
+
+然后继续这个过程，4/5=0
+说明没有5*5*5的数字了
+最后结果就是
+20+4=24
+
+所以做法就是反复除5，直到除到0为止
+
+**代码**
+
+```python
+def trailing_zeroes(n):
+    """
+    :type n: int
+    :rtype: int
+    """
+    res = 0
+    while n > 0:
+        n //= 5
+        res += n
+    return res
+```
+
+### 加油站问题
+>如下
+
+ 在一条环路上有 N 个加油站，其中第 i 个加油站有汽油 gas[i] 升。
+
+你有一辆油箱容量无限的的汽车，从第 i 个加油站开往第 i+1 个加油站需要消耗汽油 cost[i] 升。你从其中的一个加油站出发，开始时油箱为空。
+如果你可以绕环路行驶一周，则返回出发时加油站的编号，否则返回 -1。
+
+输入: 
+gas  = [1,2,3,4,5]
+cost = [3,4,5,1,2]
+
+输出: 3
+
+解释:
+从 3 号加油站(索引为 3 处)出发，可获得 4 升汽油。此时油箱有 = 0 + 4 = 4 升汽油
+
+开往 4 号加油站，此时油箱有 4 - 1 + 5 = 8 升汽油
+
+开往 0 号加油站，此时油箱有 8 - 2 + 1 = 7 升汽油
+
+开往 1 号加油站，此时油箱有 7 - 3 + 2 = 6 升汽油
+
+开往 2 号加油站，此时油箱有 6 - 4 + 3 = 5 升汽油
+
+开往 3 号加油站，你需要消耗 5 升汽油，正好足够你返回到 3 号加油站。
+
+因此，3 可为起始索引。
 
 
 **思路**
 
-两个字符串匹配的各种问题都容易想到使用DP求解
-先来分析这个问题的情况
-首先，.和一般的字符没有什么不一样的地方
+暴力求解复杂度太高
+这个题的关键在于排除无效解
+有两个情况是可以排除的无效解
 
-难点就是这个*的问题
+1. gas[i]<cost[i]，说明不能从这个点开始遇到的话直接跳过
+2. 如果 i到j 失败了，那么从 i+1 到 j， i+2 到 j......j-1 到 j 也一定都是失败的无效解。直接从j位置向后继续遍历即可
 
-还是按照二维dp的解法列出表格
-dp[i][j]表示s的i长度和p的j长度是否匹配。
-是boolean类型的。这个boolean十分的精髓
-看个例子
-s = aaaa
-p = a*b*
-首先能确定就是行和列
-从列来看，“”只能匹配“”
-从行来看，“”只能匹配*（*可以表示0个字符），而且还要看看dp[i][j-2]是什么。如果dp[i][j-2]是true的表示这里*代表没有字符，前面匹配则这里匹配，前面不匹配则这里不匹配
-| .....      | "" |a|*|b|*|
-| -------- | --------|-------|-------|----------|---------|
-| “” | t  |f|t|f|t| 
-| a    |f    | 
-| a   |  f  | 
-| a   |   f |
-| a   |   f |  
+满足上述两个条件，只需要遍历一次数组就可以得到解
+时间复杂度O(n)
 
-然后就是中间的内容
-先考虑简单的情况，不遇到*
+**代码**
 
-遇到.和遇到一般字符是一样的
-这个好说。匹配的话，dp[i][j] = dp[i-1][j-1]
-当前匹配就看之前的匹不匹配。前面的匹配现在的就匹配，前面的不匹配，当前的就不匹配
-`
-s[i] == p[j]
-`
+```python
+def can_complete_circuit(gas, cost):
+    """
+    :type gas: List[int]
+    :type cost: List[int]
+    :rtype: int
+    """
+    index = 0
+    gas_len = len(gas)
+    while index < gas_len:
+        if gas[index] - cost[index] < 0:
+            index += 1
+        else:
+            start = index
+            count = gas[start]
+            while count - cost[index % gas_len] >= 0:
+                count -= cost[index % gas_len]
+                count += gas[(index + 1) % gas_len]
+                index += 1
+                if index % gas_len == start:
+                    return start
+    return -1
+```
 
-`
-dp[i][j] = dp[i-1][j-1] 
-`
+### 整数拆分
+> 给定一个整数，拆成若干相加的形式，找出最大的乘积的形式
+输入: 10
+输出: 36
+解释: 10 = 3 + 3 + 4, 3 × 3 × 4 = 36。
+36最大
 
-`
-s[i] != p[j]  \&\& s[i] !="*"
-`
-`
-dp[i][j] = false
-`
-
-如果当前遇到的是*的话
-- 当前*代表0个字符 那么就看看dp[i][j-2]的值。如果为true，说明代表0个字符是可以匹配的，那么还需要能匹配s[i-1]。就是说当前这个字符已经能匹配了，还要能匹配不算这个字符的前面的字符串。就是dp[i-1][j]
-- 当前*代表1个或多个字符串。这需要看看*前面的字符。s[i]==p[j-1]的话，说明扩展之前的字符可以匹配当前值。同上，还要能匹配不算这个字符的前面的字符串。就是dp[i-1][j]
-
-所以说
+**思路**
+首先明确一个问题就是1到4拆出来的结果一定小于等于本身
 
 `
-dp[i][j-2]=true
+2 -> 1
 `
 
 `
-dp[i][j] = dp[i-1][j]
+3 -> 2
 `
 
 `
-s[i] = p[j-1]
+4 -> 4
+`
+
+从5之后就会大于本身。所以任何大于4的数字一定是拆成2,3,4的组合的
+
+其中，拆出的项应该是3经可能的多（数学逻辑。。。。。）
+所以就是1个2，剩下全是3
+或者1个4，剩下全是3
+
+**代码**
+
+```python
+def integer_break(n):
+    """
+    :type n: int
+    :rtype: int
+    """
+    if n == 2 or n == 3:
+        if n == 2:
+            return 1
+        else:
+            return 2
+    else:
+        if n % 3 == 0:
+            i = n / 3
+            res = 3 ** i
+        elif n % 3 == 1:
+            i = (n - 4) / 3
+            res = 4 * 3 ** i
+        else:
+            i = (n - 2) / 3
+            res = 2 * 3 ** i
+    return int(res)
+```
+
+### 打家劫舍1
+> 你是一个专业的小偷，计划偷窃沿街的房屋。每间房内都藏有一定的现金，影响你偷窃的唯一制约因素就是相邻的房屋装有相互连通的防盗系统，如果两间相邻的房屋在同一晚上被小偷闯入，系统会自动报警。
+给定一个代表每个房屋存放金额的非负整数数组，计算你在不触动警报装置的情况下，能够偷窃到的最高金额。
+
+>输入: [1,2,3,1]
+输出: 4
+解释: 偷窃 1 号房屋 (金额 = 1) ，然后偷窃 3 号房屋 (金额 = 3)。
+     偷窃到的最高金额 = 1 + 3 = 4 。
+     
+>输入: [2,7,9,3,1]
+输出: 12
+解释: 偷窃 1 号房屋 (金额 = 2), 偷窃 3 号房屋 (金额 = 9)，接着偷窃 5 号房屋 (金额 = 1)。
+     偷窃到的最高金额 = 2 + 9 + 1 = 12 。
+
+
+**思路**
+
+很基础的动态规划问题
+
+`
+dp[0] = nums[0]
 `
 
 `
-dp[i][j] = dp[i-1][j]
+dp[1] = max(nums[0],nums[1])
 `
 
-按照这个规则填充表格
-| .....      | "" |a|*|b|*|
-| -------- | --------|--------|-------|--------|-------|
-|"" | t  |f|t|f|t|
-| a | f | t|t|f|t|
-| a | f | f|t|f|t|
-| a | f |f|t|f|t|
-| a | f | f |t|f|t|
+第i个值分两个情况
+- 要这个值，和dp[i-2]结合
+- 不要这个值，当前值等于dp[i-1]
+比较出max来
+
+所以
+
+`
+dp[i] = max(dp[i-1],nums[i]+dp[i-2])
+`
 
 最后一个元素就是答案
 
 **代码**
 
 ```kotlin
-fun isMatch(s: String, p: String): Boolean {
-    val m = s.length
-    val n = p.length
-    val dp = Array(m + 1) { BooleanArray(n + 1) }
-    dp[0][0] = true
-    for (i in 1..m)
-        dp[i][0] = false
-    for (j in 1..n)
-        dp[0][j] = j > 1 && '*' == p[j - 1] && dp[0][j - 2]
-    for (i in 1..m) {
-        for (j in 1..n) {
-            if (p[j - 1] == '*') {
-                dp[i][j] = dp[i][j - 2] || (s[i - 1] == p[j - 2] || p[j - 2] == '.') && dp[i - 1][j]
-            } else {
-                dp[i][j] = (p[j - 1] == '.' || s[i - 1] == p[j - 1]) && dp[i - 1][j - 1]
-
-            }
-        }
-    }
-    return dp[m][n]
-}
-
-```
-
-### KMP算法
->给定一个 haystack 字符串和一个 needle 字符串，在 haystack 字符串中找出 needle 字符串出现的第一个位置 (从0开始)。如果不存在，则返回  -1。
-
-**思路**
-
-
-经典字符串匹配算法KMP
-首先假设有一个needle字符串
-
-`
-abcdefghi
-`
-
-`
-abc = fgh
-`
-
-当i字符不匹配的时候直接比较 haystack的当前字符和d字符就可以了.因为i字符不匹配，说明abcdefgh都是匹配的.同时abc = fgh.所以i之前的3个字符直接就是等于haystack当前位置的前3个字符的.所以直接比较haystack的当前字符和d字符就可以了
-
-现在问题就是，如何知道一个字符串的最长前缀和后缀呢？
-
-就像abc和fgh这样的
-
-这时可以构建一个数组记录每一个位置的最长前缀和后缀的匹配情况
-
-和这个数组叫next
-
-**next[i]表示当i个字符不匹配时，从0到i-1的最长前缀和后缀**
-
-next[0]不存在，就是-1了
-
-next[1]就是0
-
-当1位置的字符不匹配，前面只有一个字符，所以next[1] = 0
-
-|  a   |  a  |   c   |  a  |  a  |  a  |  c  |  a  |  i  |
-| -------- | --------| ------ |-------|-------|--------|----------|----------|---------|
-|  -1  |  0  |     |
-
-然后从1位置开始遍历
-next[1] = 0
-
-所以之前有0个匹配的前缀后缀
-
-那么只能让a和0位置比较了
-相等，说明从0到1有1个前缀相同
-
-那么next[2] = 1
-再往后，next[2] = 1
-说明之前有1个前缀匹配
-
-看这个情况
-
-`
-ax....ay
-`
-
-之前有1个匹配，那么就从1位置，也就是第二个字符开始比较匹配即可
-
-也就是用ax比较ay
-
-看看能不能比较出来两个长度
-所以此时比较needle[i]和needle[next[i]]
-c!=a
-
-继续这个过程比较needle[i]和needle[next[i]]，直到匹配到0位置（为什么之后在说）
-执行这个过程就可以
-|  a   |  a  |   c   |  a  |  a  |  a  |  c  |  a  |  i  |
-| -------- | --------| ------ |-------|-------|--------|----------|----------|---------|
-|  -1  |  0  |  1  |  0  |  1  |  2  |  2  |  3  |  4  |
-现在来说为什么会是重复那个过程得到解
-
-aac太短，看aacaaa这个子串
-现在到到了aacaaa的位置
-|  a   |  a  |   c   |  a  |  a  |  a  |  c  |  a  |  i  |
-| -------- | --------| ------ |-------|-------|--------|----------|----------|---------|
-|  -1  |  0  |  1  |  0  |  1  |  2  |    |    |    |
-
-next 此时 = 2
-
-说明之前是有2个匹配的前后缀
-那么让当前字符a和第3个比较
-
-a!=c
-
-此时c对应的next的值是1
-这个是关键，说明c之前还有1个匹配前后缀
-
-抽象一下
-假设字符串
-
-`
-abcde
-`
-
-`
-ab = de
-`
-
-`
-a=d,b=e
-`
-
-之前的又有1个匹配前后缀
-
-`
-a =b
-`
-
-所以
-
-`
-a = e
-`
-
-那么e后面的一个字符完全可以和b在比较，可能构建出来ab = ex的情况
-这就是为什么还要重复那个过程的原因，直到0
-
-总结下来，构建next数组
-- next[0]不存在，就是-1
-- next[1]是0
-- 重复比较，j=next[i],needle[i]和needle[next[j]]。得到next[i]
-
-有了数组之后，匹配字符串，不匹配的时候移动到next指定的位置，反复比较，就可以了
-
-**代码**
-
-```kotlin
-fun strStr(haystack: String, needle: String): Int {
-    if (haystack.isEmpty() && needle.isEmpty())
+fun rob(nums: IntArray): Int {
+    if (nums.isEmpty()) {
         return 0
-    else if (haystack.isEmpty())
-        return -1
-    else if (needle.isEmpty()) return 0
-    val next = getNext(needle)
-    var i = 0
-    var j = 0
-    while (i < haystack.length && j < needle.length) {
-        if (j == -1 || haystack[i] == needle[j]) {
-            i++
-            j++
-        } else {
-            j = next[j]
-        }
     }
-    return if (j == needle.length) {
-        i - needle.length
-    } else -1
-}
-
-private fun getNext(needle: String): IntArray {
-    val next = IntArray(needle.length)
-    var j = -1
-    var i = 0
-    next[i] = -1
-    while (i < needle.length - 1) {
-        if (j == -1 || needle[i] == needle[j]) {
-            j++
-            i++
-            next[i] = j
-        } else {
-            j = next[j]
-        }
+    if (nums.size == 1) {
+        return nums[0]
     }
-    return next
+    val dp = IntArray(nums.size)
+    dp[0] = nums[0]
+    dp[1] = Math.max(nums[0], nums[1])
+    for (i in 2 until nums.size) {
+        dp[i] = Math.max(dp[i - 1], nums[i] + dp[i - 2])
+    }
+    return dp[dp.size - 1]
 }
 ```
 
-### 最长无重复子字符串
-> 输入: "abcabcbb"
-输出: 3 
-解释: 无重复字符的最长子串是 "abc"，其长度为 3。
+### 打家劫舍2
+>和1的情况差不多，但是首尾是相通的。选了最后一个就不能选第一个了
 
 **思路**
 
-维护一个窗口，窗口内的都是没有重复字符串的子串
-利用hashmap保存字符出现的位置
-
-不断向后扩展窗口，当遇到了一个字符，hashmap包含了它说明重复，只需要取出对应字符出现的位置，然后让窗口左边界移动到这个位置，就可以过滤掉重复字符和重复字符之前的所有字符
-随后向右继续扩展窗口即可
+举个例子
+[a,b,c,d,e]
+如果包含a有哪些可能的解呢？
+只可能是
+- [a,c]
+- [a,d]
+包含a的解一定包含在从0到length-2的dp解（见1）
+再看不包含a的解
+- [b,d]
+- [b,e]
+- [c,e]
+同理，是从1到length-1的dp的解
+两次dp求解即可
 
 **代码**
 
 ```kotlin
-fun lengthOfLongestSubstring(s: String): Int {
-    val n = s.length
-    var ans = 0
-    val map = HashMap<Char, Int>()
-    var j = 0
-    var i = 0
-    while (j < n) {
-        if (map.containsKey(s[j])) {
-            i = Math.max(map[s[j]]!!, i)
-        }
-        ans = Math.max(ans, j - i + 1)
-        map[s[j]] = j + 1
-        j++
+fun rob(nums: IntArray): Int {
+    if (nums.isEmpty()) {
+        return 0
     }
-    return ans
+    if (nums.size == 1) {
+        return nums[0]
+    }
+    if (nums.size == 2) {
+        return Math.max(nums[0], nums[1])
+    }
+    val dp = IntArray(nums.size)
+    return Math.max(rob(nums, 0, dp.size - 1, dp), rob(nums, 1, dp.size, dp))
+}
+
+private fun rob(nums: IntArray, start: Int, end: Int, dp: IntArray): Int {
+    dp[start] = nums[start]
+    dp[start + 1] = Math.max(nums[start], nums[start + 1])
+    for (i in start + 2 until end) {
+        dp[i] = Math.max(dp[i - 1], nums[i] + dp[i - 2])
+    }
+    return dp[end - 1]
+}
+
+```
+
+### 实现除法
+> 给定两个整数，被除数 dividend 和除数 divisor。将两数相除，要求不使用乘法、除法和 mod 运算符。
+
+**思路**
+还是先抽象问题
+
+`
+M = n * m
+`
+
+现在要求n
+n可能为任何一个整数，所以n可以表示为2的x次的相加解
+
+`
+n = 2^{x1}+2^{x2}+.......2^{xn}
+`
+
+所以这个题可以通过左移运算来实现
+
+`
+m << x = m * 2^x 
+`
+
+首先不断迭代，迭代出来最大的指数值
+就是到
+
+`
+m<<x = m*2^x > M
+`
+
+那么n一定是小于2^x的，毫无疑问
+然后x到0倒过来遍历，加上不超过M就加上
+
+`
+M = m*2^{x-1}+m*2^{x-2}.....
+`
+
+每加一次，还需要统计出来加了多少次
+比如现在加上了m<<4 = m * 2^4
+那么相当于加了2^4个m
+可以用公式
+
+`
+2^n = 1 << n
+`
+
+最后注意符号的问题就可以了
+
+**代码**
+
+```kotlin
+fun divide(dividend: Int, divisor: Int): Int {
+    if (dividend == 0) {
+        return 0
+    }
+    if (dividend == Integer.MIN_VALUE && divisor == -1) {
+        return Integer.MAX_VALUE
+    }
+    var signal = false
+    if (divisor < 0 && dividend > 0 || divisor > 0 && dividend < 0) {
+        signal = true
+    }
+    val a = Math.abs(dividend.toLong())
+    val b = Math.abs(divisor.toLong())
+    var i = 0
+    while (b shl i <= a) {
+        i++
+    }
+    i--
+    var sum = 0L
+    var result = 0
+    for (value in i downTo 0) {
+        if (sum + (b shl value) <= a) {
+            sum += b shl value
+            result += 1 shl value
+        }
+    }
+    return if (signal) -result else result
 }
 ```
