@@ -1,19 +1,26 @@
-fun findDisappearedNumbers(nums: IntArray): List<Int> {
-    val result = ArrayList<Int>()
-    for (i in nums.indices) {
-        val index = Math.abs(nums[i]) - 1
-        nums[index] = Math.abs(nums[index]) * -1
+fun isBalanced(root: TreeNode?): Boolean = getDepth(root) != -1
+
+fun getDepth(root: TreeNode?): Int {
+    if (root == null) {
+        return 0
     }
-    for ((index, value) in nums.withIndex()) {
-        if (value > 0) {
-            result.add(index + 1)
-        }
+    val leftDepth = getDepth(root.left)
+    if (leftDepth == -1) {
+        return -1
     }
-    return result
+    val rightDeath = getDepth(root.right)
+    if (rightDeath == -1) {
+        return -1
+    }
+    if (Math.abs(leftDepth - rightDeath) > 1) {
+        return -1
+    }
+    return 1 + Math.max(leftDepth, rightDeath)
 }
 
+
 fun main(args: Array<String>) {
-    println("xxx")
+    
 }
 
 
