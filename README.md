@@ -25,7 +25,8 @@ Enjoy it！！！
 ### 二叉树
 1. [找出二叉树每层的最大值](https://github.com/TotoroXkf/Algorithm/blob/master/src/BinaryTreeProblem/找出二叉树每层的最大值.md)
 2. [二叉树中所有距离为K的结点](https://github.com/TotoroXkf/Algorithm/blob/master/src/BinaryTreeProblem/二叉树中所有距离为K的结点.md)
-3. [寻找二叉搜索树的公共祖先节点](https://github.com/TotoroXkf/Algorithm/blob/master/src/BinaryTreeProblem/寻找二叉搜索树的公共祖先节点.md)
+3. [判断是不是二叉平衡树](https://github.com/TotoroXkf/Algorithm/blob/master/src/BinaryTreeProblem/判断是不是二叉平衡树.md)
+4. [寻找二叉搜索树的公共祖先节点](https://github.com/TotoroXkf/Algorithm/blob/master/src/BinaryTreeProblem/寻找二叉搜索树的公共祖先节点.md)
 
 ### 递归与动态规划
 1. [N皇后问题](https://github.com/TotoroXkf/Algorithm/blob/master/src/DynamicProblem/N皇后问题.md)
@@ -81,4 +82,4 @@ Enjoy it！！！
 3. [正则表达式匹配](https://github.com/TotoroXkf/Algorithm/blob/master/src/StringProblem/正则表达式匹配.md)
 
 
-已经完成了 60 道题目
+已经完成了 61 道题目
