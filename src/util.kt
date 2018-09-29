@@ -3,6 +3,10 @@ import java.io.File
 import java.io.FileReader
 import java.io.FileWriter
 
+fun main(args: Array<String>) {
+    createReadeMe()
+}
+
 fun splitFile(to: String) {
     val fileName = "src/input.txt"
     val bufferedReader = BufferedReader(FileReader(fileName))
@@ -24,7 +28,7 @@ fun splitFile(to: String) {
 }
 
 fun createReadeMe() {
-    val filWriter = FileWriter("F:\\KotlinCode\\Algorithm\\README.md")
+    val filWriter = FileWriter("README.md")
     filWriter.write("# Algorithm\n" +
             "\n" +
             "本来做算法题是为了找工作的。但是渐渐的就喜欢上算法题了。逐步的分析问题，然后写成代码，这个过程十分美妙\n" +
@@ -43,7 +47,7 @@ fun createReadeMe() {
             "StringProblem" to "字符串问题"
     )
 
-    val basePath = "F:\\KotlinCode\\Algorithm\\src"
+    val basePath = "src/"
     val baseUrl = "https://github.com/TotoroXkf/Algorithm/blob/master/src/"
     val src = File(basePath)
     var sum = 0
