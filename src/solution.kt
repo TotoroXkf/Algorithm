@@ -1,5 +1,24 @@
 import java.util.*
 
+fun maximalRectangle(matrix: Array<CharArray>): Int {
+    if (matrix.isEmpty() || matrix[0].isEmpty()) {
+        return 0
+    }
+    val height = IntArray(matrix[0].size)
+    var max = 0
+    for (i in matrix.indices) {
+        for (j in 0 until matrix[0].size) {
+            if (matrix[i][j] == '1') {
+                height[j] += 1
+            } else {
+                height[j] = 0
+            }
+        }
+        max = Math.max(max, largestRectangleArea(height))
+    }
+    return max
+}
+
 fun largestRectangleArea(heights: IntArray): Int {
     var maxArea = 0
     val stack = LinkedList<Int>()
