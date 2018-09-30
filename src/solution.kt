@@ -1,36 +1,23 @@
-fun longestPalindrome(s: String): String {
-    if (s.isEmpty()) {
-        return ""
-    }
-    var start = 0
-    var end = 1
-    var maxLength = Integer.MIN_VALUE
-    val growPalindrome = { left: Int, right: Int ->
-        var i = left
-        var j = right
-        while (i > -1 && j < s.length && s[i] == s[j]) {
-            i--
-            j++
+fun maxArea(height: IntArray): Int {
+    var left = 0
+    var right = height.size - 1
+    var maxArea = 0
+    while (left < right) {
+        val area = (right - left) * Math.min(height[left], height[right])
+        if (area > maxArea) {
+            maxArea = area
         }
-        val len = j - i - 1
-        if (len > maxLength) {
-            maxLength = len
-            start = i + 1
-            end = j
+        if (height[left] < height[right]) {
+            left++
+        } else {
+            right--
         }
     }
-    for (i in 0 until s.length - 1) {
-        growPalindrome(i - 1, i + 1)
-        if (s[i] == s[i + 1]) {
-            growPalindrome(i - 1, i + 2)
-        }
-    }
-    return s.substring(start, end)
+    return maxArea
 }
 
-
 fun main(args: Array<String>) {
-    println(longestPalindrome("aba"))
+    
 }
 
 
