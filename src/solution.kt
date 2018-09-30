@@ -1,23 +1,32 @@
-fun maxArea(height: IntArray): Int {
-    var left = 0
-    var right = height.size - 1
+import java.util.*
+
+fun largestRectangleArea(heights: IntArray): Int {
     var maxArea = 0
-    while (left < right) {
-        val area = (right - left) * Math.min(height[left], height[right])
-        if (area > maxArea) {
-            maxArea = area
+    val stack = LinkedList<Int>()
+    for (i in 0 until heights.size + 1) {
+        var height = 0
+        if (i < heights.size) {
+            height = heights[i]
         }
-        if (height[left] < height[right]) {
-            left++
-        } else {
-            right--
+        while (!stack.isEmpty() && heights[stack.last()] > height) {
+            val position = stack.removeLast()
+            val area = if (stack.isEmpty()) {
+                heights[position] * i
+            } else {
+                (i - stack.last() - 1) * heights[position]
+            }
+            if (area > maxArea) {
+                maxArea = area
+            }
         }
+        stack.add(i)
     }
     return maxArea
 }
 
+
 fun main(args: Array<String>) {
-    
+
 }
 
 
