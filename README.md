@@ -78,8 +78,9 @@ Enjoy it！！！
 
 ### 字符串问题
 1. [KMP算法](https://github.com/TotoroXkf/Algorithm/blob/master/src/StringProblem/KMP算法.md)
-2. [最长无重复子字符串](https://github.com/TotoroXkf/Algorithm/blob/master/src/StringProblem/最长无重复子字符串.md)
-3. [正则表达式匹配](https://github.com/TotoroXkf/Algorithm/blob/master/src/StringProblem/正则表达式匹配.md)
+2. [最长回文字符串](https://github.com/TotoroXkf/Algorithm/blob/master/src/StringProblem/最长回文字符串.md)
+3. [最长无重复子字符串](https://github.com/TotoroXkf/Algorithm/blob/master/src/StringProblem/最长无重复子字符串.md)
+4. [正则表达式匹配](https://github.com/TotoroXkf/Algorithm/blob/master/src/StringProblem/正则表达式匹配.md)
 
 
-已经完成了 61 道题目
+已经完成了 62 道题目
