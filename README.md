@@ -19,13 +19,12 @@
 - [需要排序的最短子数组长度](https://github.com/TotoroXkf/Algorithm/blob/master/ArrayProblem/需要排序的最短子数组长度.md)
 
 ### 二叉树
-- [找出二叉树每层的最大值](https://github.com/TotoroXkf/Algorithm/blob/master/BinaryTreeProblem/找出二叉树每层的最大值.md)
 - [二叉树中所有距离为K的结点](https://github.com/TotoroXkf/Algorithm/blob/master/BinaryTreeProblem/二叉树中所有距离为K的结点.md)
 - [判断是不是二叉平衡树](https://github.com/TotoroXkf/Algorithm/blob/master/BinaryTreeProblem/判断是不是二叉平衡树.md)
 - [寻找二叉搜索树的公共祖先节点](https://github.com/TotoroXkf/Algorithm/blob/master/BinaryTreeProblem/寻找二叉搜索树的公共祖先节点.md)
+- [找出二叉树每层的最大值](https://github.com/TotoroXkf/Algorithm/blob/master/BinaryTreeProblem/找出二叉树每层的最大值.md)
 
 ### 递归与动态规划
-- [ima](https://github.com/TotoroXkf/Algorithm/blob/master/DynamicProblem/images)
 - [N皇后问题](https://github.com/TotoroXkf/Algorithm/blob/master/DynamicProblem/N皇后问题.md)
 - [删除赚钱问题](https://github.com/TotoroXkf/Algorithm/blob/master/DynamicProblem/删除赚钱问题.md)
 - [字符串的是否由两个字符串交错组成](https://github.com/TotoroXkf/Algorithm/blob/master/DynamicProblem/字符串的是否由两个字符串交错组成.md)
@@ -84,4 +83,4 @@
 
 
 
-一共完成了 65 道题目
+一共完成了 64 道题目

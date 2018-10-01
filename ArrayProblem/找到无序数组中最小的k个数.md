@@ -15,15 +15,7 @@
 import random
 
 
-def select_kth_min_number(array, k, left=-1, right=-1):
-    """
-    :type array:list
-    :type k:int
-    :type left:int
-    :type right:int
-    :rtype: list
-    """
-
+def select_kth_min_number(array:list, k:int, left=-1, right=-1):
     if left == -1 and right == -1:
         left = 0
         right = len(array) - 1

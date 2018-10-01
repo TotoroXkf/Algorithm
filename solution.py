@@ -1,33 +1,43 @@
-# fun maxProduct(nums: IntArray): Int {
-#     if (nums.size == 1) return nums[0]
-#     var max = nums[0]
-#     var min = nums[0]
-#     var result = nums[0]
-#     for (i in 1 until nums.size) {
-#         val maxPre = max
-#         max = Math.max(Math.max(maxPre * nums[i], nums[i]), min * nums[i])
-#         min = Math.min(Math.min(min * nums[i], nums[i]), maxPre * nums[i])
-#         result = Math.max(result, max)
+# fun getLIL(array: IntArray): Int {
+#     val set = HashSet<Int>()
+#     var res = 0
+#     for (i in 0 until array.size - 1) {
+#         set.clear()
+#         var max_value = Int.MIN_VALUE
+#         var min_value = Int.MAX_VALUE
+#         for (j in i until array.size) {
+#             if (set.contains(array[j])) {
+#                 break
+#             }
+#             max_value = Math.max_value(max_value, array[j])
+#             min_value = Math.min_value(min_value, array[j])
+#             set.add(array[j])
+#             if (max_value - min_value == j - i) {
+#                 res = Math.max_value(res, j - i + 1)
+#             }
+#         }
 #     }
-#     return result
+#     return res
 # }
 
-def max_product(nums):
-    """
-    :type nums:list
-    :rtype :int
-    """
-    if len(nums)==1:
-        return nums[0]
-    max_value = nums[0]
-    min_value = nums[0]
-    result = nums[0]
-    for i in range(1,len(nums)):
-        max_pre = max_value
-        max_value = max(max(max_pre*nums[i],nums[i]),min_value*nums[i])
-        min_value = min(min(min_value*nums[i],nums[i]),max_pre*nums[i])
-        result = max(result,max_value)
-    return result
 
-nums = [2,-5,-2,-4,3]
-print(max_product(nums))
+def get_lti(array: list):
+    element_set = set()
+    res = 0
+    for i in range(0, len(array) - 1):
+        element_set.clear()
+        max_value = -2147483648
+        min_value = 2147483647
+        for j in range(1, len(array)):
+            if element_set.__contains__(array[j]):
+                break
+            max_value = max(max_value, array[j])
+            min_value = min(min_value, array[j])
+            element_set.add(array[j])
+            if max_value - min_value == j - i:
+                res = max(res, j - i + 1)
+    return res
+
+
+test = [5, 5, 3, 2, 6, 4, 3]
+print(get_lti(test))
