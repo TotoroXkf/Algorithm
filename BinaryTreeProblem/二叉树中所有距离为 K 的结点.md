@@ -3,33 +3,20 @@
 
 **思路**
 
-照着题目的意思写即可。先找到指定节点，然后从指定节点向下遍历k层。再然后向前返回的时候返回一个距离表示指定节点和当前节点的距离，再从当前节点向下遍历k-distance层即可
+照着题目的意思写即可。先找到指定节点，然后从指定节点向下遍历k层。再然后向前返回的时候返回一个距离表示指定节点和当前节点的距离，再从当前节点向下遍历k-distance层即可  
 递归结束也就都找完了
 
 
 **代码**
 
 ```python
-def distance_k(root, target, k):
-    """
-    :type root: TreeNode
-    :type target: TreeNode
-    :type K: int
-    :rtype: List[int]
-    """
+def distance_k(root:TreeNode, target:TreeNode, k:int):
     res = []
     find_node(root, target, k, res)
     return res
 
 
-def find_node(node, target, k, res):
-    """
-    :type target:TreeNode
-    :type node:TreeNode
-    :type k:int
-    :rtype :int
-    :type res:list[int]
-    """
+def find_node(node:TreeNode, target:TreeNode, k:int, res:list):
     if node is None:
         return -1
     if node is target:
@@ -47,14 +34,7 @@ def find_node(node, target, k, res):
         return -1
 
 
-def search_node(node, avoid, current, k, res):
-    """
-    :type current :int
-    :type node: TreeNode
-    :type avoid:TreeNode
-    :type k: int
-    :type res:list
-    """
+def search_node(node:TreeNode, avoid:TreeNode, current:int, k:int, res:list):
     if node is avoid or node is None:
         return
     if current == k:
