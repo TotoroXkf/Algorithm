@@ -63,5 +63,5 @@ def traversing_files(action):
                     action(package_name, note[0:len(note)-3])
 
 
-# traversing_files(check_code)
-create_read_me()
+traversing_files(check_code)
+# create_read_me()
