@@ -4,16 +4,15 @@ import os
 def create_read_me():
     read_me = open("./README.md", mode="w", encoding="utf-8")
     read_me.write("# Algorithm  \n"
-                  + "本来做算法题是为了找工作的。  \n"
-                  + "但是渐渐的就喜欢上算法题了。逐步的分析问题，然后写成代码，这个过程十分美妙  \n"
-                  + "所以我决定一直保持算法的练习，也是对逻辑思维的训练Enjoy it！！！  \n\n")
+                  + "这是个算法总结仓库  \n"
+                  + "每一道题目都力求最优解。使用Python语言实现  \n"
+                  + "Enjoy it！！！  \n\n")
 
     title_map = {"ArrayProblem": "数组",
                  "BinaryTreeProblem": "二叉树",
                  "DynamicProblem": "递归与动态规划",
                  "LinkedListProblem": "链表",
                  "OtherProblem": "其它问题",
-                 "StackAndQueueProblem": "栈和队列",
                  "StringProblem": "字符串"}
 
     base_url = "https://github.com/TotoroXkf/Algorithm/blob/master/"
@@ -64,5 +63,5 @@ def traversing_files(action):
                     action(package_name, note[0:len(note)-3])
 
 
-traversing_files(check_code)
-# create_read_me()
+# traversing_files(check_code)
+create_read_me()

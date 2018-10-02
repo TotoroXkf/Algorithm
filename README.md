@@ -1,21 +1,21 @@
 # Algorithm  
-本来做算法题是为了找工作的。  
-但是渐渐的就喜欢上算法题了。逐步的分析问题，然后写成代码，这个过程十分美妙  
-所以我决定一直保持算法的练习，也是对逻辑思维的训练Enjoy it！！！  
+这是个算法总结仓库  
+每一道题目都力求最优解。使用Python语言实现  
+Enjoy it！！！  
 
 ### 数组
 - [乘积最大子序列](https://github.com/TotoroXkf/Algorithm/blob/master/ArrayProblem/乘积最大子序列.md)
 - [在行列都排好序的数组中找数](https://github.com/TotoroXkf/Algorithm/blob/master/ArrayProblem/在行列都排好序的数组中找数.md)
-- [将数组搬移成为相同值所需要的最小步数](https://github.com/TotoroXkf/Algorithm/blob/master/ArrayProblem/将数组搬移成为相同值所需要的最小步数.md)
 - [找到所有数组中消失的数字](https://github.com/TotoroXkf/Algorithm/blob/master/ArrayProblem/找到所有数组中消失的数字.md)
 - [找到数组中出现次数大于一半的数](https://github.com/TotoroXkf/Algorithm/blob/master/ArrayProblem/找到数组中出现次数大于一半的数.md)
 - [找到数组中第一个缺少的数字](https://github.com/TotoroXkf/Algorithm/blob/master/ArrayProblem/找到数组中第一个缺少的数字.md)
 - [找到数组中累加小于等于目标值的最长子数组](https://github.com/TotoroXkf/Algorithm/blob/master/ArrayProblem/找到数组中累加小于等于目标值的最长子数组.md)
-- [找到无序数组中最小的k个数](https://github.com/TotoroXkf/Algorithm/blob/master/ArrayProblem/找到无序数组中最小的k个数.md)
 - [数组中累加和等于目标值的最长序列](https://github.com/TotoroXkf/Algorithm/blob/master/ArrayProblem/数组中累加和等于目标值的最长序列.md)
 - [数组的小和](https://github.com/TotoroXkf/Algorithm/blob/master/ArrayProblem/数组的小和.md)
+- [最大值减去最小值小于等于num的子数组数量](https://github.com/TotoroXkf/Algorithm/blob/master/ArrayProblem/最大值减去最小值小于等于num的子数组数量.md)
 - [最大连续子区间和](https://github.com/TotoroXkf/Algorithm/blob/master/ArrayProblem/最大连续子区间和.md)
 - [最长的可整合子数组的长度](https://github.com/TotoroXkf/Algorithm/blob/master/ArrayProblem/最长的可整合子数组的长度.md)
+- [生成窗口最大值数组](https://github.com/TotoroXkf/Algorithm/blob/master/ArrayProblem/生成窗口最大值数组.md)
 - [需要排序的最短子数组长度](https://github.com/TotoroXkf/Algorithm/blob/master/ArrayProblem/需要排序的最短子数组长度.md)
 
 ### 二叉树
@@ -26,7 +26,6 @@
 
 ### 递归与动态规划
 - [N皇后问题](https://github.com/TotoroXkf/Algorithm/blob/master/DynamicProblem/N皇后问题.md)
-- [删除赚钱问题](https://github.com/TotoroXkf/Algorithm/blob/master/DynamicProblem/删除赚钱问题.md)
 - [字符串的是否由两个字符串交错组成](https://github.com/TotoroXkf/Algorithm/blob/master/DynamicProblem/字符串的是否由两个字符串交错组成.md)
 - [拿牌的博弈问题](https://github.com/TotoroXkf/Algorithm/blob/master/DynamicProblem/拿牌的博弈问题.md)
 - [换钱的方法数](https://github.com/TotoroXkf/Algorithm/blob/master/DynamicProblem/换钱的方法数.md)
@@ -39,7 +38,6 @@
 - [最长公共子序列](https://github.com/TotoroXkf/Algorithm/blob/master/DynamicProblem/最长公共子序列.md)
 - [消除游戏](https://github.com/TotoroXkf/Algorithm/blob/master/DynamicProblem/消除游戏.md)
 - [矩阵的最短路径和](https://github.com/TotoroXkf/Algorithm/blob/master/DynamicProblem/矩阵的最短路径和.md)
-- [编辑距离](https://github.com/TotoroXkf/Algorithm/blob/master/DynamicProblem/编辑距离.md)
 - [跳跃游戏](https://github.com/TotoroXkf/Algorithm/blob/master/DynamicProblem/跳跃游戏.md)
 
 ### 链表
@@ -67,14 +65,6 @@
 - [给出图的每条边，找出最矮树的根节点](https://github.com/TotoroXkf/Algorithm/blob/master/OtherProblem/给出图的每条边，找出最矮树的根节点.md)
 - [计算n的阶乘的尾数有多少个0](https://github.com/TotoroXkf/Algorithm/blob/master/OtherProblem/计算n的阶乘的尾数有多少个0.md)
 
-### 栈和队列
-- [如何仅用递归函数和栈操作逆序一个栈](https://github.com/TotoroXkf/Algorithm/blob/master/StackAndQueueProblem/如何仅用递归函数和栈操作逆序一个栈.md)
-- [最大值减去最小值小于等于num的子数组数量](https://github.com/TotoroXkf/Algorithm/blob/master/StackAndQueueProblem/最大值减去最小值小于等于num的子数组数量.md)
-- [生成窗口最大值数组](https://github.com/TotoroXkf/Algorithm/blob/master/StackAndQueueProblem/生成窗口最大值数组.md)
-- [用一个栈实现另一个栈的排序](https://github.com/TotoroXkf/Algorithm/blob/master/StackAndQueueProblem/用一个栈实现另一个栈的排序.md)
-- [用栈来求解汉诺塔问题](https://github.com/TotoroXkf/Algorithm/blob/master/StackAndQueueProblem/用栈来求解汉诺塔问题.md)
-- [设计一个有getMin功能的栈](https://github.com/TotoroXkf/Algorithm/blob/master/StackAndQueueProblem/设计一个有getMin功能的栈.md)
-
 ### 字符串
 - [KMP算法](https://github.com/TotoroXkf/Algorithm/blob/master/StringProblem/KMP算法.md)
 - [最长回文字符串](https://github.com/TotoroXkf/Algorithm/blob/master/StringProblem/最长回文字符串.md)
@@ -83,4 +73,4 @@
 
 
 
-一共完成了 64 道题目
+一共完成了 56 道题目
