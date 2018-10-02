@@ -64,4 +64,4 @@ def traversing_files(action):
 
 
 traversing_files(check_code)
-# create_read_me()
+create_read_me()
