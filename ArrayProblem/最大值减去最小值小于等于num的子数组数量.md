@@ -57,12 +57,7 @@ min = {1,2,3}
 **代码**
 
 ```python
-def get_num(array, target):
-    """
-    :type target:int
-    :type array:list
-    :rtype :int
-    """
+def get_num(array:list, target:int):
     max_queue = []
     min_queue = []
     i = 0
