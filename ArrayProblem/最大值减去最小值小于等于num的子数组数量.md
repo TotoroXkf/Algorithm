@@ -81,13 +81,7 @@ def get_num(array:list, target:int):
     return result
 
 
-def update_queue(array, index, max_queue, min_queue):
-    """
-    :type array:list
-    :type index:int
-    :type max_queue:list
-    :type min_queue:list
-    """
+def update_queue(array:list, index:int, max_queue:list, min_queue:list):
     while max_queue and array[index] >= array[max_queue[-1]]:
         max_queue.pop(-1)
     max_queue.append(index)

@@ -1,46 +1,55 @@
-# fun isCross(str1: String, str2: String, target: String): Boolean {
-#     if (target.length != str1.length + str2.length) {
-#         return false
+# fun longestConsecutive(num: IntArray): Int {
+#     if (num.isEmpty()) {
+#         return 0
 #     }
-#     val row = if (str1.length > str2.length) str1 else str2
-#     val col = if (str1.length > str2.length) str2 else str1
-#     val dp = BooleanArray(col.length + 1)
-#     dp[0] = true
-#     for (i in 1..col.length) {
-#         if (col[i - 1] == target[i - 1]) {
-#             dp[i] = true
-#         } else {
-#             break
+#     val hashMap = HashMap<Int, Int>()
+#     var result = 1
+#     val merge = { low: Int, high: Int ->
+#         val left = low - hashMap[low]!! + 1
+#         val right = high + hashMap[high]!! - 1
+#         val len = right - left + 1
+#         hashMap[left] = len
+#         hashMap[right] = len
+#         result = max(result, len)
+#     }
+#     for (value in num) {
+#         if (!hashMap.containsKey(value)) {
+#             hashMap[value] = 1
+#             if (hashMap.containsKey(value - 1)) {
+#                 merge(value - 1, value)
+#             }
+#             if (hashMap.containsKey(value + 1)) {
+#                 merge(value, value + 1)
+#             }
 #         }
 #     }
-#     for (i in 1..row.length) {
-#         dp[0] = dp[0] && (row[i - 1] == target[i - 1])
-#         for (j in 1..col.length) {
-#             dp[j] = (dp[j - 1] && col[j - 1] == target[i + j - 1]) || (dp[j] && row[i - 1] == target[i + j - 1])
-#         }
-#     }
-#     return dp.last()
+#     return result
 # }
 
 
-def is_cross(str1: str, str2: str, target: str):
-    if len(target) != len(str1+str2):
-        return False
-    row = str1
-    col = str2
-    if len(str1) <= len(str2):
-        row = str2
-        col = str1
-    dp = [False for i in range(len(col)+1)]
-    dp[0] = True
-    for i in range(1, len(col)+1):
-        if col[i-1] == target[i-1]:
-            dp[i] = True
-        else:
-            break
-    for i in range(1, len(row)+1):
-        dp[0] = dp[0] and (row[i-1] == target[i-1])
-        for j in range(1, len(col)+1):
-            dp[j] = (dp[j - 1] and col[j - 1] == target[i + j - 1]
-                     ) or (dp[j] and row[i - 1] == target[i + j - 1])
-    return dp[-1]
+def longest_consecutive(nums: list):
+    if len(nums) == 0:
+        return 0
+    len_map = {}
+    result = 1
+
+    def merge(low: int, high: int):
+        left = low - len_map[low] + 1
+        right = high + len_map[high] - 1
+        length = right - left + 1
+        len_map[left] = length
+        len_map[right] = length
+        return max(result, length)
+
+    for value in nums:
+        if not len_map.__contains__(value):
+            len_map[value] = 1
+            if len_map.__contains__(value - 1):
+                result = merge(value - 1, value)
+            if len_map.__contains__(value + 1):
+                result = merge(value, value + 1)
+    return result
+
+
+arr = [100,4,200,1,3,2]
+print(longest_consecutive(arr))
