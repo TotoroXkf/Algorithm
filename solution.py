@@ -1,55 +1,31 @@
-# fun longestConsecutive(num: IntArray): Int {
-#     if (num.isEmpty()) {
-#         return 0
-#     }
-#     val hashMap = HashMap<Int, Int>()
-#     var result = 1
-#     val merge = { low: Int, high: Int ->
-#         val left = low - hashMap[low]!! + 1
-#         val right = high + hashMap[high]!! - 1
-#         val len = right - left + 1
-#         hashMap[left] = len
-#         hashMap[right] = len
-#         result = max(result, len)
-#     }
-#     for (value in num) {
-#         if (!hashMap.containsKey(value)) {
-#             hashMap[value] = 1
-#             if (hashMap.containsKey(value - 1)) {
-#                 merge(value - 1, value)
-#             }
-#             if (hashMap.containsKey(value + 1)) {
-#                 merge(value, value + 1)
-#             }
-#         }
-#     }
-#     return result
-# }
+def get_max_len_common(str1: str, str2: str):
+    if len(str1) == 0 or len(str2) == 0:
+        return ""
+
+    def get_dp():
+        dp = [[0 for i in range(len(str2)+1)] for j in range(len(str1)+1)]
+        for i in range(1, len(dp)):
+            for j in range(1, len(dp[0])):
+                dp[i][j] = max(dp[i-1][j], dp[i][j-1])
+                if str1[i-1] == str2[j-1]:
+                    dp[i][j] = max(dp[i][j], dp[i - 1][j - 1] + 1)
+        return dp
+
+    dp = get_dp()
+    i, j = len(dp)-1, len(dp[0])-1
+    res = ['' for i in range(dp[-1][-1])]
+    index = len(res)-1
+    while dp[i][j] != 0:
+        if dp[i][j] == dp[i-1][j]:
+            i -= 1
+        elif dp[i][j] == dp[i][j - 1]:
+            j -= 1
+        else:
+            res[index] = str1[i-1]
+            index, i, j = index-1, i-1, j-1
+    return "".join(res)
 
 
-def longest_consecutive(nums: list):
-    if len(nums) == 0:
-        return 0
-    len_map = {}
-    result = 1
-
-    def merge(low: int, high: int):
-        left = low - len_map[low] + 1
-        right = high + len_map[high] - 1
-        length = right - left + 1
-        len_map[left] = length
-        len_map[right] = length
-        return max(result, length)
-
-    for value in nums:
-        if not len_map.__contains__(value):
-            len_map[value] = 1
-            if len_map.__contains__(value - 1):
-                result = merge(value - 1, value)
-            if len_map.__contains__(value + 1):
-                result = merge(value, value + 1)
-    return result
-
-
-arr = [100,4,200,1,3,2]
-print(longest_consecutive(arr))
+str1 = "1A2C3D4B56"
+str2 = "B1D23CA45B6A"
+print(get_max_len_common(str1, str2))
