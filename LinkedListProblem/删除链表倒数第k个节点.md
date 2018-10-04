@@ -8,12 +8,7 @@
 **代码**
 
 ```python
-def delete_last_kth_node(k, head):
-    """
-    :type k:int
-    :type head:ListNode
-    :rtype : ListNode
-    """
+def delete_last_kth_node(k:int, head:ListNode):
     if k <= 0:
         return head
 

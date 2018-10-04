@@ -43,7 +43,6 @@ Enjoy it！！！
 - [跳跃游戏](https://github.com/TotoroXkf/Algorithm/blob/master/DynamicProblem/跳跃游戏.md)
 
 ### 链表
-- [两个单链表表示两个数字求相加的结果](https://github.com/TotoroXkf/Algorithm/blob/master/LinkedListProblem/两个单链表表示两个数字求相加的结果.md)
 - [删除链表中间节点](https://github.com/TotoroXkf/Algorithm/blob/master/LinkedListProblem/删除链表中间节点.md)
 - [删除链表倒数第k个节点](https://github.com/TotoroXkf/Algorithm/blob/master/LinkedListProblem/删除链表倒数第k个节点.md)
 - [判断一个链表是否为回文结构](https://github.com/TotoroXkf/Algorithm/blob/master/LinkedListProblem/判断一个链表是否为回文结构.md)
@@ -75,4 +74,4 @@ Enjoy it！！！
 
 
 
-一共完成了 58 道题目
+一共完成了 57 道题目
