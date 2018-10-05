@@ -16,23 +16,23 @@ def create_read_me():
                  "StringProblem": "字符串"}
 
     base_url = "https://github.com/TotoroXkf/Algorithm/blob/master/"
-    base_path = "./"
 
-    files = os.listdir(base_path)
     problems = 0
-    for package_name in files:
-        if (os.path.isdir(base_path + package_name)) and (package_name.endswith("Problem")):
+    last_package_name = ""
+
+    def action(package_name: str, note_name: str):
+        nonlocal last_package_name, problems
+        if last_package_name != package_name:
             read_me.write("### " + title_map[package_name] + "\n")
-            notes = os.listdir(base_path + package_name)
-            for note in notes:
-                if note.endswith(".md"):
-                    url = base_url + package_name + "/" + note
-                    line = ("[" + note[0:note.__len__() - 3] + "]" +
-                            "(" + url + ")").replace(" ", "")
-                    line = "- " + line
-                    problems += 1
-                    read_me.write(line + "\n")
-            read_me.write("\n")
+            last_package_name = package_name
+        url = base_url + package_name + "/" + note_name+".md"
+        line = ("[" + note_name + "]" +
+                "(" + url + ")").replace(" ", "")
+        line = "- " + line
+        problems += 1
+        read_me.write(line + "\n")
+
+    traversing_files(action)
 
     read_me.write("\n\n")
     read_me.write("一共完成了 " + str(problems) + " 道题目")

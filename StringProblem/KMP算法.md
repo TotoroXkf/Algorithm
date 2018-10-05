@@ -128,44 +128,41 @@ a = e
 
 **代码**
 
-```kotlin
-fun strStr(haystack: String, needle: String): Int {
-    if (haystack.isEmpty() && needle.isEmpty())
+```python
+def str_str(haystack: str, needle: str):
+    if len(haystack) == 0 and len(needle) == 0:
         return 0
-    else if (haystack.isEmpty())
+    elif len(haystack) == 0:
         return -1
-    else if (needle.isEmpty()) return 0
-    val next = getNext(needle)
-    var i = 0
-    var j = 0
-    while (i < haystack.length && j < needle.length) {
-        if (j == -1 || haystack[i] == needle[j]) {
-            i++
-            j++
-        } else {
-            j = next[j]
-        }
-    }
-    return if (j == needle.length) {
-        i - needle.length
-    } else -1
-}
+    elif len(needle) == 0:
+        return 0
 
-private fun getNext(needle: String): IntArray {
-    val next = IntArray(needle.length)
-    var j = -1
-    var i = 0
-    next[i] = -1
-    while (i < needle.length - 1) {
-        if (j == -1 || needle[i] == needle[j]) {
-            j++
-            i++
-            next[i] = j
-        } else {
-            j = next[j]
-        }
-    }
-    return next
-}
+    next_position = [0 for _ in range(len(needle))]
+
+    def create_next():
+        x, y = 0, -1
+        next_position[0] = -1
+        while x < len(needle) - 1:
+            if y == -1 or needle[x] == needle[y]:
+                y += 1
+                x += 1
+                next_position[x] = y
+            else:
+                y = next_position[y]
+        return next_position
+
+    create_next()
+
+    i, j = 0, 0
+    while i < len(haystack) and j < len(needle):
+        if j == -1 or haystack[i] == needle[j]:
+            i += 1
+            j += 1
+        else:
+            j = next_position[j]
+    if j == len(needle):
+        return i - len(needle)
+    else:
+        return -1
 ```
 
