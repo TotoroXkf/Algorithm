@@ -1,3 +1,6 @@
+from random import randint
+
+
 class ListNode:
 
     def __init__(self, value):
@@ -5,11 +8,7 @@ class ListNode:
         self.val = value
 
 
-def create_linked_list(array):
-    """
-    :type array:list
-    :rtype ListNode
-    """
+def create_linked_list(array: list):
     head = None
     tail = None
 
@@ -24,10 +23,7 @@ def create_linked_list(array):
     return head
 
 
-def print_linked_list(head):
-    """
-    :type head:ListNode
-    """
+def print_linked_list(head: ListNode):
     if head is None:
         print(None)
 
@@ -45,12 +41,7 @@ class TreeNode:
         self.val = value
 
 
-def create_tree(array, position=0):
-    """
-    :type position:int
-    :type array:list
-    :rtype:TreeNode
-    """
+def create_tree(array: list, position=0):
     if array[position] is None:
         return None
     root = TreeNode(array[position])
@@ -63,11 +54,7 @@ def create_tree(array, position=0):
     return root
 
 
-def print_tree(root, mode):
-    """
-    :type mode:str
-    :type root:TreeNode
-    """
+def print_tree(root: TreeNode, mode: str):
     if root is not None:
         if mode.__eq__("pre"):
             print(root.val, end=" ")
@@ -91,3 +78,19 @@ def print_tree(root, mode):
                 if node.right is not None:
                     queue.append(node.right)
         print()
+
+
+def create_array_test_case(start=0, end=10, length: int = 10, repeat=True):
+    result = []
+    if repeat:
+        for i in range(length):
+            value = randint(start, end)
+            result.append(value)
+    else:
+        num_set = set()
+        while len(result) < length:
+            value = randint(start, end)
+            if value not in num_set:
+                num_set.add(value)
+                result.append(value)
+    return result
