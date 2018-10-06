@@ -60,6 +60,7 @@ Enjoy it！！！
 - [打家劫舍2](https://github.com/TotoroXkf/Algorithm/blob/master/OtherProblem/打家劫舍2.md)
 - [整数拆分](https://github.com/TotoroXkf/Algorithm/blob/master/OtherProblem/整数拆分.md)
 - [柱状图中最大的矩形](https://github.com/TotoroXkf/Algorithm/blob/master/OtherProblem/柱状图中最大的矩形.md)
+- [生成n对括号](https://github.com/TotoroXkf/Algorithm/blob/master/OtherProblem/生成n对括号.md)
 - [盛水最多的容器](https://github.com/TotoroXkf/Algorithm/blob/master/OtherProblem/盛水最多的容器.md)
 - [矩阵中的最大矩形](https://github.com/TotoroXkf/Algorithm/blob/master/OtherProblem/矩阵中的最大矩形.md)
 - [给出图的每条边，找出最矮树的根节点](https://github.com/TotoroXkf/Algorithm/blob/master/OtherProblem/给出图的每条边，找出最矮树的根节点.md)
@@ -71,4 +72,4 @@ Enjoy it！！！
 - [正则表达式匹配](https://github.com/TotoroXkf/Algorithm/blob/master/StringProblem/正则表达式匹配.md)
 
 
-一共完成了 60 道题目
+一共完成了 61 道题目
