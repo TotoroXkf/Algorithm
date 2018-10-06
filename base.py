@@ -1,4 +1,7 @@
-from random import randint
+from random import *
+from string import *
+
+# LinkedList↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
 
 
 class ListNode:
@@ -33,6 +36,10 @@ def print_linked_list(head: ListNode):
         node = node.next
     print()
 
+# LinkedList ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
+
+# Tree ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
+
 
 class TreeNode:
     def __init__(self, value):
@@ -48,6 +55,7 @@ def create_tree(array: list, position=0):
     left_position = (position + 1) * 2 - 1
     right_position = (position + 1) * 2
     if left_position < len(array):
+
         root.left = create_tree(array, position=left_position)
     if right_position < len(array):
         root.right = create_tree(array, position=right_position)
@@ -79,8 +87,12 @@ def print_tree(root: TreeNode, mode: str):
                     queue.append(node.right)
         print()
 
+# Tree ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
 
-def create_array_test_case(start=0, end=10, length: int = 10, repeat=True):
+# Testcase ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
+
+
+def create_array_test_case(start=0, end=10, length: int = 10, repeat=True, sorted=False):
     result = []
     if repeat:
         for i in range(length):
@@ -93,4 +105,23 @@ def create_array_test_case(start=0, end=10, length: int = 10, repeat=True):
             if value not in num_set:
                 num_set.add(value)
                 result.append(value)
+    if sorted:
+        result.sort()
     return result
+
+
+def create_string_test_case(length=10, lower=True, upper=False, repeat=True):
+    if repeat:
+        all_char = "abcdefghijkmlnopqrstuvwxyz"
+        result = "".join(choices(population=all_char, k=length))
+        if upper:
+            return result.upper()
+        return result
+    else:
+        if lower:
+            return "".join(sample(ascii_lowercase, length))
+        if upper:
+            return "".join(sample(ascii_uppercase, length))
+        return "".join(sample(ascii_letters, length))
+
+# Testcase ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
