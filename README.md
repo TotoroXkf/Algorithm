@@ -40,6 +40,7 @@ Enjoy it！！！
 - [最长公共子串](https://github.com/TotoroXkf/Algorithm/blob/master/DynamicProblem/最长公共子串.md)
 - [最长公共子序列](https://github.com/TotoroXkf/Algorithm/blob/master/DynamicProblem/最长公共子序列.md)
 - [消除游戏](https://github.com/TotoroXkf/Algorithm/blob/master/DynamicProblem/消除游戏.md)
+- [目标和](https://github.com/TotoroXkf/Algorithm/blob/master/DynamicProblem/目标和.md)
 - [矩阵的最短路径和](https://github.com/TotoroXkf/Algorithm/blob/master/DynamicProblem/矩阵的最短路径和.md)
 - [跳跃游戏](https://github.com/TotoroXkf/Algorithm/blob/master/DynamicProblem/跳跃游戏.md)
 ### 链表
@@ -74,4 +75,4 @@ Enjoy it！！！
 - [正则表达式匹配](https://github.com/TotoroXkf/Algorithm/blob/master/StringProblem/正则表达式匹配.md)
 
 
-一共完成了 63 道题目
+一共完成了 64 道题目
