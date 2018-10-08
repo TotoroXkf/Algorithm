@@ -42,7 +42,7 @@ Enjoy it！！！
 - [最长公共子序列](https://github.com/TotoroXkf/Algorithm/blob/master/DynamicProblem/最长公共子序列.md)
 - [消除游戏](https://github.com/TotoroXkf/Algorithm/blob/master/DynamicProblem/消除游戏.md)
 - [目标和](https://github.com/TotoroXkf/Algorithm/blob/master/DynamicProblem/目标和.md)
-- [矩阵的最短路径和](https://github.com/TotoroXkf/Algorithm/blob/master/DynamicProblem/矩阵的最短路径和.md)
+- [矩阵路径系列问题](https://github.com/TotoroXkf/Algorithm/blob/master/DynamicProblem/矩阵路径系列问题.md)
 - [跳跃游戏](https://github.com/TotoroXkf/Algorithm/blob/master/DynamicProblem/跳跃游戏.md)
 ### 链表
 - [删除链表中间节点](https://github.com/TotoroXkf/Algorithm/blob/master/LinkedListProblem/删除链表中间节点.md)
