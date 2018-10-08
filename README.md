@@ -4,6 +4,7 @@
 Enjoy it！！！  
 
 ### 数组
+- [下一个全排列](https://github.com/TotoroXkf/Algorithm/blob/master/ArrayProblem/下一个全排列.md)
 - [乘积最大子序列](https://github.com/TotoroXkf/Algorithm/blob/master/ArrayProblem/乘积最大子序列.md)
 - [合并两个有序数组](https://github.com/TotoroXkf/Algorithm/blob/master/ArrayProblem/合并两个有序数组.md)
 - [寻找数组的中心索引](https://github.com/TotoroXkf/Algorithm/blob/master/ArrayProblem/寻找数组的中心索引.md)
@@ -80,4 +81,4 @@ Enjoy it！！！
 - [正则表达式匹配](https://github.com/TotoroXkf/Algorithm/blob/master/StringProblem/正则表达式匹配.md)
 
 
-一共完成了 69 道题目
+一共完成了 70 道题目

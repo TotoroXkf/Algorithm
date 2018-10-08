@@ -1,27 +1,27 @@
 from base import *
 
 
-def merge_k_lists(lists: list, start=-1, end=-1):
-    if start == -1 and end == -1:
-        return merge_k_lists(lists, 0, len(lists)-1)
-    if start == end:
-        return lists[start]
-    if start < end:
-        mid = (start+end)//2
-        l1 = merge_k_lists(lists, start, mid)
-        l2 = merge_k_lists(lists, mid+1, end)
-        return merge_two_link_list(l1, l2)
-    return None
-
-
-def merge_two_link_list(l1: ListNode, l2: ListNode):
-    if l1 is None:
-        return l2
-    if l2 is None:
-        return l1
-    if l1.val < l2.val:
-        l1.next = merge_two_link_list(l1.next, l2)
-        return l1
+def next_permutation(nums: list):
+    size = len(nums)
+    if size == 1:
+        return
+    i, j = size-2, size-1
+    while i > -1 and nums[i] >= nums[j]:
+        i, j = i-1, j-1
+    if i != -1:
+        j = size - 1
+        while j > i+1 and nums[i] >= nums[j]:
+            j -= 1
+        nums[i], nums[j] = nums[j], nums[i]
     else:
-        l2.next = merge_two_link_list(l1, l2.next)
-        return l2
+        i = 0
+    j = size-1
+    while i < j:
+        nums[i], nums[j] = nums[j], nums[i]
+        i, j = i+1, j-1
+
+
+test = [1, 2, 3, 4, 5]
+for i in range(20):
+    next_permutation(test)
+    print(test)
