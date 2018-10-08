@@ -15,6 +15,7 @@ Enjoy it！！！
 - [找到数组中累加小于等于目标值的最长子数组](https://github.com/TotoroXkf/Algorithm/blob/master/ArrayProblem/找到数组中累加小于等于目标值的最长子数组.md)
 - [数组中累加和等于目标值的最长序列](https://github.com/TotoroXkf/Algorithm/blob/master/ArrayProblem/数组中累加和等于目标值的最长序列.md)
 - [数组的小和](https://github.com/TotoroXkf/Algorithm/blob/master/ArrayProblem/数组的小和.md)
+- [旋转数组](https://github.com/TotoroXkf/Algorithm/blob/master/ArrayProblem/旋转数组.md)
 - [最大值减去最小值小于等于num的子数组数量](https://github.com/TotoroXkf/Algorithm/blob/master/ArrayProblem/最大值减去最小值小于等于num的子数组数量.md)
 - [最大连续子区间和](https://github.com/TotoroXkf/Algorithm/blob/master/ArrayProblem/最大连续子区间和.md)
 - [最长的可整合子数组的长度](https://github.com/TotoroXkf/Algorithm/blob/master/ArrayProblem/最长的可整合子数组的长度.md)
@@ -60,9 +61,12 @@ Enjoy it！！！
 - [判断括号匹配](https://github.com/TotoroXkf/Algorithm/blob/master/OtherProblem/判断括号匹配.md)
 - [判断矩阵是否相交](https://github.com/TotoroXkf/Algorithm/blob/master/OtherProblem/判断矩阵是否相交.md)
 - [加油站问题](https://github.com/TotoroXkf/Algorithm/blob/master/OtherProblem/加油站问题.md)
+- [只出现一次的数字](https://github.com/TotoroXkf/Algorithm/blob/master/OtherProblem/只出现一次的数字.md)
 - [实现除法](https://github.com/TotoroXkf/Algorithm/blob/master/OtherProblem/实现除法.md)
+- [数独问题](https://github.com/TotoroXkf/Algorithm/blob/master/OtherProblem/数独问题.md)
 - [整数拆分](https://github.com/TotoroXkf/Algorithm/blob/master/OtherProblem/整数拆分.md)
 - [柱状图和矩阵中的中最大的矩形](https://github.com/TotoroXkf/Algorithm/blob/master/OtherProblem/柱状图和矩阵中的中最大的矩形.md)
+- [灯泡开关](https://github.com/TotoroXkf/Algorithm/blob/master/OtherProblem/灯泡开关.md)
 - [生成n对括号](https://github.com/TotoroXkf/Algorithm/blob/master/OtherProblem/生成n对括号.md)
 - [盛水最多的容器](https://github.com/TotoroXkf/Algorithm/blob/master/OtherProblem/盛水最多的容器.md)
 - [矩阵中的最大矩形](https://github.com/TotoroXkf/Algorithm/blob/master/OtherProblem/矩阵中的最大矩形.md)
@@ -75,4 +79,4 @@ Enjoy it！！！
 - [正则表达式匹配](https://github.com/TotoroXkf/Algorithm/blob/master/StringProblem/正则表达式匹配.md)
 
 
-一共完成了 64 道题目
+一共完成了 68 道题目
