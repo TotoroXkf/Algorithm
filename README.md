@@ -6,7 +6,6 @@ Enjoy it！！！
 ### 数组
 - [乘积最大子序列](https://github.com/TotoroXkf/Algorithm/blob/master/ArrayProblem/乘积最大子序列.md)
 - [合并两个有序数组](https://github.com/TotoroXkf/Algorithm/blob/master/ArrayProblem/合并两个有序数组.md)
-- [在行列都排好序的数组中找数](https://github.com/TotoroXkf/Algorithm/blob/master/ArrayProblem/在行列都排好序的数组中找数.md)
 - [寻找数组的中心索引](https://github.com/TotoroXkf/Algorithm/blob/master/ArrayProblem/寻找数组的中心索引.md)
 - [找出两个排序数组的中位数](https://github.com/TotoroXkf/Algorithm/blob/master/ArrayProblem/找出两个排序数组的中位数.md)
 - [找到所有数组中消失的数字](https://github.com/TotoroXkf/Algorithm/blob/master/ArrayProblem/找到所有数组中消失的数字.md)
@@ -63,6 +62,7 @@ Enjoy it！！！
 - [判断矩阵是否相交](https://github.com/TotoroXkf/Algorithm/blob/master/OtherProblem/判断矩阵是否相交.md)
 - [加油站问题](https://github.com/TotoroXkf/Algorithm/blob/master/OtherProblem/加油站问题.md)
 - [只出现一次的数字](https://github.com/TotoroXkf/Algorithm/blob/master/OtherProblem/只出现一次的数字.md)
+- [在行列都排好序的矩阵中找数](https://github.com/TotoroXkf/Algorithm/blob/master/OtherProblem/在行列都排好序的矩阵中找数.md)
 - [实现除法](https://github.com/TotoroXkf/Algorithm/blob/master/OtherProblem/实现除法.md)
 - [数独问题](https://github.com/TotoroXkf/Algorithm/blob/master/OtherProblem/数独问题.md)
 - [整数拆分](https://github.com/TotoroXkf/Algorithm/blob/master/OtherProblem/整数拆分.md)
