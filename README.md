@@ -66,6 +66,7 @@ Enjoy it！！！
 - [实现除法](https://github.com/TotoroXkf/Algorithm/blob/master/OtherProblem/实现除法.md)
 - [数独问题](https://github.com/TotoroXkf/Algorithm/blob/master/OtherProblem/数独问题.md)
 - [整数拆分](https://github.com/TotoroXkf/Algorithm/blob/master/OtherProblem/整数拆分.md)
+- [最长的有效括号的长度](https://github.com/TotoroXkf/Algorithm/blob/master/OtherProblem/最长的有效括号的长度.md)
 - [柱状图和矩阵中的中最大的矩形](https://github.com/TotoroXkf/Algorithm/blob/master/OtherProblem/柱状图和矩阵中的中最大的矩形.md)
 - [灯泡开关](https://github.com/TotoroXkf/Algorithm/blob/master/OtherProblem/灯泡开关.md)
 - [生成n对括号](https://github.com/TotoroXkf/Algorithm/blob/master/OtherProblem/生成n对括号.md)
@@ -79,4 +80,4 @@ Enjoy it！！！
 - [正则表达式匹配](https://github.com/TotoroXkf/Algorithm/blob/master/StringProblem/正则表达式匹配.md)
 
 
-一共完成了 68 道题目
+一共完成了 69 道题目
