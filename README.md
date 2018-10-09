@@ -49,8 +49,8 @@ Enjoy it！！！
 ### 链表
 - [删除链表中间节点](https://github.com/TotoroXkf/Algorithm/blob/master/LinkedListProblem/删除链表中间节点.md)
 - [删除链表倒数第k个节点](https://github.com/TotoroXkf/Algorithm/blob/master/LinkedListProblem/删除链表倒数第k个节点.md)
-- [判断一个链表是否为回文结构](https://github.com/TotoroXkf/Algorithm/blob/master/LinkedListProblem/判断一个链表是否为回文结构.md)
-- [反转部分单向链表](https://github.com/TotoroXkf/Algorithm/blob/master/LinkedListProblem/反转部分单向链表.md)
+- [判断链表是不是回文结构](https://github.com/TotoroXkf/Algorithm/blob/master/LinkedListProblem/判断链表是不是回文结构.md)
+- [反转链表系列问题](https://github.com/TotoroXkf/Algorithm/blob/master/LinkedListProblem/反转链表系列问题.md)
 - [合并K个排序链表](https://github.com/TotoroXkf/Algorithm/blob/master/LinkedListProblem/合并K个排序链表.md)
 - [合并两个有序链表](https://github.com/TotoroXkf/Algorithm/blob/master/LinkedListProblem/合并两个有序链表.md)
 - [将单向链表按某值划分成左边小、中间相等、右边大的形式](https://github.com/TotoroXkf/Algorithm/blob/master/LinkedListProblem/将单向链表按某值划分成左边小、中间相等、右边大的形式.md)
