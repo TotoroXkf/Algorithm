@@ -30,6 +30,7 @@ Enjoy it！！！
 - [找出二叉树每层的最大值](https://github.com/TotoroXkf/Algorithm/blob/master/BinaryTreeProblem/找出二叉树每层的最大值.md)
 ### 递归与动态规划
 - [N皇后问题](https://github.com/TotoroXkf/Algorithm/blob/master/DynamicProblem/N皇后问题.md)
+- [买卖股票的最佳时机](https://github.com/TotoroXkf/Algorithm/blob/master/DynamicProblem/买卖股票的最佳时机.md)
 - [字符串的是否由两个字符串交错组成](https://github.com/TotoroXkf/Algorithm/blob/master/DynamicProblem/字符串的是否由两个字符串交错组成.md)
 - [打家劫舍系列问题](https://github.com/TotoroXkf/Algorithm/blob/master/DynamicProblem/打家劫舍系列问题.md)
 - [拿牌的博弈问题](https://github.com/TotoroXkf/Algorithm/blob/master/DynamicProblem/拿牌的博弈问题.md)
@@ -58,7 +59,6 @@ Enjoy it！！！
 - [链表排序](https://github.com/TotoroXkf/Algorithm/blob/master/LinkedListProblem/链表排序.md)
 ### 其它问题
 - [90度旋转矩阵](https://github.com/TotoroXkf/Algorithm/blob/master/OtherProblem/90度旋转矩阵.md)
-- [买卖股票的最佳时机](https://github.com/TotoroXkf/Algorithm/blob/master/OtherProblem/买卖股票的最佳时机.md)
 - [判断括号匹配](https://github.com/TotoroXkf/Algorithm/blob/master/OtherProblem/判断括号匹配.md)
 - [判断矩阵是否相交](https://github.com/TotoroXkf/Algorithm/blob/master/OtherProblem/判断矩阵是否相交.md)
 - [加油站问题](https://github.com/TotoroXkf/Algorithm/blob/master/OtherProblem/加油站问题.md)
@@ -71,7 +71,6 @@ Enjoy it！！！
 - [灯泡开关](https://github.com/TotoroXkf/Algorithm/blob/master/OtherProblem/灯泡开关.md)
 - [生成n对括号](https://github.com/TotoroXkf/Algorithm/blob/master/OtherProblem/生成n对括号.md)
 - [盛水最多的容器](https://github.com/TotoroXkf/Algorithm/blob/master/OtherProblem/盛水最多的容器.md)
-- [矩阵中的最大矩形](https://github.com/TotoroXkf/Algorithm/blob/master/OtherProblem/矩阵中的最大矩形.md)
 - [给出图的每条边，找出最矮树的根节点](https://github.com/TotoroXkf/Algorithm/blob/master/OtherProblem/给出图的每条边，找出最矮树的根节点.md)
 - [计算n的阶乘的尾数有多少个0](https://github.com/TotoroXkf/Algorithm/blob/master/OtherProblem/计算n的阶乘的尾数有多少个0.md)
 ### 字符串
@@ -81,4 +80,4 @@ Enjoy it！！！
 - [正则表达式匹配](https://github.com/TotoroXkf/Algorithm/blob/master/StringProblem/正则表达式匹配.md)
 
 
-一共完成了 70 道题目
+一共完成了 69 道题目
