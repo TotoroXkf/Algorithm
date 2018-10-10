@@ -62,21 +62,26 @@ def create_tree(array: list, position=0):
     return root
 
 
-def print_tree(root: TreeNode, mode: str):
+def print_tree(root: TreeNode, mode="layer"):
+    traverse(root, mode)
+    print()
+
+
+def traverse(root: TreeNode, mode: str):
     if root is not None:
-        if mode.__eq__("pre"):
+        if mode == "pre":
             print(root.val, end=" ")
-            print_tree(root.left, "pre")
-            print_tree(root.right, "pre")
-        elif mode.__eq__("mid"):
-            print_tree(root.left, "mid")
+            traverse(root.left, mode)
+            traverse(root.right, mode)
+        elif mode == "in":
+            traverse(root.left, mode)
             print(root.val, end=" ")
-            print_tree(root.right, "mid")
-        elif mode.__eq__("post"):
-            print_tree(root.left, "post")
-            print_tree(root.right, "post")
+            traverse(root.right, mode)
+        elif mode == "post":
+            traverse(root.left, mode)
             print(root.val, end=" ")
-        elif mode.__eq__("layer"):
+            traverse(root.right, mode)
+        elif mode == "layer":
             queue = [root]
             while len(queue) > 0:
                 node = queue.pop(0)
@@ -85,7 +90,6 @@ def print_tree(root: TreeNode, mode: str):
                     queue.append(node.left)
                 if node.right is not None:
                     queue.append(node.right)
-        print()
 
 
 # Tree ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
@@ -93,7 +97,11 @@ def print_tree(root: TreeNode, mode: str):
 # Testcase ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
 
 
-def create_array_test_case(start=0, end=10, length: int = 10, repeat=True, sorted=False):
+def create_array_test_case(start=0,
+                           end=10,
+                           length: int = 10,
+                           repeat=True,
+                           sorted=False):
     result = []
     if repeat:
         for i in range(length):
