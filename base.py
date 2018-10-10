@@ -93,11 +93,7 @@ def print_tree(root: TreeNode, mode: str):
 # Testcase ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
 
 
-def create_array_test_case(start=0,
-                           end=10,
-                           length: int = 10,
-                           repeat=True,
-                           sorted=False):
+def create_array_test_case(start=0, end=10, length: int = 10, repeat=True, sorted=False):
     result = []
     if repeat:
         for i in range(length):
@@ -133,8 +129,8 @@ def create_string_test_case(length=10, lower=True, upper=False, repeat=True):
 def create_matrix_test_case(rows=5, cols=5, start=0, end=10, repeat=True):
     matrix = []
     for i in range(rows):
-        matrix.append(create_array_test_case(
-            start=start, end=end, length=cols, repeat=repeat))
+        matrix.append(
+            create_array_test_case(start=start, end=end, length=cols, repeat=repeat))
     return matrix
 
 
