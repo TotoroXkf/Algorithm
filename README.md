@@ -76,9 +76,10 @@ Enjoy it！！！
 - [计算n的阶乘的尾数有多少个0](https://github.com/TotoroXkf/Algorithm/blob/master/OtherProblem/计算n的阶乘的尾数有多少个0.md)
 ### 字符串
 - [KMP算法](https://github.com/TotoroXkf/Algorithm/blob/master/StringProblem/KMP算法.md)
+- [与所有单词相关联的字串](https://github.com/TotoroXkf/Algorithm/blob/master/StringProblem/与所有单词相关联的字串.md)
 - [最长回文字符串](https://github.com/TotoroXkf/Algorithm/blob/master/StringProblem/最长回文字符串.md)
 - [最长无重复子字符串](https://github.com/TotoroXkf/Algorithm/blob/master/StringProblem/最长无重复子字符串.md)
 - [正则表达式匹配](https://github.com/TotoroXkf/Algorithm/blob/master/StringProblem/正则表达式匹配.md)
 
 
-一共完成了 70 道题目
+一共完成了 71 道题目
