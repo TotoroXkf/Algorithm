@@ -74,6 +74,7 @@ Enjoy it！！！
 - [灯泡开关](https://github.com/TotoroXkf/Algorithm/blob/master/OtherProblem/灯泡开关.md)
 - [生成n对括号](https://github.com/TotoroXkf/Algorithm/blob/master/OtherProblem/生成n对括号.md)
 - [盛水最多的容器](https://github.com/TotoroXkf/Algorithm/blob/master/OtherProblem/盛水最多的容器.md)
+- [组成目标数字的所有组合](https://github.com/TotoroXkf/Algorithm/blob/master/OtherProblem/组成目标数字的所有组合.md)
 - [给出图的每条边，找出最矮树的根节点](https://github.com/TotoroXkf/Algorithm/blob/master/OtherProblem/给出图的每条边，找出最矮树的根节点.md)
 - [计算n的阶乘的尾数有多少个0](https://github.com/TotoroXkf/Algorithm/blob/master/OtherProblem/计算n的阶乘的尾数有多少个0.md)
 ### 字符串
@@ -84,4 +85,4 @@ Enjoy it！！！
 - [正则表达式匹配](https://github.com/TotoroXkf/Algorithm/blob/master/StringProblem/正则表达式匹配.md)
 
 
-一共完成了 73 道题目
+一共完成了 74 道题目
