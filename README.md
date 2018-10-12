@@ -11,11 +11,10 @@ Enjoy it！！！
 - [在有序数组旋转之后找数](https://github.com/TotoroXkf/Algorithm/blob/master/ArrayProblem/在有序数组旋转之后找数.md)
 - [寻找数组的中心索引](https://github.com/TotoroXkf/Algorithm/blob/master/ArrayProblem/寻找数组的中心索引.md)
 - [找出两个排序数组的中位数](https://github.com/TotoroXkf/Algorithm/blob/master/ArrayProblem/找出两个排序数组的中位数.md)
-- [找到所有数组中消失的数字](https://github.com/TotoroXkf/Algorithm/blob/master/ArrayProblem/找到所有数组中消失的数字.md)
 - [找到数组中出现次数大于一半的数](https://github.com/TotoroXkf/Algorithm/blob/master/ArrayProblem/找到数组中出现次数大于一半的数.md)
-- [找到数组中第一个缺少的数字](https://github.com/TotoroXkf/Algorithm/blob/master/ArrayProblem/找到数组中第一个缺少的数字.md)
 - [找到数组中累加小于等于目标值的最长子数组](https://github.com/TotoroXkf/Algorithm/blob/master/ArrayProblem/找到数组中累加小于等于目标值的最长子数组.md)
 - [数组中累加和等于目标值的最长序列](https://github.com/TotoroXkf/Algorithm/blob/master/ArrayProblem/数组中累加和等于目标值的最长序列.md)
+- [数组中缺少数字系列问题](https://github.com/TotoroXkf/Algorithm/blob/master/ArrayProblem/数组中缺少数字系列问题.md)
 - [数组的小和](https://github.com/TotoroXkf/Algorithm/blob/master/ArrayProblem/数组的小和.md)
 - [旋转数组](https://github.com/TotoroXkf/Algorithm/blob/master/ArrayProblem/旋转数组.md)
 - [最大值减去最小值小于等于num的子数组数量](https://github.com/TotoroXkf/Algorithm/blob/master/ArrayProblem/最大值减去最小值小于等于num的子数组数量.md)
@@ -85,4 +84,4 @@ Enjoy it！！！
 - [正则表达式匹配](https://github.com/TotoroXkf/Algorithm/blob/master/StringProblem/正则表达式匹配.md)
 
 
-一共完成了 74 道题目
+一共完成了 73 道题目
