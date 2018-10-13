@@ -91,7 +91,7 @@ def traversing_files(action):
 
 def new_note(path: str, file_name: str):
     note_file = open(path, "w+", encoding="utf-8")
-    note_file.write("# "+file_name+"\n\n")
+    note_file.write("# "+file_name+"\n> \n\n")
     note_file.write("**思路**\n")
     note_file.write("-"*20+"\n")
     note_file.write("\n")
