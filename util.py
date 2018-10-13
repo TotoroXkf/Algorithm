@@ -52,6 +52,29 @@ def check_code(package_name: str, note_name: str):
     note_file.close()
 
 
+def add_line(package_name: str, note_name: str):
+    note_file = open("./"+package_name+"/"+note_name+".md",
+                     mode="r+", encoding="utf-8")
+    temp_file = open("./temp.md", mode="w+", encoding="utf-8")
+    line = note_file.readline()
+    while line != "":
+        if line.__contains__("**思路**") or line.__contains__("**代码**"):
+            line = line+("-"*20)+"\n"
+        temp_file.write(line)
+        line = note_file.readline()
+
+    note_file.seek(0)
+    temp_file.seek(0)
+
+    line = temp_file.readline()
+    while line != "":
+        note_file.write(line)
+        line = temp_file.readline()
+
+    note_file.close()
+    temp_file.close()
+
+
 def traversing_files(action):
     base_path = "./"
     files = os.listdir(base_path)
@@ -64,4 +87,5 @@ def traversing_files(action):
 
 
 traversing_files(check_code)
+traversing_files(add_line)
 create_read_me()
