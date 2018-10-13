@@ -66,6 +66,7 @@ Enjoy it！！！
 - [只出现一次的数字](https://github.com/TotoroXkf/Algorithm/blob/master/OtherProblem/只出现一次的数字.md)
 - [在行列都排好序的矩阵中找数](https://github.com/TotoroXkf/Algorithm/blob/master/OtherProblem/在行列都排好序的矩阵中找数.md)
 - [实现除法](https://github.com/TotoroXkf/Algorithm/blob/master/OtherProblem/实现除法.md)
+- [接雨水](https://github.com/TotoroXkf/Algorithm/blob/master/OtherProblem/接雨水.md)
 - [数独问题](https://github.com/TotoroXkf/Algorithm/blob/master/OtherProblem/数独问题.md)
 - [整数拆分](https://github.com/TotoroXkf/Algorithm/blob/master/OtherProblem/整数拆分.md)
 - [最长的有效括号的长度](https://github.com/TotoroXkf/Algorithm/blob/master/OtherProblem/最长的有效括号的长度.md)
@@ -84,4 +85,4 @@ Enjoy it！！！
 - [正则表达式匹配](https://github.com/TotoroXkf/Algorithm/blob/master/StringProblem/正则表达式匹配.md)
 
 
-一共完成了 73 道题目
+一共完成了 74 道题目

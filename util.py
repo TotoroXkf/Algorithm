@@ -37,6 +37,7 @@ def create_read_me():
     read_me.write("\n\n")
     read_me.write("一共完成了 " + str(problems) + " 道题目")
     read_me.close()
+    print("READEME 创建完成")
 
 
 def check_code(package_name: str, note_name: str):
@@ -60,7 +61,9 @@ def add_line(package_name: str, note_name: str):
     while line != "":
         if line.__contains__("**思路**") or line.__contains__("**代码**"):
             line = line+("-"*20)+"\n"
-        temp_file.write(line)
+            temp_file.write(line)
+        elif not line.__contains__("----------"):
+            temp_file.write(line)
         line = note_file.readline()
 
     note_file.seek(0)
@@ -86,6 +89,20 @@ def traversing_files(action):
                     action(package_name, note[0:len(note)-3])
 
 
-traversing_files(check_code)
-traversing_files(add_line)
+def new_note(path: str, file_name: str):
+    note_file = open(path, "w+", encoding="utf-8")
+    note_file.write("# "+file_name+"\n\n")
+    note_file.write("**思路**\n")
+    note_file.write("-"*20+"\n")
+    note_file.write("\n")
+    note_file.write("**代码**\n")
+    note_file.write("-"*20+"\n")
+    note_file.write("\n")
+    note_file.write("```python\n")
+    note_file.write("\n")
+    note_file.write("```\n")
+    note_file.close()
+    print("成功的创建了文件："+file_name)
+
+
 create_read_me()
