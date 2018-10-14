@@ -4,8 +4,8 @@
 Enjoy it！！！  
 
 ### 数组
-- [下一个全排列](https://github.com/TotoroXkf/Algorithm/blob/master/ArrayProblem/下一个全排列.md)
 - [乘积最大子序列](https://github.com/TotoroXkf/Algorithm/blob/master/ArrayProblem/乘积最大子序列.md)
+- [全排列问题](https://github.com/TotoroXkf/Algorithm/blob/master/ArrayProblem/全排列问题.md)
 - [合并两个有序数组](https://github.com/TotoroXkf/Algorithm/blob/master/ArrayProblem/合并两个有序数组.md)
 - [在排序数组中查找元素的第一个和最后一个位置](https://github.com/TotoroXkf/Algorithm/blob/master/ArrayProblem/在排序数组中查找元素的第一个和最后一个位置.md)
 - [在有序数组旋转之后找数](https://github.com/TotoroXkf/Algorithm/blob/master/ArrayProblem/在有序数组旋转之后找数.md)
