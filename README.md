@@ -47,6 +47,7 @@ Enjoy it！！！
 - [消除游戏](https://github.com/TotoroXkf/Algorithm/blob/master/DynamicProblem/消除游戏.md)
 - [目标和](https://github.com/TotoroXkf/Algorithm/blob/master/DynamicProblem/目标和.md)
 - [矩阵路径系列问题](https://github.com/TotoroXkf/Algorithm/blob/master/DynamicProblem/矩阵路径系列问题.md)
+- [编辑距离](https://github.com/TotoroXkf/Algorithm/blob/master/DynamicProblem/编辑距离.md)
 - [跳跃游戏](https://github.com/TotoroXkf/Algorithm/blob/master/DynamicProblem/跳跃游戏.md)
 ### 链表
 - [判断链表是不是回文结构](https://github.com/TotoroXkf/Algorithm/blob/master/LinkedListProblem/判断链表是不是回文结构.md)
@@ -87,4 +88,4 @@ Enjoy it！！！
 - [正则表达式匹配](https://github.com/TotoroXkf/Algorithm/blob/master/StringProblem/正则表达式匹配.md)
 
 
-一共完成了 76 道题目
+一共完成了 77 道题目
