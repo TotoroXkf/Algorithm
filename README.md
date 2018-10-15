@@ -52,6 +52,7 @@ Enjoy it！！！
 - [判断链表是不是回文结构](https://github.com/TotoroXkf/Algorithm/blob/master/LinkedListProblem/判断链表是不是回文结构.md)
 - [反转链表系列问题](https://github.com/TotoroXkf/Algorithm/blob/master/LinkedListProblem/反转链表系列问题.md)
 - [将单向链表按某值划分成左边小、中间相等、右边大的形式](https://github.com/TotoroXkf/Algorithm/blob/master/LinkedListProblem/将单向链表按某值划分成左边小、中间相等、右边大的形式.md)
+- [将链表向右移动k个位置](https://github.com/TotoroXkf/Algorithm/blob/master/LinkedListProblem/将链表向右移动k个位置.md)
 - [打印两个有序链表中的公共部分](https://github.com/TotoroXkf/Algorithm/blob/master/LinkedListProblem/打印两个有序链表中的公共部分.md)
 - [环形单链表的约瑟夫问题](https://github.com/TotoroXkf/Algorithm/blob/master/LinkedListProblem/环形单链表的约瑟夫问题.md)
 - [相加两个链表](https://github.com/TotoroXkf/Algorithm/blob/master/LinkedListProblem/相加两个链表.md)
@@ -86,4 +87,4 @@ Enjoy it！！！
 - [正则表达式匹配](https://github.com/TotoroXkf/Algorithm/blob/master/StringProblem/正则表达式匹配.md)
 
 
-一共完成了 75 道题目
+一共完成了 76 道题目
