@@ -13,7 +13,9 @@ def create_read_me():
                  "DynamicProblem": "递归与动态规划",
                  "LinkedListProblem": "链表",
                  "OtherProblem": "其它问题",
-                 "StringProblem": "字符串"}
+                 "StringProblem": "字符串",
+                 "MatrixProblem":"矩阵"
+                 }
 
     base_url = "https://github.com/TotoroXkf/Algorithm/blob/master/"
 
@@ -103,6 +105,5 @@ def new_note(path: str, file_name: str):
     note_file.write("```\n")
     note_file.close()
     print("成功的创建了文件："+file_name)
-
 
 create_read_me()

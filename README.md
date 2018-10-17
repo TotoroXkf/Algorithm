@@ -60,13 +60,15 @@ Enjoy it！！！
 - [链表删除相关问题](https://github.com/TotoroXkf/Algorithm/blob/master/LinkedListProblem/链表删除相关问题.md)
 - [链表合并问题](https://github.com/TotoroXkf/Algorithm/blob/master/LinkedListProblem/链表合并问题.md)
 - [链表排序](https://github.com/TotoroXkf/Algorithm/blob/master/LinkedListProblem/链表排序.md)
+### 矩阵
+- [90度旋转矩阵](https://github.com/TotoroXkf/Algorithm/blob/master/MatrixProblem/90度旋转矩阵.md)
+- [在行列都排好序的矩阵中找数](https://github.com/TotoroXkf/Algorithm/blob/master/MatrixProblem/在行列都排好序的矩阵中找数.md)
+- [矩阵置零](https://github.com/TotoroXkf/Algorithm/blob/master/MatrixProblem/矩阵置零.md)
 ### 其它问题
-- [90度旋转矩阵](https://github.com/TotoroXkf/Algorithm/blob/master/OtherProblem/90度旋转矩阵.md)
 - [判断括号匹配](https://github.com/TotoroXkf/Algorithm/blob/master/OtherProblem/判断括号匹配.md)
-- [判断矩阵是否相交](https://github.com/TotoroXkf/Algorithm/blob/master/OtherProblem/判断矩阵是否相交.md)
+- [判断矩形是否相交](https://github.com/TotoroXkf/Algorithm/blob/master/OtherProblem/判断矩形是否相交.md)
 - [加油站问题](https://github.com/TotoroXkf/Algorithm/blob/master/OtherProblem/加油站问题.md)
 - [只出现一次的数字](https://github.com/TotoroXkf/Algorithm/blob/master/OtherProblem/只出现一次的数字.md)
-- [在行列都排好序的矩阵中找数](https://github.com/TotoroXkf/Algorithm/blob/master/OtherProblem/在行列都排好序的矩阵中找数.md)
 - [实现除法](https://github.com/TotoroXkf/Algorithm/blob/master/OtherProblem/实现除法.md)
 - [接雨水](https://github.com/TotoroXkf/Algorithm/blob/master/OtherProblem/接雨水.md)
 - [数独问题](https://github.com/TotoroXkf/Algorithm/blob/master/OtherProblem/数独问题.md)
@@ -85,7 +87,6 @@ Enjoy it！！！
 - [字符串通配符匹配问题](https://github.com/TotoroXkf/Algorithm/blob/master/StringProblem/字符串通配符匹配问题.md)
 - [最长回文字符串](https://github.com/TotoroXkf/Algorithm/blob/master/StringProblem/最长回文字符串.md)
 - [最长无重复子字符串](https://github.com/TotoroXkf/Algorithm/blob/master/StringProblem/最长无重复子字符串.md)
-- [正则表达式匹配](https://github.com/TotoroXkf/Algorithm/blob/master/StringProblem/正则表达式匹配.md)
 
 
 一共完成了 77 道题目
