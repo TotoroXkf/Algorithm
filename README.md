@@ -50,6 +50,7 @@ Enjoy it！！！
 - [编辑距离](https://github.com/TotoroXkf/Algorithm/blob/master/DynamicProblem/编辑距离.md)
 - [跳跃游戏](https://github.com/TotoroXkf/Algorithm/blob/master/DynamicProblem/跳跃游戏.md)
 ### 链表
+- [分隔链表](https://github.com/TotoroXkf/Algorithm/blob/master/LinkedListProblem/分隔链表.md)
 - [判断链表是不是回文结构](https://github.com/TotoroXkf/Algorithm/blob/master/LinkedListProblem/判断链表是不是回文结构.md)
 - [反转链表系列问题](https://github.com/TotoroXkf/Algorithm/blob/master/LinkedListProblem/反转链表系列问题.md)
 - [将单向链表按某值划分成左边小、中间相等、右边大的形式](https://github.com/TotoroXkf/Algorithm/blob/master/LinkedListProblem/将单向链表按某值划分成左边小、中间相等、右边大的形式.md)
@@ -89,4 +90,4 @@ Enjoy it！！！
 - [最长无重复子字符串](https://github.com/TotoroXkf/Algorithm/blob/master/StringProblem/最长无重复子字符串.md)
 
 
-一共完成了 77 道题目
+一共完成了 78 道题目
