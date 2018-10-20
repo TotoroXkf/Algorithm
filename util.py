@@ -14,7 +14,7 @@ def create_read_me():
                  "LinkedListProblem": "链表",
                  "OtherProblem": "其它问题",
                  "StringProblem": "字符串",
-                 "MatrixProblem":"矩阵"
+                 "MatrixProblem": "矩阵"
                  }
 
     base_url = "https://github.com/TotoroXkf/Algorithm/blob/master/"
@@ -92,6 +92,9 @@ def traversing_files(action):
 
 
 def new_note(path: str, file_name: str):
+    if os.path.exists(path):
+        print("已经存在文件！")
+        return
     note_file = open(path, "w+", encoding="utf-8")
     note_file.write("# "+file_name+"\n> \n\n")
     note_file.write("**思路**\n")
@@ -105,5 +108,6 @@ def new_note(path: str, file_name: str):
     note_file.write("```\n")
     note_file.close()
     print("成功的创建了文件："+file_name)
+
 
 create_read_me()
