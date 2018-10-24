@@ -20,6 +20,7 @@ Enjoy it！！！
 - [最大值减去最小值小于等于num的子数组数量](https://github.com/TotoroXkf/Algorithm/blob/master/ArrayProblem/最大值减去最小值小于等于num的子数组数量.md)
 - [最大连续子区间和](https://github.com/TotoroXkf/Algorithm/blob/master/ArrayProblem/最大连续子区间和.md)
 - [最长的可整合子数组的长度](https://github.com/TotoroXkf/Algorithm/blob/master/ArrayProblem/最长的可整合子数组的长度.md)
+- [求子集](https://github.com/TotoroXkf/Algorithm/blob/master/ArrayProblem/求子集.md)
 - [生成窗口最大值数组](https://github.com/TotoroXkf/Algorithm/blob/master/ArrayProblem/生成窗口最大值数组.md)
 - [调整数组为等于目标值的放左边，等于目标值的放中间，大于目标值的放右边](https://github.com/TotoroXkf/Algorithm/blob/master/ArrayProblem/调整数组为等于目标值的放左边，等于目标值的放中间，大于目标值的放右边.md)
 - [选取数组第K大的数字](https://github.com/TotoroXkf/Algorithm/blob/master/ArrayProblem/选取数组第K大的数字.md)
@@ -91,4 +92,4 @@ Enjoy it！！！
 - [最长无重复子字符串](https://github.com/TotoroXkf/Algorithm/blob/master/StringProblem/最长无重复子字符串.md)
 
 
-一共完成了 79 道题目
+一共完成了 80 道题目
