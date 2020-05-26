@@ -10,32 +10,8 @@ public class SolutionTest {
 
     @Test
     public void test() {
-        String str1 = "A";
-        String str2 = "A";
-        assert solution.isScramble(str1, str2);
-
-        str1 = "A";
-        str2 = "B";
-        assert !solution.isScramble(str1, str2);
-
-        str1 = "AB";
-        str2 = "BA";
-        assert solution.isScramble(str1, str2);
-
-        str1 = "AB";
-        str2 = "AC";
-        assert !solution.isScramble(str1, str2);
-
-        str1 = "ABCD";
-        str2 = "ABDC";
-        assert solution.isScramble(str1, str2);
-
-        str1 = "ABCD";
-        str2 = "ABDC";
-        assert solution.isScramble(str1, str2);
-
-        str1 = "great";
-        str2 = "rgeat";
+        String str1 = "great";
+        String str2 = "rgeat";
         assert solution.isScramble(str1, str2);
 
         str1 = "great";
@@ -49,5 +25,9 @@ public class SolutionTest {
         str1 = "abc";
         str2 = "bca";
         assert solution.isScramble(str1, str2);
+
+        str1 = "ccabcbabcbabbbbcbb";
+        str2 = "bbbbabccccbbbabcba";
+        assert !solution.isScramble(str1, str2);
     }
 } 
