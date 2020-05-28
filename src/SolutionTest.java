@@ -10,24 +10,8 @@ public class SolutionTest {
 
     @Test
     public void test() {
-        String str1 = "great";
-        String str2 = "rgeat";
-        assert solution.isScramble(str1, str2);
-
-        str1 = "great";
-        str2 = "rgtae";
-        assert solution.isScramble(str1, str2);
-
-        str1 = "abcde";
-        str2 = "caebd";
-        assert !solution.isScramble(str1, str2);
-
-        str1 = "abc";
-        str2 = "bca";
-        assert solution.isScramble(str1, str2);
-
-        str1 = "ccabcbabcbabbbbcbb";
-        str2 = "bbbbabccccbbbabcba";
-        assert !solution.isScramble(str1, str2);
+        int[] array1 = new int[]{2, 0};
+        int[] array2 = new int[]{1};
+        solution.merge(array1, 1, array2, 1);
     }
 } 
