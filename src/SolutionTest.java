@@ -10,8 +10,16 @@ public class SolutionTest {
 
     @Test
     public void test() {
-        int[] array1 = new int[]{2, 0};
-        int[] array2 = new int[]{1};
-        solution.merge(array1, 1, array2, 1);
+        int n = 2;
+        List<Integer> result = solution.grayCode(n);
+        testCase.matchArray(result.toArray(), new Object[]{0, 1, 3, 2});
+
+        n = 1;
+        result = solution.grayCode(n);
+        testCase.matchArray(result.toArray(), new Object[]{0, 1});
+
+        n = 3;
+        result = solution.grayCode(n);
+        testCase.matchArray(result.toArray(), new Object[]{0, 1, 3, 2, 6, 7, 5, 4});
     }
 } 
