@@ -1,19 +1,19 @@
-import java.util.ArrayList;
-    import java.util.List;
-
 class Solution {
-    public List<Integer> grayCode(int n) {
-        List<Integer> result = new ArrayList<>();
-        result.add(0);
-        int step = 1;
-
-
-        for (int i = 0; i < n; i++) {
-            for (int j = result.size() - 1; j > -1; j--) {
-                result.add(step + result.get(j));
-            }
-            step <<= 1;
+    public int numDecodings(String s) {
+        if (s.length() <= 1) {
+            return s.length();
         }
-        return result;
+        int[] dp = new int[s.length() + 1];
+        dp[0] = 1;
+        dp[1] = 1;
+        for (int i = 1; i < s.length(); i++) {
+            int currentCharNum = s.charAt(i) - '0';
+            int preCharNum = s.charAt(i - 1) - '0';
+            if (preCharNum > 0 && preCharNum * 10 + currentCharNum <= 26) {
+                dp[i + 1] += dp[i - 1];
+            }
+            dp[i + 1] += dp[i];
+        }
+        return dp[dp.length - 1];
     }
 }
