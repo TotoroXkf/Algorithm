@@ -9,5 +9,7 @@ public class SolutionTest {
         assert solution.numDecodings("12") == 2;
         assert solution.numDecodings("226") == 3;
         assert solution.numDecodings("4156") == 2;
+        assert solution.numDecodings("0") == 0;
+        assert solution.numDecodings("10") == 1;
     }
 } 
