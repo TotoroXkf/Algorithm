@@ -1,5 +1,7 @@
 import org.junit.Test;
 
+import java.util.List;
+
 import struct.ListNode;
 
 public class SolutionTest {
@@ -8,8 +10,7 @@ public class SolutionTest {
 
     @Test
     public void test() {
-        ListNode head = testCase.createLinkedList(new int[]{1, 2, 3, 4, 5});
-        ListNode result = solution.reverseBetween(head, 2, 4);
-        testCase.matchLinkedList(result, testCase.createLinkedList(new int[]{1, 4, 3, 2, 5}));
+        List<String> result = solution.restoreIpAddresses("010010");
+        System.out.println();
     }
 } 
