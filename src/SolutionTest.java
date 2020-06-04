@@ -3,6 +3,7 @@ import org.junit.Test;
 import java.util.List;
 
 import struct.ListNode;
+import struct.TreeNode;
 
 public class SolutionTest {
     private Solution solution = new Solution();
@@ -10,7 +11,9 @@ public class SolutionTest {
 
     @Test
     public void test() {
-        List<String> result = solution.restoreIpAddresses("010010");
-        System.out.println();
+        TreeNode root = new TreeNode(1);
+        root.right = new TreeNode(2);
+        root.right.left = new TreeNode(3);
+        solution.inorderTraversal(root);
     }
 } 

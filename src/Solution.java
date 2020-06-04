@@ -1,47 +1,34 @@
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
 
-class Solution {
-    public List<String> restoreIpAddresses(String s) {
-        char[] charArray = s.toCharArray();
-        List<String> result = new ArrayList<>();
-        restore(charArray, new ArrayList<>(), result, 1, 0);
-        return result;
-    }
+import struct.TreeNode;
 
-    private void restore(char[] charArray, ArrayList<Integer> currentList, List<String> result, int area, int index) {
-        if (area > 4) {
-            if (index < charArray.length) {
-                return;
-            } else {
-                StringBuilder stringBuilder = new StringBuilder();
-                for (int value : currentList) {
-                    stringBuilder.append(value);
-                    stringBuilder.append(".");
-                }
-                stringBuilder.deleteCharAt(stringBuilder.length() - 1);
-                result.add(stringBuilder.toString());
+class Solution {
+    public List<Integer> inorderTraversal(TreeNode root) {
+        List<Integer> result = new ArrayList<>();
+        if (root == null) {
+            return result;
+        }
+        LinkedList<TreeNode> stack = new LinkedList<>();
+        HashSet<TreeNode> set = new HashSet<>();
+        stack.push(root);
+        set.add(root);
+        while (!stack.isEmpty()) {
+            TreeNode currentNode = stack.peek();
+            if (currentNode.left != null && !set.contains(currentNode.left)) {
+                set.add(currentNode.left);
+                stack.push(currentNode.left);
+                continue;
+            }
+            currentNode = stack.pop();
+            result.add(currentNode.val);
+            if (currentNode.right != null && !set.contains(currentNode.right)) {
+                set.add(currentNode.right);
+                stack.push(currentNode.right);
             }
         }
-        for (int i = index; i < charArray.length && i < index + 3; i++) {
-            int j = index;
-            int num = charArray[index] - '0';
-            j++;
-            while (j <= i) {
-                if (charArray[index] == '0') {
-                    num = 256;
-                    break;
-                }
-                num *= 10;
-                num += (charArray[j] - '0');
-                j++;
-            }
-            if (num > 255) {
-                break;
-            }
-            currentList.add(num);
-            restore(charArray, currentList, result, area + 1, i + 1);
-            currentList.remove(currentList.size() - 1);
-        }
+        return result;
     }
 }
