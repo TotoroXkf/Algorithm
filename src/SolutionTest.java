@@ -6,9 +6,8 @@ public class SolutionTest {
 
     @Test
     public void test() {
-        TreeNode root = new TreeNode(1);
-        root.right = new TreeNode(2);
-        root.right.left = new TreeNode(3);
-        solution.inorderTraversal(root);
+        assert solution.numTrees(1) == 1;
+        assert solution.numTrees(2) == 2;
+        assert solution.numTrees(3) == 5;
     }
 } 

@@ -1,53 +1,18 @@
-import java.util.ArrayList;
-import java.util.List;
-
 class Solution {
-    public List<TreeNode> generateTrees(int n) {
-        if (n == 0) {
-            return new ArrayList<>();
+    public int numTrees(int n) {
+        if (n < 1) {
+            return 1;
         }
-        int[] array = new int[n];
-        for (int i = 0; i < n; i++) {
-            array[i] = i + 1;
-        }
-        return generateTrees(array, 0, n);
-    }
-
-    private List<TreeNode> generateTrees(int[] array, int left, int right) {
-        List<TreeNode> result = new ArrayList<>();
-        if (right == left) {
-            return null;
-        }
-        if (right - left == 1) {
-            result.add(new TreeNode(array[left]));
-            return result;
-        }
-        for (int i = left; i < right; i++) {
-            List<TreeNode> leftResult = generateTrees(array, left, i);
-            List<TreeNode> rightResult = generateTrees(array, i + 1, right);
-            if (leftResult != null && rightResult != null) {
-                for (TreeNode leftNode : leftResult) {
-                    for (TreeNode rightNode : rightResult) {
-                        TreeNode root = new TreeNode(array[i]);
-                        root.left = leftNode;
-                        root.right = rightNode;
-                        result.add(root);
-                    }
-                }
-            } else if (leftResult != null) {
-                for (TreeNode leftNode : leftResult) {
-                    TreeNode root = new TreeNode(array[i]);
-                    root.left = leftNode;
-                    result.add(root);
-                }
-            } else if (rightResult != null) {
-                for (TreeNode rightNode : rightResult) {
-                    TreeNode root = new TreeNode(array[i]);
-                    root.right = rightNode;
-                    result.add(root);
-                }
+        int[] dp = new int[n + 1];
+        dp[0] = 1;
+        dp[1] = 1;
+        for (int i = 2; i < n + 1; i++) {
+            for (int j = i; j > 0; j--) {
+                int leftResult = dp[j - 1];
+                int rightResult = dp[i - j];
+                dp[i] += leftResult * rightResult;
             }
         }
-        return result;
+        return dp[dp.length - 1];
     }
 }
