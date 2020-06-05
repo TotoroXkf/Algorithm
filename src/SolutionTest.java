@@ -1,10 +1,5 @@
 import org.junit.Test;
 
-import java.util.List;
-
-import struct.ListNode;
-import struct.TreeNode;
-
 public class SolutionTest {
     private Solution solution = new Solution();
     private Case testCase = new Case();

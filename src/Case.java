@@ -1,9 +1,5 @@
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
-
-import struct.ListNode;
-import struct.TreeNode;
 
 public class Case {
     public void matchArray(Object[] array1, Object[] array2) {
