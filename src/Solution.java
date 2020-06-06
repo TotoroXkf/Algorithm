@@ -1,19 +1,25 @@
 class Solution {
-    public boolean isValidBST(TreeNode root) {
-        return isValidBST(root, Long.MIN_VALUE, Long.MAX_VALUE);
+    public void recoverTree(TreeNode root) {
+        TreeNode[] preNode = new TreeNode[1];
+        TreeNode[] result = new TreeNode[2];
+        getNodes(root, result, preNode);
+        int temp = result[0].val;
+        result[0].val = result[1].val;
+        result[1].val = temp;
     }
 
-    public boolean isValidBST(TreeNode root, long min, long max) {
+    public void getNodes(TreeNode root, TreeNode[] result, TreeNode[] preNode) {
         if (root == null) {
-            return true;
+            return;
         }
-        if (root.val >= max || root.val <= min) {
-            return false;
+        getNodes(root.left, result, preNode);
+        if (preNode[0] != null && preNode[0].val > root.val) {
+            if (result[0] == null) {
+                result[0] = preNode[0];
+            }
+            result[1] = root;
         }
-        boolean leftResult = isValidBST(root.left, min, root.val);
-        if (leftResult) {
-            return isValidBST(root.right, root.val, max);
-        }
-        return false;
+        preNode[0] = root;
+        getNodes(root.right, result, preNode);
     }
 }
