@@ -6,8 +6,7 @@ public class SolutionTest {
 
     @Test
     public void test() {
-        assert solution.numTrees(1) == 1;
-        assert solution.numTrees(2) == 2;
-        assert solution.numTrees(3) == 5;
+        assert solution.isInterleave("aabcc", "dbbca", "aadbbcbcac");
+        assert !solution.isInterleave("aabcc", "dbbca", "aadbbbaccc");
     }
 } 
