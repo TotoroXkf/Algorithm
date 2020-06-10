@@ -1,21 +1,35 @@
-class Solution {
-    public boolean isSymmetric(TreeNode root) {
-        if (root == null) {
-            return true;
-        }
-        return isSymmetric(root.left, root.right);
-    }
+import java.util.ArrayList;
+    import java.util.LinkedList;
+    import java.util.List;
 
-    private boolean isSymmetric(TreeNode left, TreeNode right) {
-        if (left == null && right == null) {
-            return true;
+class Solution {
+    public List<List<Integer>> levelOrder(TreeNode root) {
+        if (root == null) {
+            return new ArrayList<>();
         }
-        if (left == null || right == null) {
-            return false;
+        List<List<Integer>> result = new ArrayList<>();
+        LinkedList<TreeNode> queue = new LinkedList<>();
+        queue.addLast(root);
+        queue.addLast(null);
+        List<Integer> currentList = new ArrayList<>();
+        while (!queue.isEmpty()) {
+            TreeNode node = queue.removeFirst();
+            if (node == null) {
+                result.add(currentList);
+                currentList = new ArrayList<>();
+                if (!queue.isEmpty()) {
+                    queue.addLast(null);
+                }
+                continue;
+            }
+            currentList.add(node.val);
+            if (node.left != null) {
+                queue.addLast(node.left);
+            }
+            if (node.right != null) {
+                queue.addLast(node.right);
+            }
         }
-        if (left.val != right.val) {
-            return false;
-        }
-        return isSymmetric(left.left, right.right) && isSymmetric(left.right, right.left);
+        return result;
     }
 }
