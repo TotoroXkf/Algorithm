@@ -1,33 +1,39 @@
 import java.util.ArrayList;
-    import java.util.LinkedList;
-    import java.util.List;
+import java.util.LinkedList;
+import java.util.List;
 
 class Solution {
-    public List<List<Integer>> levelOrder(TreeNode root) {
-        if (root == null) {
-            return new ArrayList<>();
-        }
+    public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
         List<List<Integer>> result = new ArrayList<>();
+        if (root == null) {
+            return result;
+        }
+        LinkedList<Integer> currentList = new LinkedList<>();
+        int level = 1;
         LinkedList<TreeNode> queue = new LinkedList<>();
-        queue.addLast(root);
-        queue.addLast(null);
-        List<Integer> currentList = new ArrayList<>();
+        queue.add(root);
+        queue.add(null);
         while (!queue.isEmpty()) {
             TreeNode node = queue.removeFirst();
             if (node == null) {
-                result.add(currentList);
-                currentList = new ArrayList<>();
                 if (!queue.isEmpty()) {
-                    queue.addLast(null);
+                    queue.add(null);
+                    level++;
                 }
+                result.add(currentList);
+                currentList = new LinkedList<>();
                 continue;
             }
-            currentList.add(node.val);
+            if (level % 2 == 0) {
+                currentList.add(0, node.val);
+            } else {
+                currentList.add(node.val);
+            }
             if (node.left != null) {
-                queue.addLast(node.left);
+                queue.add(node.left);
             }
             if (node.right != null) {
-                queue.addLast(node.right);
+                queue.add(node.right);
             }
         }
         return result;
