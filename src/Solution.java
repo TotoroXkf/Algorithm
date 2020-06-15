@@ -1,24 +1,36 @@
-class Solution {
-    public TreeNode buildTree(int[] inOrder, int[] postOrder) {
-        return buildTree(inOrder, 0, inOrder.length, postOrder, 0, postOrder.length);
-    }
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 
-    private TreeNode buildTree(int[] inOrder, int inStart, int inEnd, int[] postOrder, int postStart, int postEnd) {
-        if (inEnd - inStart == 0 || postEnd - postStart == 0) {
-            return null;
+class Solution {
+    public List<List<Integer>> levelOrderBottom(TreeNode root) {
+        List<List<Integer>> result = new ArrayList<>();
+        if (root == null) {
+            return result;
         }
-        TreeNode root = new TreeNode(postOrder[postEnd - 1]);
-        if (inEnd - inStart == 1 || postEnd - postStart == 1) {
-            return root;
+        List<Integer> currentList = new ArrayList<>();
+        LinkedList<TreeNode> queue = new LinkedList<>();
+        queue.add(root);
+        queue.add(null);
+        while (!queue.isEmpty()) {
+            TreeNode node = queue.removeFirst();
+            if (node == null) {
+                if (!queue.isEmpty()) {
+                    queue.addLast(null);
+                }
+                List<Integer> level = new ArrayList<>(currentList);
+                result.add(0, level);
+                currentList = new ArrayList<>();
+                continue;
+            }
+            currentList.add(node.val);
+            if (node.left != null) {
+                queue.addLast(node.left);
+            }
+            if (node.right != null) {
+                queue.addLast(node.right);
+            }
         }
-        int inIndex = inStart;
-        int postIndex = postStart;
-        while (inOrder[inIndex] != postOrder[postEnd - 1]) {
-            inIndex++;
-            postIndex++;
-        }
-        root.left = buildTree(inOrder, inStart, inIndex, postOrder, postStart, postIndex);
-        root.right = buildTree(inOrder, inIndex + 1, inEnd, postOrder, postIndex, postEnd - 1);
-        return root;
+        return result;
     }
 }
