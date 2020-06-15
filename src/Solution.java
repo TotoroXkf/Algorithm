@@ -1,27 +1,23 @@
 class Solution {
-    public TreeNode sortedListToBST(ListNode head) {
-        return sortedListToBST(head, null);
+    public boolean isBalanced(TreeNode root) {
+        return check(root) >= 0;
     }
 
-    private TreeNode sortedListToBST(ListNode start, ListNode end) {
-        if (start == end) {
-            return null ;
+    private int check(TreeNode root) {
+        if (root == null) {
+            return 0;
         }
-        ListNode node = start;
-        int len = 0;
-        while (node != end) {
-            len++;
-            node = node.next;
+        int leftHeight = check(root.left);
+        if (leftHeight == -1) {
+            return -1;
         }
-        len /= 2;
-        node = start;
-        while (len > 0) {
-            node = node.next;
-            len--;
+        int rightHeight = check(root.right);
+        if (rightHeight == -1) {
+            return -1;
         }
-        TreeNode root = new TreeNode(node.val);
-        root.left = sortedListToBST(start, node);
-        root.right = sortedListToBST(node.next, end);
-        return root;
+        if (Math.abs(rightHeight - leftHeight) > 1) {
+            return -1;
+        }
+        return 1 + Math.max(leftHeight, rightHeight);
     }
 }
