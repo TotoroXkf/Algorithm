@@ -1,16 +1,27 @@
 class Solution {
-    public TreeNode sortedArrayToBST(int[] nums) {
-        return sortedArrayToBST(nums, 0, nums.length);
+    public TreeNode sortedListToBST(ListNode head) {
+        return sortedListToBST(head, null);
     }
 
-    public TreeNode sortedArrayToBST(int[] nums, int left, int right) {
-        if (left == right) {
-            return null;
+    private TreeNode sortedListToBST(ListNode start, ListNode end) {
+        if (start == end) {
+            return null ;
         }
-        int mid = (left + right) / 2;
-        TreeNode root = new TreeNode(nums[mid]);
-        root.left = sortedArrayToBST(nums, left, mid);
-        root.right = sortedArrayToBST(nums, mid + 1, right);
+        ListNode node = start;
+        int len = 0;
+        while (node != end) {
+            len++;
+            node = node.next;
+        }
+        len /= 2;
+        node = start;
+        while (len > 0) {
+            node = node.next;
+            len--;
+        }
+        TreeNode root = new TreeNode(node.val);
+        root.left = sortedListToBST(start, node);
+        root.right = sortedListToBST(node.next, end);
         return root;
     }
 }
