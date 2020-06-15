@@ -1,36 +1,16 @@
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-
 class Solution {
-    public List<List<Integer>> levelOrderBottom(TreeNode root) {
-        List<List<Integer>> result = new ArrayList<>();
-        if (root == null) {
-            return result;
+    public TreeNode sortedArrayToBST(int[] nums) {
+        return sortedArrayToBST(nums, 0, nums.length);
+    }
+
+    public TreeNode sortedArrayToBST(int[] nums, int left, int right) {
+        if (left == right) {
+            return null;
         }
-        List<Integer> currentList = new ArrayList<>();
-        LinkedList<TreeNode> queue = new LinkedList<>();
-        queue.add(root);
-        queue.add(null);
-        while (!queue.isEmpty()) {
-            TreeNode node = queue.removeFirst();
-            if (node == null) {
-                if (!queue.isEmpty()) {
-                    queue.addLast(null);
-                }
-                List<Integer> level = new ArrayList<>(currentList);
-                result.add(0, level);
-                currentList = new ArrayList<>();
-                continue;
-            }
-            currentList.add(node.val);
-            if (node.left != null) {
-                queue.addLast(node.left);
-            }
-            if (node.right != null) {
-                queue.addLast(node.right);
-            }
-        }
-        return result;
+        int mid = (left + right) / 2;
+        TreeNode root = new TreeNode(nums[mid]);
+        root.left = sortedArrayToBST(nums, left, mid);
+        root.right = sortedArrayToBST(nums, mid + 1, right);
+        return root;
     }
 }
