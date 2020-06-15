@@ -1,23 +1,18 @@
 class Solution {
-    public boolean isBalanced(TreeNode root) {
-        return check(root) >= 0;
-    }
-
-    private int check(TreeNode root) {
+    public int minDepth(TreeNode root) {
         if (root == null) {
             return 0;
         }
-        int leftHeight = check(root.left);
-        if (leftHeight == -1) {
-            return -1;
+        int leftDepth = minDepth(root.left);
+        int rightDepth = minDepth(root.right);
+        if (leftDepth > 0 && rightDepth > 0) {
+            return 1 + Math.min(leftDepth, rightDepth);
+        } else if (leftDepth > 0) {
+            return 1 + leftDepth;
+        } else if (rightDepth > 0) {
+            return 1 + rightDepth;
+        } else {
+            return 1;
         }
-        int rightHeight = check(root.right);
-        if (rightHeight == -1) {
-            return -1;
-        }
-        if (Math.abs(rightHeight - leftHeight) > 1) {
-            return -1;
-        }
-        return 1 + Math.max(leftHeight, rightHeight);
     }
 }
