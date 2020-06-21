@@ -1,28 +1,31 @@
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-
 class Solution {
-    public List<List<Integer>> pathSum(TreeNode root, int sum) {
-        List<List<Integer>> result = new ArrayList<>();
-        List<Integer> currentList = new LinkedList<>();
-        pathSum(root, sum, currentList, result);
-        return result;
+    public void flatten(TreeNode root) {
+        flattenInternal(root);
     }
 
-    private void pathSum(TreeNode root, int sum, List<Integer> currentList, List<List<Integer>> result) {
+    public TreeNode[] flattenInternal(TreeNode root) {
         if (root == null) {
-            return;
+            return null;
         }
-        sum -= root.val;
-        currentList.add(root.val);
-        if (sum == 0 && root.left == null && root.right == null) {
-            result.add(new ArrayList<>(currentList));
-            currentList.remove(currentList.size() - 1);
-            return;
+        TreeNode[] result = new TreeNode[2];
+        result[0] = root;
+        TreeNode[] leftResult = flattenInternal(root.left);
+        TreeNode[] rightResult = flattenInternal(root.right);
+        if (leftResult == null && rightResult == null) {
+            result[1] = root;
+        } else if (leftResult == null) {
+            root.right = rightResult[0];
+            result[1] = rightResult[1];
+        } else if (rightResult == null) {
+            root.left = null;
+            root.right = leftResult[0];
+            result[1] = leftResult[1];
+        } else {
+            root.left = null;
+            root.right = leftResult[0];
+            leftResult[1].right = rightResult[0];
+            result[1] = rightResult[1];
         }
-        pathSum(root.left, sum, currentList, result);
-        pathSum(root.right, sum, currentList, result);
-        currentList.remove(currentList.size() - 1);
+        return result;
     }
 }
