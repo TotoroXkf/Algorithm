@@ -1,31 +1,21 @@
 class Solution {
-    public void flatten(TreeNode root) {
-        flattenInternal(root);
-    }
-
-    public TreeNode[] flattenInternal(TreeNode root) {
-        if (root == null) {
-            return null;
+    public int numDistinct(String s, String t) {
+        int[][] dp = new int[t.length() + 1][s.length() + 1];
+        dp[0][0] = 1;
+        for (int i = 1; i < dp[0].length; i++) {
+            dp[0][i] = 1;
         }
-        TreeNode[] result = new TreeNode[2];
-        result[0] = root;
-        TreeNode[] leftResult = flattenInternal(root.left);
-        TreeNode[] rightResult = flattenInternal(root.right);
-        if (leftResult == null && rightResult == null) {
-            result[1] = root;
-        } else if (leftResult == null) {
-            root.right = rightResult[0];
-            result[1] = rightResult[1];
-        } else if (rightResult == null) {
-            root.left = null;
-            root.right = leftResult[0];
-            result[1] = leftResult[1];
-        } else {
-            root.left = null;
-            root.right = leftResult[0];
-            leftResult[1].right = rightResult[0];
-            result[1] = rightResult[1];
+        for (int i = 1; i < dp.length; i++) {
+            dp[i][0] = 0;
         }
-        return result;
+        for (int i = 1; i < dp.length; i++) {
+            for (int j = 1; j < dp[0].length; j++) {
+                dp[i][j] = dp[i][j - 1];
+                if (s.charAt(j - 1) == t.charAt(i - 1)) {
+                    dp[i][j] += dp[i - 1][j - 1];
+                }
+            }
+        }
+        return dp[dp.length - 1][dp[0].length - 1];
     }
 }
