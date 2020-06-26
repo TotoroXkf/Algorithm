@@ -4,22 +4,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Solution {
-    public List<List<Integer>> generate(int numRows) {
-        List<List<Integer>> result = new ArrayList<>();
-        int row = 1;
-        while (numRows >= row) {
-            List<Integer> currentList = new ArrayList<>();
+    public List<Integer> getRow(int rowIndex) {
+        List<Integer> preList = new ArrayList<>();
+        preList.add(1);
+        List<Integer> currentList = preList;
+        int index = 1;
+        while (rowIndex >= index) {
+            currentList = new ArrayList<>();
             currentList.add(1);
-            for (int i = 1; i < row - 1; i++) {
-                List<Integer> preList = result.get(row - 2);
+            for (int i = 1; i < index; i++) {
                 currentList.add(preList.get(i) + preList.get(i - 1));
             }
-            if (row != 1) {
-                currentList.add(1);
-            }
-            result.add(new ArrayList<>(currentList));
-            row++;
+            currentList.add(1);
+            preList = currentList;
+            index++;
         }
-        return result;
+        return currentList;
     }
 }
