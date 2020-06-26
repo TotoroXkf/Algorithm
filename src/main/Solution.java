@@ -1,45 +1,25 @@
 package main;
 
-import struct.Node;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Solution {
-    public Node connect(Node root) {
-        connectInternal(null, root);
-        return root;
-    }
-
-    public void connectInternal(Node parent, Node child) {
-        // 连接当前的这一层
-        Node tempParent = parent;
-        Node tempChild = child;
-        while (tempParent != null) {
-            if (tempParent.left != null && tempParent.left != tempChild) {
-                tempChild.next = tempParent.left;
-                tempChild = tempParent.left;
-                continue;
-            } else if (tempParent.right != null && tempParent.right != tempChild) {
-                tempChild.next = tempParent.right;
-                tempChild = tempParent.right;
-                tempParent = tempParent.next;
-                continue;
+    public List<List<Integer>> generate(int numRows) {
+        List<List<Integer>> result = new ArrayList<>();
+        int row = 1;
+        while (numRows >= row) {
+            List<Integer> currentList = new ArrayList<>();
+            currentList.add(1);
+            for (int i = 1; i < row - 1; i++) {
+                List<Integer> preList = result.get(row - 2);
+                currentList.add(preList.get(i) + preList.get(i - 1));
             }
-            tempParent = tempParent.next;
-        }
-        // 寻找下一层的起始节点，递归这个节点，开始下一层
-        tempChild = child;
-        while (tempChild != null) {
-            if (tempChild.left != null) {
-                parent = tempChild;
-                child = tempChild.left;
-                connectInternal(parent, child);
-                break;
-            } else if (tempChild.right != null) {
-                parent = tempChild;
-                child = tempChild.right;
-                connectInternal(parent, child);
-                break;
+            if (row != 1) {
+                currentList.add(1);
             }
-            tempChild = tempChild.next;
+            result.add(new ArrayList<>(currentList));
+            row++;
         }
+        return result;
     }
 }
