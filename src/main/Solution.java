@@ -1,24 +1,32 @@
 package main;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Solution {
-    public List<Integer> getRow(int rowIndex) {
-        List<Integer> preList = new ArrayList<>();
-        preList.add(1);
-        List<Integer> currentList = preList;
-        int index = 1;
-        while (rowIndex >= index) {
-            currentList = new ArrayList<>();
-            currentList.add(1);
-            for (int i = 1; i < index; i++) {
-                currentList.add(preList.get(i) + preList.get(i - 1));
-            }
-            currentList.add(1);
-            preList = currentList;
-            index++;
+    public int minimumTotal(List<List<Integer>> triangle) {
+        if (triangle.size() == 0) {
+            return 0;
         }
-        return currentList;
+        if (triangle.size() == 1) {
+            return triangle.get(0).get(0);
+        }
+        int minValue = Integer.MAX_VALUE;
+        for (int i = 1; i < triangle.size(); i++) {
+            List<Integer> preList = triangle.get(i - 1);
+            List<Integer> currentList = triangle.get(i);
+            minValue = Integer.MAX_VALUE;
+            for (int j = 0; j < currentList.size(); j++) {
+                int value = Integer.MAX_VALUE;
+                if (j - 1 > 0) {
+                    value = preList.get(j - 1);
+                }
+                if (j < preList.size()) {
+                    value = Math.min(value, preList.get(j));
+                }
+                currentList.set(j, currentList.get(j) + value);
+                minValue = Math.min(currentList.get(j), minValue);
+            }
+        }
+        return minValue;
     }
 }
