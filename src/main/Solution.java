@@ -1,32 +1,20 @@
 package main;
 
-import java.util.List;
-
 public class Solution {
-    public int minimumTotal(List<List<Integer>> triangle) {
-        if (triangle.size() == 0) {
-            return 0;
+    public int maxProfit(int[] prices) {
+        int result = 0;
+        if (prices.length == 0) {
+            return result;
         }
-        if (triangle.size() == 1) {
-            return triangle.get(0).get(0);
-        }
-        int minValue = Integer.MAX_VALUE;
-        for (int i = 1; i < triangle.size(); i++) {
-            List<Integer> preList = triangle.get(i - 1);
-            List<Integer> currentList = triangle.get(i);
-            minValue = Integer.MAX_VALUE;
-            for (int j = 0; j < currentList.size(); j++) {
-                int value = Integer.MAX_VALUE;
-                if (j - 1 > 0) {
-                    value = preList.get(j - 1);
-                }
-                if (j < preList.size()) {
-                    value = Math.min(value, preList.get(j));
-                }
-                currentList.set(j, currentList.get(j) + value);
-                minValue = Math.min(currentList.get(j), minValue);
+        int minValue = prices[0];
+        for (int i = 1; i < prices.length; i++) {
+            if (minValue > prices[i]) {
+                minValue = prices[i];
+            } else {
+                int earn = prices[i] - minValue;
+                result = Math.max(earn, result);
             }
         }
-        return minValue;
+        return result;
     }
 }
