@@ -15,15 +15,16 @@ public class SolutionTest {
 
     @Test
     public void test() {
-        List<List<Integer>> triangl = new ArrayList<>();
-        List<Integer> list1 = new ArrayList<>();
-        list1.add(2);
-        triangl.add(list1);
-        List<Integer> list2 = new ArrayList<>();
-        list2.add(3);
-        list2.add(4);
-        triangl.add(list2);
-        int result = solution.minimumTotal(triangl);
-        assert result == 5;
+        int[] array = new int[]{1, 2, 3, 4, 5};
+        assert solution.maxProfit(array) == 4;
+
+        array = new int[]{3, 3, 5, 0, 0, 3, 1, 4};
+        assert solution.maxProfit(array) == 6;
+
+        array = new int[]{6, 1, 3, 2, 4, 7};
+        assert solution.maxProfit(array) == 7;
+
+        array = new int[]{7, 6, 5, 4, 3, 2, 1};
+        assert solution.maxProfit(array) == 0;
     }
 } 
