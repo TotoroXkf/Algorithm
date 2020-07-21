@@ -1,110 +1,45 @@
 package main;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
 import java.util.LinkedList;
-import java.util.List;
 
 public class Solution {
+    // 使用双栈实现
+    private LinkedList<Integer> stackData = new LinkedList<>();
+    private LinkedList<Integer> stackMin = new LinkedList<>();
+
     /**
-     * 一个bfs的应用，算是思维的扩展
-     * 按照bfs的逻辑，一次添加最相近的一层节点，逐步遍历，在添加下一层节点，直到找到
-     * 当找到的时候一定是可以达到的最小距离，返回答案即可
+     * push的时候，数据栈正常push，最小值栈则是比较当前栈顶的值和新值
+     * 栈顶值小于等于新值则压入
      */
-    public int ladderLength(String beginWord, String endWord, List<String> wordList) {
-        // 把开始的单词也添加进去
-        wordList.add(0, beginWord);
-        // 生成图
-        HashMap<String, List<String>> graph = createGraph(wordList);
-        // 记录已经被遍历过的节点，防止重复遍历
-        HashSet<String> hashSet = new HashSet<>();
-
-        if (!graph.containsKey(endWord)) {
-            return 0;
+    public void push(int newNum) {
+        if (stackMin.isEmpty() || newNum <= getMin()) {
+            stackMin.push(newNum);
         }
-
-        int result = 0;
-        // 准备执行 bfs。每一次遍历一层
-        LinkedList<List<String>> queue = new LinkedList<>();
-        // 第一层是开始单词
-        List<String> tempBegin = new ArrayList<>();
-        tempBegin.add(beginWord);
-        hashSet.add(beginWord);
-        queue.add(tempBegin);
-        // 执行bfs
-        while (!queue.isEmpty()) {
-            result++;
-            // 当前层的所有单词
-            List<String> words = queue.removeFirst();
-            // 这层的遍历要得到的下一层的所有单词
-            List<String> nextWords = new ArrayList<>();
-            // 遍历当前层
-            for (String currentWord : words) {
-                // 找到了对应的单词，直接返回结果
-                if (currentWord.equals(endWord)) {
-                    return result;
-                }
-                // 添加直接相关的下一层
-                for (String findWord : graph.get(currentWord)) {
-                    if (hashSet.contains(findWord)) {
-                        continue;
-                    }
-                    hashSet.add(findWord);
-                    nextWords.add(findWord);
-                }
-            }
-            // 如果下一层有节点的话添加到队列
-            if (!nextWords.isEmpty()) {
-                queue.add(nextWords);
-            }
-        }
-        return 0;
+        stackData.push(newNum);
     }
 
     /**
-     * 按照word的关系生成图
+     * pop的时候，数据栈正常pop
+     * 如果数据栈弹出值和最小值栈相同，则弹出最小值栈
      */
-    private HashMap<String, List<String>> createGraph(List<String> wordList) {
-        HashMap<String, List<String>> hashMap = new HashMap<>();
-        for (int i = 0; i < wordList.size(); i++) {
-            String word1 = wordList.get(i);
-            for (int j = i + 1; j < wordList.size(); j++) {
-                String word2 = wordList.get(j);
-                if (isNear(word1, word2)) {
-                    if (hashMap.containsKey(word1)) {
-                        hashMap.get(word1).add(word2);
-                    } else {
-                        List<String> list = new ArrayList<>();
-                        list.add(word2);
-                        hashMap.put(word1, list);
-                    }
-                    if (hashMap.containsKey(word2)) {
-                        hashMap.get(word2).add(word1);
-                    } else {
-                        List<String> list = new ArrayList<>();
-                        list.add(word1);
-                        hashMap.put(word2, list);
-                    }
-                }
-            }
+    public int pop() {
+        if (stackMin.isEmpty()) {
+            throw new RuntimeException("Your stack is empty");
         }
-        return hashMap;
+        int value = stackData.pop();
+        if (value == getMin()) {
+            stackMin.pop();
+        }
+        return value;
     }
 
     /**
-     * 判断两个单词的距离是不是1
+     * 获取当前最小值，直接查询最小值栈即可
      */
-    private boolean isNear(String str1, String str2) {
-        int distance = 0;
-        if (str1.length() != str2.length()) {
-            return false;
+    public int getMin() {
+        if (stackMin.isEmpty()) {
+            throw new RuntimeException("Your stack is empty");
         }
-        for (int i = 0; i < str1.length() && distance < 2; i++) {
-            if (str1.charAt(i) != str2.charAt(i)) {
-                distance++;
-            }
-        }
-        return distance == 1;
+        return stackMin.peek();
     }
 }
