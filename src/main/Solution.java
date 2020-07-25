@@ -1,84 +1,39 @@
 package main;
 
+import java.util.LinkedList;
+
 public class Solution {
     /**
-     * 使用递归求解
-     *
-     * @param num   汉诺塔的层数，从上往下递增
-     * @param left  左边塔的名字
-     * @param mid   中间塔的名字
-     * @param right 右边塔的名字
-     * @return 总共需要的步数
+     * 使用双端队列可以减少时间的损耗，属于用空间换时间的做法
+     * 核心的思想是用双端队列来记录每个区域的值的情况，当窗口向后滑动的时候可以直接得到结果
+     * 使用队列保存值，使得队列保持降序。新的元素入队时直接挤掉队列中小于它的值
+     * 移动窗口时动态记录当前窗口的值，以及删除队头的元素保证窗口的合法性
      */
-    public int hanoiProblem(int num, String left, String mid, String right) {
-        if (num < 1) {
-            System.out.println("It will move 0 steps");
-            return 0;
+    public int[] getMaxWindow(int[] arr, int w) {
+        // 异常情况直接返回
+        if (arr == null || w < 1 || arr.length < w) {
+            return null;
         }
-        int result = process(num, left, mid, right, left, right);
-        System.out.println("It will move " + result + " steps");
-        return result;
-    }
-
-    /**
-     * 递归过程
-     *
-     * @param num   汉诺塔的层数，从上往下递增
-     * @param left  左边塔的名字
-     * @param mid   中间塔的名字
-     * @param right 右边塔的名字
-     * @param from  出发塔的名字
-     * @param to    去往塔的名字
-     * @return 所需要的步数
-     */
-    public int process(int num, String left, String mid, String right, String from, String to) {
-        // 分为两个部分。如果num为1，表示的是最上层的移动，是可以直接写出结果的。
-        // 这里就是递归的出口了
-        if (num == 1) {
-            // 再分为两个部分，是不是和中间有关系
-            if (from.equals(mid) || to.equals(mid)) {
-                // 和中间有关系的话直接就是1步到达。从中间到两边或者从两边到中间都是1步
-                System.out.println("move 1 from " + from + " to" + to);
-                return 1;
-            } else {
-                // 从左到右或者从右到做都是固定的两步
-                System.out.println("move 1 from " + from + " to" + mid);
-                System.out.println("move 1 from " + mid + " to" + to);
-                return 2;
+        LinkedList<Integer> queue = new LinkedList<>();
+        int[] res = new int[arr.length - w + 1];
+        int index = 0;
+        // 遍历数组
+        for (int i = 0; i < arr.length; i++) {
+            // 如果当前队列为空，或者当前值小于队尾元素，将当前的坐标放入到队尾
+            while (!queue.isEmpty() && arr[queue.peekLast()] <= arr[i]) {
+                queue.pollLast();
+            }
+            // 新的坐标入队
+            queue.addLast(i);
+            // 判读当前的队头元素是不是落在窗口外面了。如果是的话直接删除掉
+            if (queue.peekFirst() == i - w) {
+                queue.pollFirst();
+            }
+            // 记录窗口的最大值
+            if (i >= w - 1) {
+                res[index++] = arr[queue.peekFirst()];
             }
         }
-
-        // 如果是移动第N层
-        // 和之前的逻辑一样，区分是不是和中间有关系
-        if (from.equals(mid) || to.equals(mid)) {
-            // 从中间到两边或者从两边到中间的过程是一样的，需要先找到不用的第三边
-            String another = left;
-            if (from.equals(left) || to.equals(left)) {
-                another = right;
-            }
-            // 1. 是把上面的n-1移动到不用的第三边
-            int part1 = process(num - 1, left, mid, right, from, another);
-            // 2. 把n层移动到中间
-            int part2 = 1;
-            System.out.println("move " + num + " from " + from + " to" + mid);
-            // 3. 把第三边的n-1层移动回来
-            int part3 = process(num - 1, left, mid, right, another, to);
-            return part1 + part2 + part3;
-        } else {
-            // 从左边到右边需要5步
-            // 1. 把n-1层移动到另外一边
-            int part1 = process(num - 1, left, mid, right, from, to);
-            // 2. 把n层移动到中间
-            int part2 = 1;
-            System.out.println("move " + num + " from " + from + " to" + mid);
-            // 3. 把之前的n-1层用另外一边移回到开始的地方
-            int part3 = process(num - 1, left, mid, right, to, from);
-            // 4. 把中间的n层移动到右边
-            int part4 = 1;
-            System.out.println("move " + num + " from " + mid + " to" + to);
-            // 5. 把之前的n-1层移动到另外一边
-            int part5 = process(num - 1, left, mid, right, from, to);
-            return part1 + part2 + part3 + part4 + part5;
-        }
+        return res;
     }
 }
