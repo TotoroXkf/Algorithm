@@ -7,6 +7,28 @@ import struct.ListNode;
 import struct.TreeNode;
 
 public class Case {
+    /**
+     * 解析字符串成为int数组
+     */
+    public int[] parseToArray(String text) {
+        StringBuilder stringBuilder = new StringBuilder(text);
+        stringBuilder.deleteCharAt(0);
+        stringBuilder.deleteCharAt(stringBuilder.length() - 1);
+        if (stringBuilder.length() == 0) {
+            return new int[0];
+        }
+        text = stringBuilder.toString();
+        String[] strArray = text.split(", ");
+        int[] result = new int[strArray.length];
+        for (int i = 0; i < result.length; i++) {
+            result[i] = Integer.parseInt(strArray[i]);
+        }
+        return result;
+    }
+
+    /**
+     * 数组比较
+     */
     public void matchArray(Object[] array1, Object[] array2) {
         if (array1 == null && array2 == null) {
             return;
