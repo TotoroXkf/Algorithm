@@ -1,25 +1,40 @@
-import struct.TreeNode;
-
 class Solution {
-    /**
-     * 相对来说比较直接。
-     * 判断当前的节点是不是叶子节点
-     * 不是叶子节点，将当前节点值*10，递归左右，累加起来返回
-     * 是叶子节点，加上父节点传递下来的值返回
-     */
-    public int sumNumbers(TreeNode root) {
-        return sumNumbers(root, 0);
+    public void solve(char[][] board) {
+        if (board.length == 0 || board[0].length == 0) {
+            return;
+        }
+        boolean[][] mark = new boolean[board.length][board[0].length];
+        for (int i = 0; i < board[0].length; i++) {
+            dfs(board, 0, i, mark);
+            dfs(board, board.length - 1, i, mark);
+        }
+        for (int i = 0; i < board.length; i++) {
+            dfs(board, i, 0, mark);
+            dfs(board, i, board[0].length - 1, mark);
+        }
+        for (int i = 0; i < board.length; i++) {
+            for (int j = 0; j < board[0].length; j++) {
+                if (board[i][j] == 'O' && !mark[i][j]) {
+                    board[i][j] = 'X';
+                }
+            }
+        }
     }
 
-    public int sumNumbers(TreeNode root, int parentValue) {
-        if (root == null) {
-            return 0;
+    public void dfs(char[][] board, int row, int column, boolean[][] mark) {
+        if (row < 0 || row >= board.length) {
+            return;
         }
-        if (root.left == null && root.right == null) {
-            return root.val + parentValue;
+        if (column < 0 || column >= board[0].length) {
+            return;
         }
-        int leftResult = sumNumbers(root.left, (parentValue + root.val) * 10);
-        int rightResult = sumNumbers(root.right, (parentValue + root.val) * 10);
-        return leftResult + rightResult;
+        if (board[row][column] == 'X' || mark[row][column]) {
+            return;
+        }
+        mark[row][column] = true;
+        dfs(board, row + 1, column, mark);
+        dfs(board, row - 1, column, mark);
+        dfs(board, row, column + 1, mark);
+        dfs(board, row, column - 1, mark);
     }
 }
