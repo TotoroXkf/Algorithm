@@ -1,33 +1,45 @@
-import java.util.HashMap;
-
-public class Solution {
-    public Node copyRandomList(Node head) {
-        return copyRandomList(head, new HashMap<>());
-    }
-
-    private Node copyRandomList(Node head, HashMap<Node, Node> hashMap) {
-        if (head == null) {
-            return null;
+class Solution {
+    public ListNode insertionSortList(ListNode head) {
+        if (head == null || head.next == null) {
+            return head;
         }
-        if (hashMap.containsKey(head)) {
-            return hashMap.get(head);
+        ListNode preHead = new ListNode(head.val);
+        preHead.next = head;
+        ListNode last = preHead;
+        while (last.next != null) {
+            ListNode nextNode = last.next;
+            ListNode preNode = preHead;
+            ListNode node = preHead.next;
+            while (nextNode.val >= node.val && nextNode != node) {
+                node = node.next;
+                preNode = preNode.next;
+            }
+            if (node == nextNode) {
+                last = nextNode;
+                continue;
+            }
+            last.next = nextNode.next;
+            ListNode temp = preNode.next;
+            preNode.next = nextNode;
+            nextNode.next = temp;
         }
-        Node cloneNode = new Node(head.val);
-        hashMap.put(head, cloneNode);
-        cloneNode.next = copyRandomList(head.next, hashMap);
-        cloneNode.random = copyRandomList(head.random, hashMap);
-        return cloneNode;
+        return preHead.next;
     }
 }
 
-class Node {
+class ListNode {
     int val;
-    Node next;
-    Node random;
+    ListNode next;
 
-    public Node(int val) {
+    ListNode() {
+    }
+
+    ListNode(int val) {
         this.val = val;
-        this.next = null;
-        this.random = null;
+    }
+
+    ListNode(int val, ListNode next) {
+        this.val = val;
+        this.next = next;
     }
 }
