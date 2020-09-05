@@ -1,29 +1,56 @@
 class Solution {
-    public ListNode insertionSortList(ListNode head) {
+    /**
+     * 归并排序的链表实现
+     */
+    public ListNode sortList(ListNode head) {
         if (head == null || head.next == null) {
             return head;
         }
-        ListNode preHead = new ListNode(head.val);
-        preHead.next = head;
-        ListNode last = preHead;
-        while (last.next != null) {
-            ListNode nextNode = last.next;
-            ListNode preNode = preHead;
-            ListNode node = preHead.next;
-            while (nextNode.val >= node.val && nextNode != node) {
-                node = node.next;
-                preNode = preNode.next;
+        ListNode slow = head;
+        ListNode fast = head;
+        while (fast.next != null && fast.next.next != null) {
+            fast = fast.next.next;
+            slow = slow.next;
+        }
+        fast = slow.next;
+        slow.next = null;
+        ListNode listNode1 = sortList(head);
+        ListNode listNode2 = sortList(fast);
+        ListNode newHead = null;
+        ListNode currentNode = null;
+        while (listNode1 != null || listNode2 != null) {
+            ListNode resultNode;
+            // 存在一个链表为空时直接可以结束merge
+            if (listNode1 == null || listNode2 == null) {
+                if (listNode1 == null) {
+                    resultNode = listNode2;
+                } else {
+                    resultNode = listNode1;
+                }
+                if (newHead == null) {
+                    newHead = resultNode;
+                } else {
+                    currentNode.next = resultNode;
+                }
+                break;
             }
-            if (node == nextNode) {
-                last = nextNode;
+            // 谁小取谁
+            if (listNode1.val <= listNode2.val) {
+                resultNode = listNode1;
+                listNode1 = listNode1.next;
+            } else {
+                resultNode = listNode2;
+                listNode2 = listNode2.next;
+            }
+            if (newHead == null) {
+                newHead = resultNode;
+                currentNode = resultNode;
                 continue;
             }
-            last.next = nextNode.next;
-            ListNode temp = preNode.next;
-            preNode.next = nextNode;
-            nextNode.next = temp;
+            currentNode.next = resultNode;
+            currentNode = currentNode.next;
         }
-        return preHead.next;
+        return newHead;
     }
 }
 
