@@ -1,24 +1,33 @@
+import java.math.BigDecimal;
+
 class Solution {
-    public int calculateMinimumHP(int[][] dungeon) {
-        int row = dungeon.length;
-        int column = dungeon[0].length;
-        int[][] dp = new int[row][column];
-        if (dungeon[row - 1][column - 1] < 0) {
-            dp[row - 1][column - 1] = Math.abs(dungeon[row - 1][column - 1]) + 1;
-        } else {
-            dp[row - 1][column - 1] = 1;
-        }
-        for (int i = row - 2; i > -1; i--) {
-            dp[i][column - 1] = Math.max(dp[i + 1][column - 1] - dungeon[i][column - 1], 1);
-        }
-        for (int i = column - 2; i > -1; i--) {
-            dp[row - 1][i] = Math.max(dp[row - 1][i + 1] - dungeon[row - 1][i], 1);
-        }
-        for (int i = row - 2; i > -1; i--) {
-            for (int j = column - 2; j > -1; j--) {
-                dp[i][j] = Math.max(Math.min(dp[i + 1][j], dp[i][j + 1]) - dungeon[i][j], 1);
+    public String largestNumber(int[] nums) {
+        StringBuilder current = new StringBuilder();
+        StringBuilder result = new StringBuilder("0");
+        largestNumber(nums, 0, current, result, new boolean[nums.length]);
+        return result.toString();
+    }
+
+    private void largestNumber(int[] nums, int index, StringBuilder current, StringBuilder result, boolean[] marked) {
+        if (index >= nums.length) {
+            if (new BigDecimal(current.toString()).compareTo(new BigDecimal(result.toString())) > 0) {
+                result.delete(0, result.length());
+                result.append(current.toString());
+                return;
             }
         }
-        return dp[0][0];
+        for (int i = 0; i < nums.length; i++) {
+            if (marked[i]) {
+                continue;
+            }
+            String s = String.valueOf(nums[i]);
+            current.append(s);
+            index++;
+            marked[i] = true;
+            largestNumber(nums, index, current, result, marked);
+            current.delete(current.length() - s.length(), current.length());
+            index--;
+            marked[i] = false;
+        }
     }
 }
