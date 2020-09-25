@@ -5,20 +5,30 @@ public class SolutionTest {
 
     @Test
     public void check() {
-        TreeNode root = new TreeNode(7);
-        root.left = new TreeNode(3);
-        root.right = new TreeNode(15);
-        root.right.left = new TreeNode(9);
-        root.right.right = new TreeNode(20);
-        BSTIterator iterator = new BSTIterator(root);
-        assert iterator.next() == 3;
-        assert iterator.next() == 7;
-        assert iterator.hasNext();
-        assert iterator.next() == 9;
-        assert iterator.hasNext();
-        assert iterator.next() == 15;
-        assert iterator.hasNext();
-        assert iterator.next() == 20;
-        assert !iterator.hasNext();
+        int[][] map = new int[][]{
+            new int[]{-2, -3, 3},
+            new int[]{-5, -10, 1},
+            new int[]{10, 30, -5}
+        };
+        assert 7 == solution.calculateMinimumHP(map);
+    }
+
+    @Test
+    public void check2() {
+        int[][] map = new int[][]{
+            new int[]{0, 0, 0},
+            new int[]{1, 1, 1},
+        };
+        assert 1 == solution.calculateMinimumHP(map);
+    }
+
+    @Test
+    public void check3() {
+        int[][] map = new int[][]{
+            new int[]{1, -3, 3},
+            new int[]{0, -2, 0},
+            new int[]{-3, -3, -3}
+        };
+        assert 3 == solution.calculateMinimumHP(map);
     }
 }
