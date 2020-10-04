@@ -1,39 +1,29 @@
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-
 class Solution {
-    public List<String> findRepeatedDnaSequences(String s) {
-        int len = 10;
-        if (s.length() < len) {
-            return new ArrayList<>();
+    public int maxProfit(int k, int[] prices) {
+        return maxProfit(prices, k, 0);
+    }
+
+    private int maxProfit(int[] prices, int k, int index) {
+        if (index >= prices.length || k == 0) {
+            return 0;
         }
-        int base = 4;
-        int factorial = (int) Math.pow(base, len);
-        HashMap<Character, Integer> hashMap = new HashMap<>();
-        hashMap.put('A', 0);
-        hashMap.put('C', 1);
-        hashMap.put('G', 2);
-        hashMap.put('T', 3);
-        int[] num = new int[s.length()];
-        int value = 0;
-        for (int i = 0; i < s.length(); i++) {
-            num[i] = hashMap.get(s.charAt(i));
-        }
-        for (int i = 0; i < len; i++) {
-            value = value * base + num[i];
-        }
-        HashSet<Integer> repeatSet = new HashSet<>();
-        repeatSet.add(value);
-        HashSet<String> resultSet = new HashSet<>();
-        int start = 0;
-        for (int i = len; i < s.length(); i++, start++) {
-            value = value * base + num[i] - num[start] * factorial;
-            if (!repeatSet.add(value)) {
-                resultSet.add(s.substring(i + 1 - len, i + 1));
+        int result = 0;
+        int i = index;
+        while (i < prices.length) {
+            int j = i + 1;
+            while (j < prices.length && prices[j] > prices[j - 1]) {
+                j++;
             }
+            j--;
+            if (i == j) {
+                i++;
+                continue;
+            }
+            int earn = prices[j] - prices[i];
+            int nextEarn = maxProfit(prices, k - 1, j + 1);
+            result = Math.max(result, earn + nextEarn);
+            i = j + 1;
         }
-        return new ArrayList<>(resultSet);
+        return result;
     }
 }

@@ -8,9 +8,22 @@ public class SolutionTest {
 
     @Test
     public void check() {
-        String s = "AAAAACCCCCAAAAACCCCCCAAAAAGGGTTT";
-        List<String> result = solution.findRepeatedDnaSequences(s);
-        assert result.get(0).equals("AAAAACCCCC");
-        assert result.get(1).equals("CCCCCAAAAA");
+        int k = 2;
+        int[] array = new int[]{2, 4, 1};
+        assert 2 == solution.maxProfit(k, array);
+    }
+
+    @Test
+    public void check2() {
+        int k = 2;
+        int[] array = new int[]{3, 2, 6, 5, 0, 3};
+        assert 7 == solution.maxProfit(k, array);
+    }
+
+    @Test
+    public void check3() {
+        int k = 2;
+        int[] array = new int[]{6, 1, 3, 2, 4, 7};
+        assert 7 == solution.maxProfit(k, array);
     }
 }
