@@ -26,4 +26,25 @@ public class SolutionTest {
         int[] array = new int[]{6, 1, 3, 2, 4, 7};
         assert 7 == solution.maxProfit(k, array);
     }
+
+    @Test
+    public void check4() {
+        int k = 2;
+        int[] array = new int[]{4, 1, 2};
+        assert 1 == solution.maxProfit(k, array);
+    }
+
+    @Test
+    public void check5() {
+        int k = 2;
+        int[] array = new int[]{1, 2, 4, 2, 5, 7, 2, 4, 9, 0};
+        assert 13 == solution.maxProfit(k, array);
+    }
+
+    @Test
+    public void check6() {
+        int k = 2;
+        int[] array = new int[]{6, 5, 4, 8, 6, 8, 7, 8, 9, 4, 5};
+        assert 7 == solution.maxProfit(k, array);
+    }
 }
