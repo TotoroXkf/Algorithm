@@ -1,18 +1,12 @@
 public class Solution {
-    public void rotate(int[] nums, int k) {
-        k %= nums.length;
-        reverse(nums, 0, nums.length - 1);
-        reverse(nums, 0, k - 1);
-        reverse(nums, k, nums.length - 1);
-    }
-
-    public void reverse(int[] nums, int start, int end) {
-        while (start < end) {
-            int temp = nums[start];
-            nums[start] = nums[end];
-            nums[end] = temp;
-            start++;
-            end--;
-        }
+    public int reverseBits(int i) {
+        // 将32位划分位16个块，每块2位。将每2位反转
+        i = (i & 0x55555555) << 1 | (i >>> 1) & 0x55555555;
+        // 将32位划分位8个块，每块4位。将每块的4位反转
+        i = (i & 0x33333333) << 2 | (i >>> 2) & 0x33333333;
+        // 将32位划分位4个块，每块8位。将每块的8位反转
+        i = (i & 0x0f0f0f0f) << 4 | (i >>> 4) & 0x0f0f0f0f;
+        // 将32位数字看作为4个8位组成的块，反转这4个块完成对32位的反转
+        return (i << 24) | ((i & 0xff00) << 8) | ((i >>> 8) & 0xff00) | (i >>> 24);
     }
 }
