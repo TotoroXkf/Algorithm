@@ -1,12 +1,18 @@
-public class Solution {
-    public int reverseBits(int i) {
-        // 将32位划分位16个块，每块2位。将每2位反转
-        i = (i & 0x55555555) << 1 | (i >>> 1) & 0x55555555;
-        // 将32位划分位8个块，每块4位。将每块的4位反转
-        i = (i & 0x33333333) << 2 | (i >>> 2) & 0x33333333;
-        // 将32位划分位4个块，每块8位。将每块的8位反转
-        i = (i & 0x0f0f0f0f) << 4 | (i >>> 4) & 0x0f0f0f0f;
-        // 将32位数字看作为4个8位组成的块，反转这4个块完成对32位的反转
-        return (i << 24) | ((i & 0xff00) << 8) | ((i >>> 8) & 0xff00) | (i >>> 24);
+class Solution {
+    public int rob(int[] nums) {
+        if (nums.length == 0) {
+            return 0;
+        }
+        if (nums.length == 1) {
+            return nums[0];
+        }
+        int dp1 = nums[0];
+        int dp2 = Math.max(nums[0], nums[1]);
+        for (int i = 2; i < nums.length; i++) {
+            int tempValue = dp2;
+            dp2 = Math.max(dp1 + nums[i], dp2);
+            dp1 = tempValue;
+        }
+        return dp2;
     }
 }
