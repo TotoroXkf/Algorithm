@@ -1,18 +1,35 @@
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.LinkedList;
+import java.util.List;
+
 class Solution {
-    public int rob(int[] nums) {
-        if (nums.length == 0) {
-            return 0;
+    public List<Integer> rightSideView(TreeNode root) {
+        if (root == null) {
+            return Collections.emptyList();
         }
-        if (nums.length == 1) {
-            return nums[0];
+        List<Integer> result = new ArrayList<>();
+        LinkedList<TreeNode> queue = new LinkedList<>();
+        queue.add(root);
+        queue.add(null);
+        while (!queue.isEmpty()) {
+            TreeNode node = queue.removeFirst();
+            if (node == null) {
+                if (!queue.isEmpty()) {
+                    queue.add(null);
+                }
+                continue;
+            }
+            if (queue.isEmpty() || queue.getFirst() == null) {
+                result.add(node.val);
+            }
+            if (node.left != null) {
+                queue.add(node.left);
+            }
+            if (node.right != null) {
+                queue.add(node.right);
+            }
         }
-        int dp1 = nums[0];
-        int dp2 = Math.max(nums[0], nums[1]);
-        for (int i = 2; i < nums.length; i++) {
-            int tempValue = dp2;
-            dp2 = Math.max(dp1 + nums[i], dp2);
-            dp1 = tempValue;
-        }
-        return dp2;
+        return result;
     }
 }
