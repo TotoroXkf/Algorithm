@@ -1,35 +1,29 @@
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.LinkedList;
-import java.util.List;
-
 class Solution {
-    public List<Integer> rightSideView(TreeNode root) {
-        if (root == null) {
-            return Collections.emptyList();
+    public int numIslands(char[][] grid) {
+        if (grid.length == 0 || grid[0].length == 0) {
+            return 0;
         }
-        List<Integer> result = new ArrayList<>();
-        LinkedList<TreeNode> queue = new LinkedList<>();
-        queue.add(root);
-        queue.add(null);
-        while (!queue.isEmpty()) {
-            TreeNode node = queue.removeFirst();
-            if (node == null) {
-                if (!queue.isEmpty()) {
-                    queue.add(null);
+        boolean[][] mark = new boolean[grid.length][grid[0].length];
+        int result = 0;
+        for (int i = 0; i < grid.length; i++) {
+            for (int j = 0; j < grid[0].length; j++) {
+                if (grid[i][j] == '1' && !mark[i][j]) {
+                    result++;
+                    dfs(grid, mark, i, j);
                 }
-                continue;
-            }
-            if (queue.isEmpty() || queue.getFirst() == null) {
-                result.add(node.val);
-            }
-            if (node.left != null) {
-                queue.add(node.left);
-            }
-            if (node.right != null) {
-                queue.add(node.right);
             }
         }
         return result;
+    }
+
+    private void dfs(char[][] grid, boolean[][] mark, int row, int column) {
+        if (row < 0 || row >= grid.length || column < 0 || column >= grid[0].length || mark[row][column] || grid[row][column] == '0') {
+            return;
+        }
+        mark[row][column] = true;
+        dfs(grid, mark, row - 1, column);
+        dfs(grid, mark, row + 1, column);
+        dfs(grid, mark, row, column - 1);
+        dfs(grid, mark, row, column + 1);
     }
 }
