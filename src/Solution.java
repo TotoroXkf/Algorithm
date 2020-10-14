@@ -1,18 +1,26 @@
+import java.util.HashMap;
+import java.util.HashSet;
+
 class Solution {
-    public ListNode removeElements(ListNode head, int val) {
-        ListNode preHead = new ListNode(val);
-        preHead.next = head;
-        ListNode pre = preHead;
-        ListNode node = pre.next;
-        while (node != null) {
-            if (node.val == val) {
-                pre.next = node.next;
-                node = pre.next;
+    public boolean isIsomorphic(String s, String t) {
+        if (s.isEmpty() || t.isEmpty()) {
+            return true;
+        }
+        HashMap<Character, Character> hashMap = new HashMap<>();
+        HashSet<Character> hashSet = new HashSet<>();
+        for (int i = 0; i < s.length(); i++) {
+            if (hashMap.containsKey(s.charAt(i))) {
+                if (hashMap.get(s.charAt(i)) != t.charAt(i)) {
+                    return false;
+                }
                 continue;
             }
-            pre = pre.next;
-            node = node.next;
+            if (hashSet.contains(t.charAt(i))) {
+                return false;
+            }
+            hashMap.put(s.charAt(i), t.charAt(i));
+            hashSet.add(t.charAt(i));
         }
-        return preHead.next;
+        return true;
     }
 }
