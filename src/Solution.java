@@ -1,43 +1,65 @@
-import java.util.ArrayList;
-import java.util.List;
-
 class Solution {
-    public boolean canFinish(int numCourses, int[][] prerequisites) {
-        List<List<Integer>> edges = new ArrayList<>();
-        for (int i = 0; i < numCourses; i++) {
-            edges.add(new ArrayList<>());
-        }
-        for (int[] ints : prerequisites) {
-            edges.get(ints[1]).add(ints[0]);
-        }
-        // 状态表，0表示从未被搜索过，1表示搜索中，2表示已经完成搜索
-        int[] state = new int[numCourses];
-        for (int i = 0; i < numCourses; i++) {
-            if (state[i] == 0) {
-                boolean result = dfs(state, edges, i);
-                if (!result) {
-                    return false;
-                }
-            }
-        }
-        return true;
+
+}
+
+class Trie {
+    private final TrieNode root;
+
+    public Trie() {
+        root = new TrieNode();
     }
 
-    private boolean dfs(int[] state, List<List<Integer>> edges, int node) {
-        if (state[node] == 1) {
-            return false;
+    public void insert(String word) {
+        TrieNode node = root;
+        for (int i = 0; i < word.length(); i++) {
+            char ch = word.charAt(i);
+            node.putNode(ch, new TrieNode());
+            node = node.getNode(ch);
         }
-        if (state[node] == 2) {
-            return true;
+        node.setEnd(true);
+        System.out.println();
+    }
+
+    public boolean search(String word) {
+        TrieNode node = findNode(word);
+        return node != null && node.isEnd();
+    }
+
+    public boolean startsWith(String prefix) {
+        TrieNode node = findNode(prefix);
+        return node != null;
+    }
+
+    private TrieNode findNode(String word) {
+        TrieNode node = root;
+        for (int i = 0; i < word.length() && node != null; i++) {
+            char ch = word.charAt(i);
+            node = node.getNode(ch);
         }
-        state[node] = 1;
-        for (int adjacentNode : edges.get(node)) {
-            boolean result = dfs(state, edges, adjacentNode);
-            if (!result) {
-                return false;
-            }
+        return node;
+    }
+}
+
+class TrieNode {
+    private final TrieNode[] links = new TrieNode[26];
+    private boolean isEnd;
+
+    public void putNode(char ch, TrieNode node) {
+        if (links[ch - 'a'] != null) {
+            return;
         }
-        state[node] = 2;
-        return true;
+        links[ch - 'a'] = node;
+    }
+
+    public TrieNode getNode(char ch) {
+        return links[ch - 'a'];
+    }
+
+    public boolean isEnd() {
+        return isEnd;
+    }
+
+    public void setEnd(boolean end) {
+        isEnd = end;
     }
 }

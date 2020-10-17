@@ -5,44 +5,24 @@ public class SolutionTest {
 
     @Test
     public void check() {
-        int n = 2;
-        int[][] array = new int[][]{
-            new int[]{
-                1, 0
-            }
-        };
-        assert solution.canFinish(n, array);
+        Trie trie = new Trie();
+        trie.insert("apple");
+        assert trie.search("apple");   // 返回 true
+        assert !trie.search("app");     // 返回 false
+        assert trie.startsWith("app"); // 返回 true
+        trie.insert("app");
+        assert trie.search("app");     // 返回 true
+
     }
 
     @Test
     public void check1() {
-        int n = 2;
-        int[][] array = new int[][]{
-            new int[]{
-                1, 0
-            },
-            new int[]{
-                0, 1
-            }
-        };
-        assert !solution.canFinish(n, array);
+
     }
 
     @Test
     public void check2() {
-        int n = 3;
-        int[][] array = new int[][]{
-            new int[]{
-                0, 1
-            },
-            new int[]{
-                1, 2
-            },
-            new int[]{
-                2, 0
-            }
-        };
-        assert !solution.canFinish(n, array);
+
     }
 
     @Test
