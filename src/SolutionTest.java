@@ -5,24 +5,23 @@ public class SolutionTest {
 
     @Test
     public void check() {
-        Trie trie = new Trie();
-        trie.insert("apple");
-        assert trie.search("apple");   // 返回 true
-        assert !trie.search("app");     // 返回 false
-        assert trie.startsWith("app"); // 返回 true
-        trie.insert("app");
-        assert trie.search("app");     // 返回 true
-
+        int[] array = new int[]{2, 3, 1, 2, 4, 4};
+        int target = 7;
+        assert 2 == solution.minSubArrayLen(target, array);
     }
 
     @Test
     public void check1() {
-
+        int[] array = new int[]{10, 3, 1, 2, 4, 4};
+        int target = 7;
+        assert 1 == solution.minSubArrayLen(target, array);
     }
 
     @Test
     public void check2() {
-
+        int[] array = new int[]{1, 1};
+        int target = 3;
+        assert 0 == solution.minSubArrayLen(target, array);
     }
 
     @Test
