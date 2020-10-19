@@ -1,49 +1,44 @@
 import org.junit.Test;
 
+import java.util.List;
+
 public class SolutionTest {
     Solution solution = new Solution();
 
     @Test
     public void check() {
-        WordDictionary wordDictionary = new WordDictionary();
-        wordDictionary.addWord("a");
-        wordDictionary.addWord("a");
-        assert wordDictionary.search(".");
-        assert wordDictionary.search("a");
-        assert !wordDictionary.search("aa");
-        assert wordDictionary.search("a");
-        assert !wordDictionary.search(".a");
-        assert !wordDictionary.search("a.");
+        String[] words = new String[]{"oath", "pea", "eat", "rain"};
+        char[][] board = new char[][]{
+            new char[]{'o', 'a', 'a', 'n'},
+            new char[]{'e', 't', 'a', 'e'},
+            new char[]{'i', 'h', 'k', 'r'},
+            new char[]{'i', 'f', 'l', 'v'}
+        };
+        List<String> result = solution.findWords(board, words);
+        assert result.contains("eat");
+        assert result.contains("oath");
     }
 
     @Test
     public void check1() {
-        WordDictionary wordDictionary = new WordDictionary();
-        wordDictionary.addWord("bad");
-        wordDictionary.addWord("dad");
-        wordDictionary.addWord("mad");
-        assert !wordDictionary.search("pad");
-        assert wordDictionary.search("bad");
-        assert wordDictionary.search(".ad");
-        assert wordDictionary.search("b..");
+        String[] words = new String[]{"aa"};
+        char[][] board = new char[][]{
+            new char[]{'a', 'a'},
+        };
+        List<String> result = solution.findWords(board, words);
+        assert result.contains("aa");
     }
 
     @Test
     public void check2() {
-        WordDictionary wordDictionary = new WordDictionary();
-        wordDictionary.addWord("at");
-        wordDictionary.addWord("and");
-        wordDictionary.addWord("an");
-        wordDictionary.addWord("add");
-        wordDictionary.addWord("bat");
-        assert !wordDictionary.search("a");
-        assert wordDictionary.search(".at");
-        assert wordDictionary.search(".at");
-        assert wordDictionary.search("an.");
-        assert !wordDictionary.search("a.d.");
-        assert !wordDictionary.search("b.");
-        assert wordDictionary.search("a.d");
-        assert !wordDictionary.search(".");
+        String[] words = new String[]{"ab", "cb", "ad", "bd", "ac", "ca", "da", "bc", "db", "adcb", "dabc", "abb", "acb"};
+        char[][] board = new char[][]{new char[]{'a', 'b'}, new char[]{'c', 'd'}};
+        List<String> result = solution.findWords(board, words);
+        assert result.contains("ab");
+        assert result.contains("ac");
+        assert result.contains("bd");
+        assert result.contains("ca");
+        assert result.contains("db");
     }
 
     @Test
