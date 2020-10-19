@@ -1,51 +1,100 @@
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-
 class Solution {
-    public int[] findOrder(int numCourses, int[][] prerequisites) {
-        List<List<Integer>> edges = new ArrayList<>();
-        for (int i = 0; i < numCourses; i++) {
-            edges.add(new ArrayList<>());
-        }
-        for (int[] ints : prerequisites) {
-            edges.get(ints[1]).add(ints[0]);
-        }
-        // 状态表，0表示从未被搜索过，1表示搜索中，2表示已经完成搜索
-        int[] state = new int[numCourses];
-        LinkedList<Integer> stack = new LinkedList<>();
-        for (int i = 0; i < numCourses; i++) {
-            if (state[i] == 0) {
-                boolean result = dfs(state, edges, i, stack);
-                if (!result) {
-                    return new int[0];
-                }
-            }
-        }
-        int[] result = new int[stack.size()];
-        int i = 0;
-        while (!stack.isEmpty()) {
-            result[i++] = stack.pop();
-        }
-        return result;
+
+}
+
+class WordDictionary {
+    private final Trie trie;
+
+    public WordDictionary() {
+        trie = new Trie();
     }
 
-    private boolean dfs(int[] state, List<List<Integer>> edges, int node, LinkedList<Integer> stack) {
-        if (state[node] == 1) {
-            return false;
+    public void addWord(String word) {
+        trie.insert(word);
+    }
+
+    public boolean search(String word) {
+        return trie.search(word);
+    }
+}
+
+class Trie {
+    private final TrieNode root;
+
+    public Trie() {
+        root = new TrieNode();
+        root.setEnd(true);
+    }
+
+    public Trie(TrieNode trieNode) {
+        root = trieNode;
+    }
+
+    public void insert(String word) {
+        TrieNode node = root;
+        for (int i = 0; i < word.length(); i++) {
+            char ch = word.charAt(i);
+            node.putNode(ch, new TrieNode());
+            node = node.getNode(ch);
         }
-        if (state[node] == 2) {
-            return true;
+        node.setEnd(true);
+    }
+
+    public boolean search(String word) {
+        if (word.isEmpty()) {
+            return root.isEnd();
         }
-        state[node] = 1;
-        for (int adjacentNode : edges.get(node)) {
-            boolean result = dfs(state, edges, adjacentNode, stack);
-            if (!result) {
+        TrieNode node = root;
+        int index = 0;
+        while (index < word.length()) {
+            char ch = word.charAt(index);
+            if (ch == '.') {
+                break;
+            }
+            node = node.getNode(ch);
+            if (node == null) {
                 return false;
             }
+            index++;
         }
-        state[node] = 2;
-        stack.push(node);
-        return true;
+        if (index == word.length()) {
+            return node.isEnd();
+        }
+        for (int i = 0; i < node.links.length; i++) {
+            TrieNode subNode = node.links[i];
+            if (subNode == null) {
+                continue;
+            }
+            Trie subTrie = new Trie(subNode);
+            boolean subResult = subTrie.search(word.substring(index + 1));
+            if (subResult) {
+                return true;
+            }
+        }
+        return false;
+    }
+}
+
+class TrieNode {
+    public final TrieNode[] links = new TrieNode[26];
+    private boolean isEnd;
+
+    public void putNode(char ch, TrieNode node) {
+        if (links[ch - 'a'] != null) {
+            return;
+        }
+        links[ch - 'a'] = node;
+    }
+
+    public TrieNode getNode(char ch) {
+        return links[ch - 'a'];
+    }
+
+    public boolean isEnd() {
+        return isEnd;
+    }
+
+    public void setEnd(boolean end) {
+        isEnd = end;
     }
 }
