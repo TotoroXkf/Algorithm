@@ -7,38 +7,19 @@ public class SolutionTest {
 
     @Test
     public void check() {
-        String[] words = new String[]{"oath", "pea", "eat", "rain"};
-        char[][] board = new char[][]{
-            new char[]{'o', 'a', 'a', 'n'},
-            new char[]{'e', 't', 'a', 'e'},
-            new char[]{'i', 'h', 'k', 'r'},
-            new char[]{'i', 'f', 'l', 'v'}
-        };
-        List<String> result = solution.findWords(board, words);
-        assert result.contains("eat");
-        assert result.contains("oath");
+        int[] array = new int[]{1, 2, 3, 4};
+        assert 6 == solution.rob(array);
     }
 
     @Test
     public void check1() {
-        String[] words = new String[]{"aa"};
-        char[][] board = new char[][]{
-            new char[]{'a', 'a'},
-        };
-        List<String> result = solution.findWords(board, words);
-        assert result.contains("aa");
+        int[] array = new int[]{1, 3, 6};
+        assert 6 == solution.rob(array);
     }
 
     @Test
     public void check2() {
-        String[] words = new String[]{"ab", "cb", "ad", "bd", "ac", "ca", "da", "bc", "db", "adcb", "dabc", "abb", "acb"};
-        char[][] board = new char[][]{new char[]{'a', 'b'}, new char[]{'c', 'd'}};
-        List<String> result = solution.findWords(board, words);
-        assert result.contains("ab");
-        assert result.contains("ac");
-        assert result.contains("bd");
-        assert result.contains("ca");
-        assert result.contains("db");
+
     }
 
     @Test
