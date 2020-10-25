@@ -7,14 +7,13 @@ public class SolutionTest {
 
     @Test
     public void check() {
-        int[] array = new int[]{1, 2, 3, 4};
-        assert 6 == solution.rob(array);
+        solution.shortestPalindrome("abcdabce");
+        System.out.println( solution.shortestPalindrome("abcdabce"));
     }
 
     @Test
     public void check1() {
-        int[] array = new int[]{1, 3, 6};
-        assert 6 == solution.rob(array);
+
     }
 
     @Test

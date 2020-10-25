@@ -1,30 +1,48 @@
 class Solution {
-    public int rob(int[] nums) {
-        if (nums.length == 0) {
-            return 0;
+    public String shortestPalindrome(String s) {
+        if (s.isEmpty()) {
+            return s;
         }
-        if (nums.length == 1) {
-            return nums[0];
+        int[] next = getNext(s);
+        int i = s.length() - 1;
+        int j = 0;
+        while (i > -1) {
+            if (s.charAt(i) == s.charAt(j)) {
+                i--;
+                j++;
+                continue;
+            }
+            j = next[j];
+            if (j == -1) {
+                i--;
+                j = 0;
+            }
         }
-        if (nums.length == 2) {
-            return Math.max(nums[0], nums[1]);
+        if (j == s.length()) {
+            return s;
         }
-        int dp1 = nums[0];
-        int dp2 = Math.max(nums[0], nums[1]);
-        for (int i = 2; i < nums.length - 1; i++) {
-            int tempValue = dp2;
-            dp2 = Math.max(dp2, nums[i] + dp1);
-            dp1 = tempValue;
+        StringBuilder stringBuilder = new StringBuilder(s.substring(j));
+        stringBuilder.reverse();
+        stringBuilder.append(s);
+        return stringBuilder.toString();
+    }
+
+    private int[] getNext(String p) {
+        int[] result = new int[p.length()];
+        char[] chars = p.toCharArray();
+        result[0] = -1;
+        for (int i = 0; i < chars.length - 1; i++) {
+            int j = i;
+            int nextIndex = result[j];
+            while (nextIndex != -1) {
+                if (chars[nextIndex] == chars[i]) {
+                    result[i + 1] = result[j] + 1;
+                    break;
+                }
+                j = nextIndex;
+                nextIndex = result[j];
+            }
         }
-        int result = dp2;
-        dp1 = nums[1];
-        dp2 = Math.max(nums[1], nums[2]);
-        for (int i = 3; i < nums.length; i++) {
-            int tempValue = dp2;
-            dp2 = Math.max(dp2, nums[i] + dp1);
-            dp1 = tempValue;
-        }
-        result = Math.max(result, dp2);
         return result;
     }
 }
