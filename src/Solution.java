@@ -1,37 +1,31 @@
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+
 class Solution {
-    public int findKthLargest(int[] nums, int k) {
-        return findKthLargest(nums, k, 0, nums.length);
+    public List<List<Integer>> combinationSum3(int k, int n) {
+        List<List<Integer>> result = new ArrayList<>();
+        LinkedList<Integer> currentList = new LinkedList<>();
+        dfs(0, currentList, n, k, result);
+        return result;
     }
 
-    public int findKthLargest(int[] nums, int k, int start, int end) {
-        if (start + 1 == end) {
-            return nums[start];
-        }
-        int target = nums[start];
-        int left = start;
-        int right = end - 1;
-        while (left <= right) {
-            if (nums[left] < target) {
-                left++;
-                continue;
+    private void dfs(int start, LinkedList<Integer> currentList, int n, int k, List<List<Integer>> result) {
+        if (1 == k) {
+            if (n > 0 && n < 10 && n > start) {
+                List<Integer> newList = new LinkedList<>(currentList);
+                newList.add(n);
+                result.add(newList);
             }
-            swap(nums, left, right--);
+            return;
         }
-        swap(nums, left, end - 1);
-        int value = end - left;
-        if (value == k) {
-            return nums[left];
+        for (int i = start + 1; i < 10; i++) {
+            if (i >= n) {
+                break;
+            }
+            currentList.add(i);
+            dfs(i, currentList, n - i, k - 1, result);
+            currentList.removeLast();
         }
-        if (value > k) {
-            return findKthLargest(nums, k, left + 1, end);
-        } else {
-            return findKthLargest(nums, k - value, start, left);
-        }
-    }
-
-    private void swap(int[] nums, int index1, int index2) {
-        int temp = nums[index1];
-        nums[index1] = nums[index2];
-        nums[index2] = temp;
     }
 }
