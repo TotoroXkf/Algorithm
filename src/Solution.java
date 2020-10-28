@@ -1,48 +1,37 @@
 class Solution {
-    public String shortestPalindrome(String s) {
-        if (s.isEmpty()) {
-            return s;
-        }
-        int[] next = getNext(s);
-        int i = s.length() - 1;
-        int j = 0;
-        while (i > -1) {
-            if (s.charAt(i) == s.charAt(j)) {
-                i--;
-                j++;
-                continue;
-            }
-            j = next[j];
-            if (j == -1) {
-                i--;
-                j = 0;
-            }
-        }
-        if (j == s.length()) {
-            return s;
-        }
-        StringBuilder stringBuilder = new StringBuilder(s.substring(j));
-        stringBuilder.reverse();
-        stringBuilder.append(s);
-        return stringBuilder.toString();
+    public int findKthLargest(int[] nums, int k) {
+        return findKthLargest(nums, k, 0, nums.length);
     }
 
-    private int[] getNext(String p) {
-        int[] result = new int[p.length()];
-        char[] chars = p.toCharArray();
-        result[0] = -1;
-        for (int i = 0; i < chars.length - 1; i++) {
-            int j = i;
-            int nextIndex = result[j];
-            while (nextIndex != -1) {
-                if (chars[nextIndex] == chars[i]) {
-                    result[i + 1] = result[j] + 1;
-                    break;
-                }
-                j = nextIndex;
-                nextIndex = result[j];
-            }
+    public int findKthLargest(int[] nums, int k, int start, int end) {
+        if (start + 1 == end) {
+            return nums[start];
         }
-        return result;
+        int target = nums[start];
+        int left = start;
+        int right = end - 1;
+        while (left <= right) {
+            if (nums[left] < target) {
+                left++;
+                continue;
+            }
+            swap(nums, left, right--);
+        }
+        swap(nums, left, end - 1);
+        int value = end - left;
+        if (value == k) {
+            return nums[left];
+        }
+        if (value > k) {
+            return findKthLargest(nums, k, left + 1, end);
+        } else {
+            return findKthLargest(nums, k - value, start, left);
+        }
+    }
+
+    private void swap(int[] nums, int index1, int index2) {
+        int temp = nums[index1];
+        nums[index1] = nums[index2];
+        nums[index2] = temp;
     }
 }
