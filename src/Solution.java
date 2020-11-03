@@ -1,31 +1,29 @@
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.HashMap;
 
 class Solution {
-    public List<List<Integer>> combinationSum3(int k, int n) {
-        List<List<Integer>> result = new ArrayList<>();
-        LinkedList<Integer> currentList = new LinkedList<>();
-        dfs(0, currentList, n, k, result);
-        return result;
+    public boolean containsNearbyAlmostDuplicate(int[] nums, int k, int t) {
+        HashMap<Long, Long> hashMap = new HashMap<>();
+        long w = (long) t + 1;
+        for (int i = 0; i < nums.length; i++) {
+            long id = getId(nums[i], w);
+            if (hashMap.containsKey(id)) {
+                return true;
+            }
+            if (hashMap.containsKey(id - 1) && (long) nums[i] - hashMap.get(id - 1) <= t) {
+                return true;
+            }
+            if (hashMap.containsKey(id + 1) && hashMap.get(id + 1) - (long) nums[i] <= t) {
+                return true;
+            }
+            hashMap.put(id, (long) nums[i]);
+            if (hashMap.size() > k) {
+                hashMap.remove(getId(nums[i - k], w));
+            }
+        }
+        return false;
     }
 
-    private void dfs(int start, LinkedList<Integer> currentList, int n, int k, List<List<Integer>> result) {
-        if (1 == k) {
-            if (n > 0 && n < 10 && n > start) {
-                List<Integer> newList = new LinkedList<>(currentList);
-                newList.add(n);
-                result.add(newList);
-            }
-            return;
-        }
-        for (int i = start + 1; i < 10; i++) {
-            if (i >= n) {
-                break;
-            }
-            currentList.add(i);
-            dfs(i, currentList, n - i, k - 1, result);
-            currentList.removeLast();
-        }
+    private long getId(long x, long w) {
+        return x < 0 ? ((x + 1) / w) - 1 : x / w;
     }
 }
