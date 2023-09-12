@@ -6,34 +6,56 @@ import java.util.Map;
 import java.util.Set;
 
 public class Solution {
+    Map<Integer, Set<Integer>> dependOn = new HashMap<>();
+    Set<Integer> record = new HashSet<>();
+
     public boolean canFinish(int numCourses, int[][] prerequisites) {
-        Map<Integer, Set<Integer>> graph = createGraph(prerequisites);
-        Set<Integer> courseSet = new HashSet<>();
-        // for (int i = 0; i < prerequisites.length; i++) {
-        // int depend = prerequisites[i][0];
-        // int course = prerequisites[i][1];
-        // if (graph.containsKey(depend)) {
-
-        // } else {
-
-        // }
-        // }
+        traversal(prerequisites);
+        for (int[] prerequisite : prerequisites) {
+            int course = prerequisite[0];
+            boolean dfsResult = dfs(course, new HashSet<>());
+            if (!dfsResult) {
+                return false;
+            }
+        }
         return true;
     }
 
-    private Map<Integer, Set<Integer>> createGraph(int[][] prerequisites) {
-        Map<Integer, Set<Integer>> result = new HashMap<>();
+    private void traversal(int[][] prerequisites) {
         for (int[] prerequisite : prerequisites) {
-            int depend = prerequisite[0];
-            int course = prerequisite[1];
-            if (result.containsKey(depend)) {
-                result.get(depend).add(course);
-            } else {
+            int course = prerequisite[0];
+            int depend = prerequisite[1];
+            if (!dependOn.containsKey(course)) {
                 Set<Integer> set = new HashSet<>();
-                set.add(course);
-                result.put(depend, set);
+                dependOn.put(course, set);
+            }
+            if (!dependOn.containsKey(depend)) {
+                Set<Integer> set = new HashSet<>();
+                dependOn.put(depend, set);
+            }
+            dependOn.get(course).add(depend);
+        }
+    }
+
+    private boolean dfs(int course, HashSet<Integer> dfsRecord) {
+        if (record.contains(course)) {
+            return true;
+        }
+        if (dfsRecord.contains(course)) {
+            return false;
+        }
+        dfsRecord.add(course);
+        for (int depend : dependOn.get(course)) {
+            boolean dfsResult = dfs(depend, dfsRecord);
+            if (!dfsResult) {
+                return false;
             }
         }
-        return result;
+        record.add(course);
+        return true;
+    }
+
+    public static void main(String[] args) {
+        new Solution().canFinish(2, new int[][]{new int[]{1, 0}, new int[]{0, 1},});
     }
 }
