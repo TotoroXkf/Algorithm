@@ -1,4 +1,4 @@
-package src;
+package src.java;
 
 public class TreeNode {
     int val;
