@@ -1,5 +1,3 @@
-package src.java;
-
 public class TreeNode {
     int val;
     TreeNode left;
